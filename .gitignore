@@ -1,3 +1,15 @@
+.gems
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+.DS_Store
+*.sw*
+config/database.yml
+public/system/
+db/schema.rb
+
 *.gem
 *.rbc
 /.config
