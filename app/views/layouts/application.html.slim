@@ -51,7 +51,6 @@ html
         - if current_user
           .menu
             a.open href="#"
-              = image_tag(current_user.thumbnail)
               = truncate current_user.name, length: 18
               span ▾
             nav
