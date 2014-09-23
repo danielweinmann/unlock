@@ -13,10 +13,10 @@ article id=dom_id(@initiative)
     h2
       span= @initiative.total_contributions
       = " contribuição".pluralize(@initiative.total_contributions)
-  #first_text= @initiative.first_text_html
+  section.first_text= @initiative.first_text_html
   section.contribute
     a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
-  #second_text= @initiative.second_text_html
+  section.second_text= @initiative.second_text_html
   - if @initiative.second_text.present? && @initiative.second_text.length > 400
     section.contribute
       a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
