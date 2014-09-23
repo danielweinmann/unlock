@@ -87,6 +87,7 @@ html
         /   h5 Curta esta página no Facebook
         /   .fb-like data-href=(content_for?(:url) ? yield(:url) : request.url) data-width="320" data-show-faces="true" data-share="true"
         section.credits
+          h4= link_to 'Unlock', root_path
           h5
             = "Feito com amor e "
             = link_to 'Open Source', 'https://github.com/danielweinmann/unlock'
