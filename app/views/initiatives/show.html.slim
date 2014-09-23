@@ -1,4 +1,14 @@
+- suppress_headline_and_article!
 - content_for :title do
   = @initiative.name
 - content_for :url do
   = initiative_url(@initiative)
+article
+  h2= @initiative.name
+  section.first_text= @initiative.first_text
+  section.contribute
+    a.button href='#' Quero contribuir
+  section.second_text= @initiative.second_text
+  - if @initiative.second_text.length > 400
+    section.contribute
+      a.button href='#' Quero contribuir

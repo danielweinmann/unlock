@@ -16,10 +16,4 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
   end
 
-  xml.url do
-    xml.loc page_url('credits')
-    xml.priority 0.2
-    xml.changefreq "monthly"
-  end
-
 end

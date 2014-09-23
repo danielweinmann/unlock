@@ -70,28 +70,29 @@ html
           = yield
       - else
         = yield
-    footer
-      section.user
-        nav
-          - if current_user
-              = link_to "Meus dados", edit_user_registration_path
-              = link_to "Sair", destroy_user_session_path, method: :delete
-          - elsif namespace != "devise"
-              = link_to "Cadastre-se", new_user_registration_path
-              = link_to "Login", new_user_session_path
-      section.social
-        h5 Curta esta página no Facebook
-        .fb-like data-href=(content_for?(:url) ? yield(:url) : request.url) data-width="320" data-show-faces="true" data-share="true"
-      section.credits
-        h5
-          = "Feito com amor e "
-          = link_to 'Open Source', 'https://github.com/danielweinmann/unlock'
-          = " em 2014, por criadores do "
-          = link_to 'Catarse', 'http://catarse.me'
-          = ", do "
-          = link_to 'Nós.vc', 'http://nos.vc'
-          = ", da "
-          = link_to 'Engage', 'http://engage.is'
-          = " e do "
-          = link_to 'Estaleiro Liberdade', 'http://estaleiroliberdade.com.br'
-          = "  ♥"
+    #footer_wrapper
+      footer
+        section.user
+          nav
+            - if current_user
+                = link_to "Meus dados", edit_user_registration_path
+                = link_to "Sair", destroy_user_session_path, method: :delete
+            - elsif namespace != "devise"
+                = link_to "Cadastre-se", new_user_registration_path
+                = link_to "Login", new_user_session_path
+        / section.social
+        /   h5 Curta esta página no Facebook
+        /   .fb-like data-href=(content_for?(:url) ? yield(:url) : request.url) data-width="320" data-show-faces="true" data-share="true"
+        section.credits
+          h5
+            = "Feito com amor e "
+            = link_to 'Open Source', 'https://github.com/danielweinmann/unlock'
+            = " em 2014, por criadores do "
+            = link_to 'Catarse', 'http://catarse.me'
+            = ", do "
+            = link_to 'Nós.vc', 'http://nos.vc'
+            = ", da "
+            = link_to 'Engage', 'http://engage.is'
+            = " e do "
+            = link_to 'Estaleiro Liberdade', 'http://estaleiroliberdade.com.br'
+            = "  ♥"
