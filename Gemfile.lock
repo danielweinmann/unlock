@@ -73,6 +73,9 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
+    httparty (0.12.0)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
@@ -92,7 +95,12 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.3)
     minitest (5.4.1)
+    moip-assinaturas (0.4.2)
+      activesupport (>= 2.3.2)
+      httparty (~> 0.12.0)
+      json (>= 1.7)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     neat (1.5.1)
       bourbon (>= 3.1)
       sass (~> 3.2.19)
@@ -185,6 +193,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   letter_opener
+  moip-assinaturas
   neat
   normalize-rails
   pg

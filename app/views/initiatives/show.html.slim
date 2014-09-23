@@ -32,3 +32,9 @@ article id=dom_id(@initiative)
       .field
         = label_tag :second_text, Initiative.human_attribute_name(:second_text)
         .editable data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."= @initiative.second_text
+      .field
+        = label_tag :moip_token, Initiative.human_attribute_name(:moip_token)
+        .editable data-attribute="moip_token" data-placeholder="Informe seu token de acesso à API do MoIP"= @initiative.moip_token
+      .field
+        = label_tag :moip_key, Initiative.human_attribute_name(:moip_key)
+        .editable data-attribute="moip_key" data-placeholder="Informe sua chave de acesso à API do MoIP"= @initiative.moip_key

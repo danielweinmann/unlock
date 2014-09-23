@@ -28,5 +28,6 @@ gem 'active_decorator'
 gem 'rest_in_place'
 gem 'autosize-rails'
 gem 'jbuilder'
-gem "auto_html", '= 1.5.1'
-gem "RedCloth"
+gem 'auto_html', '= 1.5.1'
+gem 'RedCloth'
+gem 'moip-assinaturas'

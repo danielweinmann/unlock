@@ -14,12 +14,26 @@ pt-BR:
         password_confirmation: Confirmação da senha
         current_password: Senha atual
         remember_me: Lembre-se de mim
+        full_name: Nome completo
+        document: CPF
+        phone_area_code: DDD
+        phone_number: Telefone
+        birthdate: Data de nascimento
+        address_street: Logradouro
+        address_number: Número
+        address_complement: Complemento
+        address_district: Bairro
+        address_city: Cidade
+        address_state: Estado
+        address_zipcode: CEP
       contribution:
-        value: Valor
+        value: Com quanto você quer contribuir por mês?
       initiative:
         name: Nome
         first_text: Primeiro texto
         second_text: Segundo texto
+        moip_token: Token de acesso MoIP
+        moip_key: Chave de acesso MoIP
   time:
     formats:
       medium: ! '%a, %-d/%-m, %k:%M'
