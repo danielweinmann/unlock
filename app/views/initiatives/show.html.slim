@@ -15,11 +15,11 @@ article id=dom_id(@initiative)
       span= @initiative.total_contributions
       = " contribuição".pluralize(@initiative.total_contributions)
   section.first_text
-    p class=('editable' if policy(@initiative).update?) data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."= @initiative.first_text
+    #first_text class=('editable' if policy(@initiative).update?) data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."= @initiative.first_text_html
   section.contribute
     a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
   section.second_text
-    p class=('editable' if policy(@initiative).update?) data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."= @initiative.second_text
+    #second_text class=('editable' if policy(@initiative).update?) data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."= @initiative.second_text_html
   - if @initiative.second_text.present? && @initiative.second_text.length > 400
     section.contribute
       a.button href=new_initiative_contribution_path(@initiative) Quero contribuir

@@ -51,11 +51,11 @@ class InitiativesController < ApplicationController
   private
 
   def permitted_params
-    params.permit(initiative: [:name, :first_text, :second_text])
+    params.permit(initiative: [:name, :first_text, :second_text, :name_html])
   end
 
   def initiative_params
-    params.require(:initiative).permit(:name, :first_text, :second_text)
+    params.require(:initiative).permit(:name, :first_text, :second_text, :name_html)
   end
 
 end
