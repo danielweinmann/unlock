@@ -1,5 +1,12 @@
 article.initiative
   a href=initiative_path(initiative) title=initiative.name
-    .info
-      h3= truncate initiative.name, length: 48
-      h4= truncate initiative.first_text, length: 140
+    h3= truncate initiative.name, length: 48
+    h4= truncate initiative.first_text, length: 140
+    section.status
+      h5
+        span= initiative.total_value
+        = "/mês"
+      h5
+        span= initiative.total_contributions
+        = " contribuição".pluralize(initiative.total_contributions)
+        

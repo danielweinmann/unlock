@@ -102,8 +102,7 @@
       margin-bottom: flex-gutter(12)
   +media($large_desktop)
     height: 226.72516359px
-  .info
-    padding: flex-gutter(12)
+  padding: flex-gutter(12)
   a
     color: $text_color
     text-decoration: none
@@ -117,6 +116,26 @@
     color: $link_color
   h4
     font-size: 0.8em
+    line-height: 1em
+  .status
+    margin-top: flex-gutter(12)
+    +media($tablet)
+      margin-top: flex-gutter(2)
+    +media($desktop)
+      margin-top: flex-gutter(3)
+  h5
+    background-color: $container_color
+    padding: flex-gutter(12) 0
+    +media($tablet)
+      padding: flex-gutter(6) 0
+    +media($desktop)
+      padding: flex-gutter(6) 0
+    +span-columns(3)
+    text-align: center
+    font-size: 0.6em
+    line-height: 1em
+    span
+      color: $text_color
   time
     display: block
     +media($desktop)
