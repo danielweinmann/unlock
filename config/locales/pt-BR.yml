@@ -14,6 +14,8 @@ pt-BR:
         password_confirmation: Confirmação da senha
         current_password: Senha atual
         remember_me: Lembre-se de mim
+      contribution:
+        value: Valor
   time:
     formats:
       medium: ! '%a, %-d/%-m, %k:%M'

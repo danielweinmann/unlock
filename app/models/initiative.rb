@@ -3,6 +3,7 @@
 class Initiative < ActiveRecord::Base
   
   belongs_to :user
+  has_many :contributions
 
   validates_presence_of :user, :name
 

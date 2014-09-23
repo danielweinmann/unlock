@@ -8,8 +8,8 @@
 article
   section.first_text= @initiative.first_text
   section.contribute
-    a.button href='#' Quero contribuir
+    a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
   section.second_text= @initiative.second_text
   - if @initiative.second_text.length > 400
     section.contribute
-      a.button href='#' Quero contribuir
+      a.button href=new_initiative_contribution_path(@initiative) Quero contribuir

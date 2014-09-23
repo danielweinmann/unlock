@@ -1,0 +1,10 @@
+= form_for [@initiative, @contribution] do |form|
+  - if @contribution.errors.any?
+    #error_explanation
+      h3 = "#{pluralize(@contribution.errors.count, "erro impediu", "erros impediram")} que esta contribuição fosse salva:"
+      ul
+        - @contribution.errors.full_messages.each do |msg|
+          li= msg
+  = form.label :value
+  = form.text_field :value
+  = form.submit

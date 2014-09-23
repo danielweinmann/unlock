@@ -1,0 +1,2 @@
+class ContributionPolicy < ApplicationPolicy
+end
