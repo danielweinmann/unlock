@@ -46,8 +46,11 @@ html
           div class="#{key}" = msg
     #header_wrapper
       header
-        = link_to :root do
-          h1 Unlock
+        -if content_for?(:header)
+          = yield :header
+        - else
+          = link_to :root do
+            h1 Unlock
         - if current_user
           .menu
             a.open href="#"

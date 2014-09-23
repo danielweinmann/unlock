@@ -3,8 +3,9 @@
   = @initiative.name
 - content_for :url do
   = initiative_url(@initiative)
+- content_for :header do
+  h1= @initiative.name
 article
-  h2= @initiative.name
   section.first_text= @initiative.first_text
   section.contribute
     a.button href='#' Quero contribuir
