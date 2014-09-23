@@ -24,8 +24,6 @@ class InitiativesController < ApplicationController
     authorize @initiative
     @initiative.user = current_user
     @initiative.name = current_user.name
-    @initiative.first_text = "Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."
-    @initiative.second_text = "Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."
     if @initiative.save
       flash[:success] = "Iniciativa criada com sucesso! Agora é só editar :D"
       redirect_to @initiative

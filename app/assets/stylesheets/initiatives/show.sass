@@ -1,4 +1,20 @@
 body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
+  header
+    h1
+      span
+        position: relative
+        &::before
+          font-size: 0.2em
+          float: none
+          position: absolute
+          top: 6vw
+          right: 0
+          +media($desktop)
+            top: 3vw
+        &.rip-active
+          &::after
+            font-size: 0.3em
+            line-height: 1.8em
   #content
     .status
       h2
@@ -13,5 +29,8 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
           color: $text_color
           font-size: 1.2em
     .contribute
+      +span-columns(6)
       text-align: center
       margin: flex-gutter(4) 0
+    .first_text, .second_text
+      +span-columns(6)
