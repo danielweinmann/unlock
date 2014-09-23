@@ -11,6 +11,11 @@
   meta property="og:url" content=(root_url)
   meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
   meta property="og:description" content="Unlock é uma plataforma de financiamento coletivo recorrente. Sem taxa, só do meio de pagamento. Sem curadoria, 100% autonomia."
+section.about
+  ul
+    li Financiamento coletivo recorrente
+    li Sem taxa, só do meio de pagamento
+    li Sem curadoria, 100% autonomia
 section.new
   = link_to 'Crie sua iniciativa', new_initiative_path, class: 'button'
 - if @initiatives.exists?
