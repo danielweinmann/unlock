@@ -1,5 +1,17 @@
 body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
   #content
+    .status
+      h2
+        +media($tablet)
+          +span-columns(4)
+        +media($desktop)
+          +span-columns(6)
+        background-color: $box_color
+        text-align: center
+        padding: flex-gutter(6) 0
+        span
+          color: $text_color
+          font-size: 1.2em
     .contribute
       text-align: center
       margin: flex-gutter(4) 0

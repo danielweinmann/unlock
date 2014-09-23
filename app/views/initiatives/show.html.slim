@@ -6,6 +6,13 @@
 - content_for :header do
   h1= @initiative.name
 article
+  section.status
+    h2
+      span= @initiative.total_value
+      = "/mês arrecadados"
+    h2
+      span= @initiative.total_contributions
+      = " contribuição".pluralize(@initiative.total_contributions)
   section.first_text= @initiative.first_text
   section.contribute
     a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
