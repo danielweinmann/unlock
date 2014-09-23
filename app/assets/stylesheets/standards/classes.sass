@@ -1,0 +1,229 @@
+.button
+  +button($button_color)
+  text-align: center
+  color: $button_text_color
+  &:hover
+    color: $button_text_color
+.links
+  a
+    display: block
+.field
+  margin-bottom: flex-gutter(6) * 0.618
+  +media($tablet)
+    margin-bottom: flex-gutter(8) * 0.618
+  +media($desktop)
+    margin-bottom: flex-gutter(12) * 0.618
+.menu
+  position: relative
+  .open
+    text-decoration: none
+    color: $subheadline_color
+    &:hover
+      color: $hover_color
+  nav
+    z-index: 500
+    position: absolute
+    top: 1.5em
+    left: 0
+    min-width: 100%
+    display: none
+    background-color: $container_color
+    border: 1px solid $border_color
+    a
+      text-decoration: none
+      display: block
+      padding: flex-gutter(12)
+      color: $subheadline_color
+      margin: 0 !important
+      color: $text_color !important
+      &:hover
+        background-color: $highlight_color
+        text-decoration: none !important
+.events
+  +media($tablet)
+    margin-bottom: -1 * flex-gutter(8)
+  +media($desktop)
+    margin-bottom: -1 * flex-gutter(12)
+  h2
+    a
+      &.mobile
+        +media($tablet)
+          display: none
+        +media($desktop)
+          display: none
+      &.not_mobile
+        display: none
+        +media($tablet)
+          display: inline
+        +media($desktop)
+          display: inline
+      font-size: 0.9em
+      font-weight: $normal_weight
+      text-decoration: none
+      float: right
+      color: $alternative_link_color
+      &:hover
+        color: $alternative_hover_color
+.event
+  position: relative
+  +span-columns(6)
+  height: 30.9vw
+  overflow: hidden
+  background-color: $box_color
+  margin-bottom: flex-gutter(6)
+  &:last-child
+    margin-bottom: 0
+  &:hover
+    background-color: $box_hover_color
+    h3
+      color: $box_hover_link_color
+      &:hover
+        color: $box_hover_link_hover_color
+  +media($tablet)
+    font-size: 1.382em
+    +span-columns(4)
+    +omega(2n)
+    margin-bottom: flex-gutter(8)
+    &:last-child
+      margin-bottom: flex-gutter(8)
+  +media($desktop)
+    font-size: 1.382em
+    +span-columns(4)
+    +omega(3n)
+    height: 20.6vw
+    margin-bottom: flex-gutter(12)
+    &:last-child
+      margin-bottom: flex-gutter(12)
+  +media($large_desktop)
+    height: 226.72516359px
+  .image
+    height: 100%
+    width: 38.2%
+    float: left
+    background-color: $highlight_color
+    overflow: hidden
+    text-align: center
+  .info
+    width: 61.8%
+    float: left
+    padding: flex-gutter(12)
+  a
+    color: $text_color
+    &:hover
+      color: $text_color
+  h3
+    width: 100%
+    +margin(0 0 flex-gutter(12) 0)
+    font-size: 0.9em
+    height: 2em
+    line-height: 1em
+    color: $link_color
+    +media($tablet)
+      height: 3em
+    +media($desktop)
+      height: 3em
+  time
+    display: block
+    +media($desktop)
+      font-size: 0.8em
+    &.start
+      font-weight: $bold_weight
+      img
+        width: flex-gutter(4)
+        margin-right: flex-gutter(12)
+        +media($tablet)
+          width: flex-gutter(3)
+        +media($desktop)
+          width: flex-gutter(3)
+    &.end
+      margin-left: flex-gutter(4) + flex-gutter(12)
+      +media($tablet)
+        margin-left: flex-gutter(3) + flex-gutter(12) + 1.2%
+      +media($desktop)
+        margin-left: flex-gutter(3) + flex-gutter(12) + 1.2%
+  .location
+    margin-top: flex-gutter(24)
+    img
+      width: flex-gutter(4)
+      margin-top: flex-gutter(24)
+      margin-right: flex-gutter(12)
+      vertical-align: top
+      +media($tablet)
+        width: flex-gutter(3)
+      +media($desktop)
+        width: flex-gutter(3)
+        margin-top: flex-gutter(16)
+    span
+      height: 1.382em
+      width: 85%
+      display: inline-block
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      +media($tablet)
+        overflow: visible
+        white-space: normal
+      +media($desktop)
+        overflow: visible
+        white-space: normal
+  .type
+    img
+      +position(absolute, null -0.2em -0.6em null)
+      opacity: 0.1
+      width: 24%
+      +media($tablet)
+        width: 36%
+      +media($desktop)
+        width: 36%
+.editable
+  cursor: pointer
+  &::before
+    content: "clique para editar..."
+    color: $alternative_link_color
+    float: right
+  &.rip-active
+    border: none
+    &::before
+      content: none
+    &::after
+      content: "Clique para salvar"
+      +button($highlight_color)
+  &[data-formtype=checkbox]
+    &::before
+      content: none
+    &.rip-active
+      &::after
+        content: none
+  &[data-formtype=timestamp]
+    &.rip-active
+      &::after
+        content: none
+    [type=submit]
+      +button($highlight_color)
+      width: auto
+      margin: 0
+      margin-right: 0.5em
+    .cancel
+      line-height: 2.5em
+  .rest-in-placeholder
+    color: $strong_border_color
+    border-bottom: 1px dashed $strong_border_color
+.saving
+  font-size: 1em
+  padding: 0.2em 0.5em
+  font-weight: $bold_weight
+  background-color: $text_color
+  color: $highlight_color
+  border-radius: 0.3em
+.tips
+  background-color: $alternative_highlight_color
+  color: $alternative_highlight_text_color
+  padding: 0.618em
+  +media($desktop)
+    font-size: 1.382em
+  h5
+    color: $alternative_highlight_text_color
+  a
+    color: $alternative_highlight_text_color
+    &:hover
+      color: $alternative_hover_color

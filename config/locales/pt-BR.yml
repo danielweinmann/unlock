@@ -1,0 +1,22 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+pt-BR:
+  activerecord:
+    models:
+      initiative: Iniciativa
+      user: Usuário
+      contribution: Contribuição
+    attributes:
+      user:
+        name: Nome
+        password: Senha
+        password_confirmation: Confirmação da senha
+        current_password: Senha atual
+        remember_me: Lembre-se de mim
+  time:
+    formats:
+      medium: ! '%a, %-d/%-m, %k:%M'
+      medium_short: ! '%-d/%-m, %k:%M'
+      time: ! '%H:%M'
+      week: ! '%A'

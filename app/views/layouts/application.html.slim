@@ -1,0 +1,98 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta name="robots" content="index, follow"
+    meta name="viewport" content="initial-scale=1.0, width=device-width"
+    - if content_for? :meta_tags
+      / Page specific meta tags
+      = yield :meta_tags
+    - else
+      / Meta tags for pages that don't have specific meta tags
+      meta name="description" content=yield(:title)
+      meta name="keywords" content="#{yield :title} Unlock"
+      meta property="og:title" content=yield(:title)
+      meta property="og:type" content="website"
+      meta property="og:url" content=(content_for?(:url) ? yield(:url) : request.url)
+      meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
+      meta property="og:description" content=yield(:title)
+    / Metatags for every page
+    meta name="author" content="Daniel Weinmann"
+    meta property="og:site_name" content="Unlock"
+    meta property="fb:app_id" content=ENV['FACEBOOK_APP_ID']
+    meta property="fb:admins" content=ENV['FACEBOOK_ADMINS']
+    title= "#{"#{yield :title} · " if content_for?(:title)}Unlock"
+    - if content_for? :external_js
+      = yield :external_js
+    = stylesheet_link_tag "application"
+    link rel="shortcut icon" href==image_path('favicon.png')
+    javascript:
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43352814-x', 'unlock.fund');
+    = javascript_include_tag "application" 
+    = csrf_meta_tags 
+  body[data-namespace="#{namespace}" data-controller="#{controller_name}" data-action="#{action_name}" data-locale="#{I18n.locale}" data-facebook_app_id="#{ENV['FACEBOOK_APP_ID']}"]
+    - if Rails.env.production?
+      javascript:
+        ga('send', 'pageview');
+    div#fb-root
+    #flash
+      - for key, msg in flash
+        - unless key == :timedout
+          div class="#{key}" = msg
+    #header_wrapper
+      header
+        = link_to :root do
+          h1 Unlock
+        - if current_user
+          .menu
+            a.open href="#"
+              = image_tag(current_user.thumbnail)
+              = truncate current_user.name, length: 18
+              span ▾
+            nav
+              = link_to "Criar iniciativa", new_initiative_path
+              = link_to "Meus dados", edit_user_registration_path
+              hr
+              = link_to "Sair", destroy_user_session_path, method: :delete
+        - else
+          nav.sign_in
+            = link_to "Cadastre-se", new_user_registration_path
+            = link_to "Login", new_user_session_path
+    #content
+      - if add_headline_and_article?
+        article
+          - if content_for?(:title)
+            h2= yield :title
+          = yield
+      - else
+        = yield
+    footer
+      section.user
+        nav
+          - if current_user
+              = link_to "Meus dados", edit_user_registration_path
+              = link_to "Sair", destroy_user_session_path, method: :delete
+          - elsif namespace != "devise"
+              = link_to "Cadastre-se", new_user_registration_path
+              = link_to "Login", new_user_session_path
+      section.social
+        h5 Curta esta página no Facebook
+        .fb-like data-href=(content_for?(:url) ? yield(:url) : request.url) data-width="320" data-show-faces="true" data-share="true"
+      section.credits
+        h5
+          = "Feito com amor e "
+          = link_to 'Open Source', 'https://github.com/danielweinmann/unlock'
+          = " em 2014, por criadores do "
+          = link_to 'Catarse', 'http://catarse.me'
+          = ", do "
+          = link_to 'Nós.vc', 'http://nos.vc'
+          = ", da "
+          = link_to 'Engage', 'http://engage.is'
+          = " e do "
+          = link_to 'Estaleiro Liberdade', 'http://estaleiroliberdade.com.br'
+          = "  ♥"

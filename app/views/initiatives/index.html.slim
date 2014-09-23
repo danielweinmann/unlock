@@ -1,0 +1,20 @@
+- suppress_headline_and_article!
+- content_for :title do
+  = "Financiamento coletivo recorrente, sem taxa e sem curadoria"
+- content_for :url do
+  = root_url
+- content_for :meta_tags do
+  meta name="description" content="Unlock é uma plataforma de financiamento coletivo recorrente. Sem taxa, só do meio de pagamento. Sem curadoria, 100% autonomia."
+  meta name="keywords" content="unlock plataforma financiamento coletivo recorrente sem taxa meio pagamento curadoria autonomia"
+  meta property="og:title" content="Financiamento coletivo recorrente, sem taxa e sem curadoria"
+  meta property="og:type" content="website"
+  meta property="og:url" content=(root_url)
+  meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
+  meta property="og:description" content="Unlock é uma plataforma de financiamento coletivo recorrente. Sem taxa, só do meio de pagamento. Sem curadoria, 100% autonomia."
+section.new
+  = link_to 'Crie sua iniciativa', new_initiative_path, class: 'button'
+- if @initiatives.exists?
+  section.initiatives
+    = render @initiatives
+  section.new
+    = link_to 'Crie sua iniciativa', new_initiative_path, class: 'button'
