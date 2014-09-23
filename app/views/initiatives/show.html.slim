@@ -4,8 +4,7 @@
 - content_for :url do
   = initiative_url(@initiative)
 - content_for :header do
-  h1 id=dom_id(@initiative)
-    span class=('editable' if policy(@initiative).update?) data-attribute="name"= @initiative.name
+  h1= @initiative.name
 article id=dom_id(@initiative)
   section.status
     h2
@@ -14,12 +13,22 @@ article id=dom_id(@initiative)
     h2
       span= @initiative.total_contributions
       = " contribuição".pluralize(@initiative.total_contributions)
-  section.first_text
-    #first_text class=('editable' if policy(@initiative).update?) data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."= @initiative.first_text_html
+  #first_text= @initiative.first_text_html
   section.contribute
     a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
-  section.second_text
-    #second_text class=('editable' if policy(@initiative).update?) data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."= @initiative.second_text_html
+  #second_text= @initiative.second_text_html
   - if @initiative.second_text.present? && @initiative.second_text.length > 400
     section.contribute
       a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
+  - if policy(@initiative).update?
+    section.admin
+      h4 Atualizar informações da sua iniciativa
+      .field
+        = label_tag :name, Initiative.human_attribute_name(:name)
+        .editable data-attribute="name" data-placeholder="Nome do seu evento"= @initiative.name
+      .field
+        = label_tag :first_text, Initiative.human_attribute_name(:first_text)
+        .editable data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."= @initiative.first_text
+      .field
+        = label_tag :second_text, Initiative.human_attribute_name(:second_text)
+        .editable data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."= @initiative.second_text

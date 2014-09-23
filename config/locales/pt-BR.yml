@@ -16,6 +16,10 @@ pt-BR:
         remember_me: Lembre-se de mim
       contribution:
         value: Valor
+      initiative:
+        name: Nome
+        first_text: Primeiro texto
+        second_text: Segundo texto
   time:
     formats:
       medium: ! '%a, %-d/%-m, %k:%M'
