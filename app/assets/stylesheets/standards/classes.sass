@@ -44,7 +44,7 @@
       &:hover
         background-color: $highlight_color
         text-decoration: none !important
-.events
+.initiatives
   +media($tablet)
     margin-bottom: -1 * flex-gutter(8)
   +media($desktop)
@@ -69,7 +69,7 @@
       color: $alternative_link_color
       &:hover
         color: $alternative_hover_color
-.event
+.initiative
   position: relative
   +span-columns(6)
   height: 30.9vw
@@ -101,32 +101,21 @@
       margin-bottom: flex-gutter(12)
   +media($large_desktop)
     height: 226.72516359px
-  .image
-    height: 100%
-    width: 38.2%
-    float: left
-    background-color: $highlight_color
-    overflow: hidden
-    text-align: center
   .info
-    width: 61.8%
-    float: left
     padding: flex-gutter(12)
   a
     color: $text_color
+    text-decoration: none
     &:hover
       color: $text_color
   h3
     width: 100%
     +margin(0 0 flex-gutter(12) 0)
-    font-size: 0.9em
-    height: 2em
+    font-size: 1em
     line-height: 1em
     color: $link_color
-    +media($tablet)
-      height: 3em
-    +media($desktop)
-      height: 3em
+  h4
+    font-size: 0.8em
   time
     display: block
     +media($desktop)

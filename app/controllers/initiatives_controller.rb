@@ -11,7 +11,7 @@ class InitiativesController < ApplicationController
   before_action :authenticate_user!, only: %i[new]
 
   def index
-    @initiatives = policy_scope(Initiative)
+    @initiatives = policy_scope(Initiative).order("created_at DESC")
     index!
   end
 
@@ -20,14 +20,19 @@ class InitiativesController < ApplicationController
   end
 
   def new
-    new! { authorize @initiative }
-  end
-
-  def create
-    @initiative = Initiative.new(initiative_params)
-    @initiative.user = current_user
+    @initiative = Initiative.new
     authorize @initiative
-    create!(notice: "Iniciativa criada com sucesso! Agora é só compartilhar :D")
+    @initiative.user = current_user
+    @initiative.name = current_user.name
+    @initiative.first_text = "Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."
+    @initiative.second_text = "Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."
+    if @initiative.save
+      flash[:success] = "Iniciativa criada com sucesso! Agora é só editar :D"
+      redirect_to @initiative
+    else
+      flash[:failure] = "Ooops. Ocorreu um erro ao criar sua iniciativa."
+      redirect_to :root
+    end
   end
 
   def update
@@ -41,18 +46,18 @@ class InitiativesController < ApplicationController
   end
 
   def sitemap
-    @initiatives = policy_scope(Event)
+    @initiatives = policy_scope(Initiative).order("created_at DESC")
     sitemap!
   end
 
   private
 
   def permitted_params
-    params.permit(initiative: [:name])
+    params.permit(initiative: [:name, :first_text, :second_text])
   end
 
-  def event_params
-    params.require(:event).permit(:name)
+  def initiative_params
+    params.require(:initiative).permit(:name, :first_text, :second_text)
   end
 
 end

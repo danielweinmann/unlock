@@ -6,6 +6,7 @@ class CreateInitiatives < ActiveRecord::Migration
       t.text :first_text
       t.text :second_text
       t.references :user
+      t.timestamps
     end
     add_index :initiatives, :user_id
   end
