@@ -17,18 +17,20 @@
       div= "arrecadados por mês"
     h2
       span.number= @initiative.total_contributions
-      div= "pessoa apoia".pluralize(@initiative.total_contributions)
+      div
+        = "pessoa".pluralize(@initiative.total_contributions)
+        = " apoia".pluralize(@initiative.total_contributions)
 article id=dom_id(@initiative)
   section.first_text= @initiative.first_text_html
   section.contribute
-    a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
+    a.button href=new_initiative_contribution_path(@initiative) Apoiar
   section.second_text= @initiative.second_text_html
   - if @initiative.second_text.present? && @initiative.second_text.length > 400
     section.contribute
       a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
   - if policy(@initiative).update?
     section.admin
-      h4 Atualizar informações da sua iniciativa
+      h4 Editar
       .field#image
         = form_for(@initiative) do |form|
           = form.label :image
@@ -38,16 +40,16 @@ article id=dom_id(@initiative)
         .editable data-attribute="name" data-placeholder="Nome do seu evento"= @initiative.name
       .field
         = label_tag :first_text, Initiative.human_attribute_name(:first_text)
-        .editable data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece antes do botão para contribuir com sua iniciativa."= @initiative.first_text
+        .editable data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique para editar"= @initiative.first_text
       .field
         = label_tag :second_text, Initiative.human_attribute_name(:second_text)
-        .editable data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique aqui para editar o texto que aparece depois do botão para contribuir com sua iniciativa."= @initiative.second_text
+        .editable data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique para editar"= @initiative.second_text
       .field
         = label_tag :moip_token, Initiative.human_attribute_name(:moip_token)
-        .editable data-attribute="moip_token" data-placeholder="Informe seu token de acesso à API do MoIP"= @initiative.moip_token
+        .editable data-attribute="moip_token" data-placeholder="Clique para editar"= @initiative.moip_token
       .field
         = label_tag :moip_key, Initiative.human_attribute_name(:moip_key)
-        .editable data-attribute="moip_key" data-placeholder="Informe sua chave de acesso à API do MoIP"= @initiative.moip_key
+        .editable data-attribute="moip_key" data-placeholder="Clique para editar"= @initiative.moip_key
   section.links
     - if policy(@initiative).destroy?
       = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button"

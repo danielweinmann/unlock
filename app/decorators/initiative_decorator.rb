@@ -3,11 +3,11 @@
 module InitiativeDecorator
 
   def total_value
-    self.contributions.sum(:value).to_i
+    @total_value ||= self.contributions.sum(:value).to_i
   end
   
   def total_contributions
-    self.contributions.count
+    @total_contributions ||= self.contributions.count
   end
 
   def margin

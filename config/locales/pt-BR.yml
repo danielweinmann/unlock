@@ -30,9 +30,9 @@ pt-BR:
         value: Com quanto você quer contribuir por mês?
       initiative:
         image: Imagem
-        name: Nome
-        first_text: Primeiro texto
-        second_text: Segundo texto
+        name: Título
+        first_text: Descrição curta
+        second_text: Descrição longa
         moip_token: Token de acesso MoIP
         moip_key: Chave de acesso MoIP
   time:

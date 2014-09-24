@@ -25,22 +25,22 @@ class InitiativesController < ApplicationController
     @initiative.user = current_user
     @initiative.name = current_user.name
     if @initiative.save
-      flash[:success] = "Iniciativa criada com sucesso! Agora é só editar :D"
+      flash[:success] = "Criado com sucesso! Agora, é só editar :D"
       redirect_to @initiative
     else
-      flash[:failure] = "Ooops. Ocorreu um erro ao criar sua iniciativa."
+      flash[:failure] = "Ooops. Ocorreu um erro."
       redirect_to :root
     end
   end
 
   def update
     authorize resource
-    update!(notice: "Iniciativa atualizada com sucesso :D")
+    update!(notice: "Atualizado com sucesso :D")
   end
 
   def destroy
     authorize resource
-    destroy!(notice: "Iniciativa excluída com sucesso :D") { root_path }
+    destroy!(notice: "Excluído com sucesso :D") { root_path }
   end
 
   def sitemap

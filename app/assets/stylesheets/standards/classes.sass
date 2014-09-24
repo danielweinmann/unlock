@@ -1,4 +1,4 @@
-.button
+@mixin unlock_button
   background: $button_color
   padding: 0.2em 1.2em
   border-radius: 0.4em
@@ -13,6 +13,8 @@
   &:hover
     background: $button_hover_color
     color: $button_text_color
+.button
+  +unlock_button
 .links
   +span-columns(6)
   a
@@ -204,8 +206,9 @@
     &::before
       content: none
     &::after
-      content: "Clique para salvar"
-      +button($highlight_color)
+      content: "Salvar"
+      +unlock_button
+      font-size: 1em
   &[data-formtype=checkbox]
     &::before
       content: none
@@ -217,7 +220,7 @@
       &::after
         content: none
     [type=submit]
-      +button($highlight_color)
+      +unlock_button
       width: auto
       margin: 0
       margin-right: 0.5em
@@ -228,11 +231,8 @@
     border-bottom: 1px dashed $strong_border_color
 .saving
   font-size: 1em
-  padding: 0.2em 0.5em
   font-weight: $bold_weight
-  background-color: $text_color
   color: $highlight_color
-  border-radius: 0.3em
 .tips
   background-color: $alternative_highlight_color
   color: $alternative_highlight_text_color
