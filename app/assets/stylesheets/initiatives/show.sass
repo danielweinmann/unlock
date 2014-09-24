@@ -8,18 +8,37 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
         max-height: em(229.2)
       img
         width: 100%
-  #header_wrapper header h1
-    margin-left: auto
-    margin-right: auto
-    width: 92%
-    +media($tablet)
-      width: 90%
-    +media($desktop)
-      width: 70%
+  #header_wrapper header
+    h1
+      margin-left: auto
+      margin-right: auto
+      width: 92%
+      +media($tablet)
+        width: 90%
+      +media($desktop)
+        width: 70%
+    .first_text
+      margin-top: 2em
+      text-align: left
+      line-height: 2em
+      margin-left: auto
+      margin-right: auto
+      width: 92%
+      +media($tablet)
+        width: 90%
+      +media($desktop)
+        width: 70%
   #post_header_wrapper
-    margin-top: 4em
+    margin: 2em 0
     background-color: $container_color
     .status
+      margin-left: auto
+      margin-right: auto
+      width: 92%
+      +media($tablet)
+        width: 90%
+      +media($desktop)
+        width: 70%
       h2
         color: $text_color
         font-weight: $normal_weight
@@ -29,7 +48,7 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
         +media($desktop)
           +span-columns(6)
         text-align: center
-        padding: flex-gutter(6) 0
+        padding: 2em 0
         span.currency
           font-size: 1.5em
         span.number
@@ -40,8 +59,8 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
     .contribute
       +span-columns(6)
       text-align: center
-      margin: flex-gutter(4) 0
-    .first_text, .second_text, .admin
+    .second_text, .admin
+      line-height: 2em
       margin-left: auto
       margin-right: auto
       width: 92%
@@ -49,12 +68,26 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
         width: 90%
       +media($desktop)
         width: 70%
+    .second_text
+      padding-top: 4em
+      margin-bottom: 4em
     .admin
-      margin-top: flex-gutter(6)
-      margin-bottom: flex-gutter(6)
+      padding-top: 6em
+      margin-bottom: 4em
       h2
         text-align: center
-        margin-bottom: flex-gutter(6)
+        margin-bottom: 1em
       label
+        margin-top: 1em
         font-size: 0.9em
         font-weight: $bold_weight
+      #image
+        margin-bottom: 3em
+      .editable
+        background: $container_color
+        padding: 0.5em
+    .links
+      .delete
+        background: $careful_color
+        &:hover
+          background: $careful_hover_color

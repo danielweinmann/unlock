@@ -9,6 +9,8 @@
       = link_to image_tag(@initiative.image.url, style: "margin-top: #{@initiative.margin}"), @initiative.image.url, target: :_blank
 - content_for :header do
   h1= @initiative.name
+  - if @initiative.first_text.present?
+    section.first_text= @initiative.first_text_html
 - content_for :post_header do
   section.status
     h2
@@ -21,13 +23,13 @@
         = "pessoa".pluralize(@initiative.total_contributions)
         = " apoia".pluralize(@initiative.total_contributions)
 article id=dom_id(@initiative)
-  section.first_text= @initiative.first_text_html
   section.contribute
     a.button href=new_initiative_contribution_path(@initiative) Apoiar
-  section.second_text= @initiative.second_text_html
-  - if @initiative.second_text.present? && @initiative.second_text.length > 400
-    section.contribute
-      a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
+  - if @initiative.second_text.present?
+    section.second_text= @initiative.second_text_html
+    - if @initiative.second_text.length > 400
+      section.contribute
+        a.button href=new_initiative_contribution_path(@initiative) Apoiar
   - if policy(@initiative).update?
     section.admin
       h2 Editar
@@ -52,4 +54,4 @@ article id=dom_id(@initiative)
         .editable data-attribute="moip_key" data-placeholder="Clique para editar"= @initiative.moip_key
   section.links
     - if policy(@initiative).destroy?
-      = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button"
+      = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"

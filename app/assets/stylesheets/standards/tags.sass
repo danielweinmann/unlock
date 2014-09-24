@@ -40,41 +40,24 @@ img
 form
   #error_explanation
     background-color: tint($flash_failure_color, 80%)
-    padding: flex-gutter(12) * 0.618 flex-gutter(6) * 0.618
+    padding: 2em
     h2, h3
       font-size: 1.17em
       color: $flash_failure_color
-    margin-bottom: flex-gutter(6) * 0.618
-    +media($tablet)
-      margin-bottom: flex-gutter(8) * 0.618
-    +media($desktop)
-      margin-bottom: flex-gutter(12) * 0.618
+    margin-bottom: 4em
 label
   display: block
 [type=checkbox]~label
   display: inline-block
   margin-left: 0.5em
-  margin-bottom: flex-gutter(6) * 0.618
-  +media($tablet)
-    margin-bottom: flex-gutter(8) * 0.618
-  +media($desktop)
-    margin-bottom: flex-gutter(12) * 0.618
+  margin-bottom: 4em
 #{$all-text-inputs}, textarea, select, [type=file]
   display: block
   +span-columns(6)
-  margin-bottom: flex-gutter(6) * 0.618
-  +media($tablet)
-    margin-bottom: flex-gutter(8) * 0.618
-  +media($desktop)
-    margin-bottom: flex-gutter(12) * 0.618
 [type=submit]
   @extend .button
   +span-columns(6)
   +media($desktop)
     +span-columns(3)
     +shift(9)
-  margin-bottom: flex-gutter(6) * 0.618
-  +media($tablet)
-    margin-bottom: flex-gutter(8) * 0.618
-  +media($desktop)
-    margin-bottom: flex-gutter(12) * 0.618
+  margin-bottom: 4em

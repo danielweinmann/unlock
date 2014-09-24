@@ -5,9 +5,35 @@ body[data-action="index"][data-controller="initiatives"][data-namespace="null"]
     .new
       +span-columns(6)
       padding: 4em 0 6em 0
+  #post_header_wrapper
+    header
+      ul
+        padding: 0
+        +span-columns(6)
+        list-style: none
+        li
+          +span-columns(3 of 6)
+          +media($tablet)
+            +span-columns(3 of 8)
+          +media($desktop)
+            +span-columns(4 of 12)
+          text-align: center
+          &:first-child
+            +media($tablet)
+              +shift(1 of 8)
+            +media($desktop)
+              +shift(2 of 12)
+      h2
+        color: $button_text_color
+      h3
+        color: $text_color
   #content_wrapper
     background: $container_color
   #content
+    +media($tablet)
+      padding-bottom: 2em
+    +media($desktop)
+      padding-bottom: 0
     .text
       text-align: center
       margin: 3em 0 6em 0

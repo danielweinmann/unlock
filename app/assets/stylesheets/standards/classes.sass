@@ -17,14 +17,9 @@
   +unlock_button
 .links
   +span-columns(6)
-  a
-    display: block
+  text-align: center
 .field
-  margin-bottom: flex-gutter(6) * 0.618
-  +media($tablet)
-    margin-bottom: flex-gutter(8) * 0.618
-  +media($desktop)
-    margin-bottom: flex-gutter(12) * 0.618
+  margin-bottom: 2em
 .menu
   position: relative
   .open
@@ -35,7 +30,7 @@
   nav
     z-index: 500
     position: absolute
-    top: 1.5em
+    top: 3em
     left: 0
     min-width: 100%
     display: none
@@ -44,7 +39,7 @@
     a
       text-decoration: none
       display: block
-      padding: flex-gutter(12)
+      padding: 0.5em
       color: $subheadline_color
       margin: 0 !important
       color: $text_color !important
@@ -52,10 +47,6 @@
         background-color: $highlight_color
         text-decoration: none !important
 .initiatives
-  +media($tablet)
-    margin-bottom: -1 * flex-gutter(8)
-  +media($desktop)
-    margin-bottom: -1 * flex-gutter(12)
   h2
     a
       &.mobile
@@ -82,7 +73,7 @@
   height: 30.9vw
   overflow: hidden
   background-color: $box_color
-  margin-bottom: flex-gutter(6)
+  margin-bottom: 1em
   &:last-child
     margin-bottom: 0
   &:hover
@@ -95,20 +86,16 @@
     font-size: 1.382em
     +span-columns(4)
     +omega(2n)
-    margin-bottom: flex-gutter(8)
-    &:last-child
-      margin-bottom: flex-gutter(8)
+    margin-bottom: 2em
   +media($desktop)
     font-size: 1.382em
     +span-columns(4)
     +omega(3n)
     height: 20.6vw
-    margin-bottom: flex-gutter(12)
-    &:last-child
-      margin-bottom: flex-gutter(12)
+    margin-bottom: 4em
   +media($large_desktop)
     height: 226.72516359px
-  padding: flex-gutter(12)
+  padding: 1em
   a
     color: $text_color
     text-decoration: none
@@ -116,7 +103,7 @@
       color: $text_color
   h3
     width: 100%
-    +margin(0 0 flex-gutter(12) 0)
+    +margin(0 0 1em 0)
     font-size: 1em
     line-height: 1em
     color: $link_color
@@ -124,77 +111,16 @@
     font-size: 0.8em
     line-height: 1em
   .status
-    margin-top: flex-gutter(12)
-    +media($tablet)
-      margin-top: flex-gutter(2)
-    +media($desktop)
-      margin-top: flex-gutter(3)
+    margin-top: 1em
   h5
     background-color: $container_color
-    padding: flex-gutter(12) 0
-    +media($tablet)
-      padding: flex-gutter(6) 0
-    +media($desktop)
-      padding: flex-gutter(6) 0
+    padding: 1em 0
     +span-columns(3)
     text-align: center
     font-size: 0.6em
     line-height: 1em
     span
       color: $text_color
-  time
-    display: block
-    +media($desktop)
-      font-size: 0.8em
-    &.start
-      font-weight: $bold_weight
-      img
-        width: flex-gutter(4)
-        margin-right: flex-gutter(12)
-        +media($tablet)
-          width: flex-gutter(3)
-        +media($desktop)
-          width: flex-gutter(3)
-    &.end
-      margin-left: flex-gutter(4) + flex-gutter(12)
-      +media($tablet)
-        margin-left: flex-gutter(3) + flex-gutter(12) + 1.2%
-      +media($desktop)
-        margin-left: flex-gutter(3) + flex-gutter(12) + 1.2%
-  .location
-    margin-top: flex-gutter(24)
-    img
-      width: flex-gutter(4)
-      margin-top: flex-gutter(24)
-      margin-right: flex-gutter(12)
-      vertical-align: top
-      +media($tablet)
-        width: flex-gutter(3)
-      +media($desktop)
-        width: flex-gutter(3)
-        margin-top: flex-gutter(16)
-    span
-      height: 1.382em
-      width: 85%
-      display: inline-block
-      overflow: hidden
-      text-overflow: ellipsis
-      white-space: nowrap
-      +media($tablet)
-        overflow: visible
-        white-space: normal
-      +media($desktop)
-        overflow: visible
-        white-space: normal
-  .type
-    img
-      +position(absolute, null -0.2em -0.6em null)
-      opacity: 0.1
-      width: 24%
-      +media($tablet)
-        width: 36%
-      +media($desktop)
-        width: 36%
 .editable
   cursor: pointer
   &::before

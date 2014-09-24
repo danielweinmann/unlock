@@ -84,7 +84,7 @@ html
         section.user
           nav
             - if current_user
-                = link_to "Meus dados", edit_user_registration_path
+                = link_to "Perfil", edit_user_registration_path
                 = link_to "Sair", destroy_user_session_path, method: :delete
             - elsif namespace != "devise"
                 = link_to "Cadastre-se", new_user_registration_path

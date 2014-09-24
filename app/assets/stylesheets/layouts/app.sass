@@ -29,19 +29,13 @@
     .sign_in, .menu
       padding: 1em 0
       font-size: 0.8em
-      width: 12%
+      width: 16%
       float: right
       text-align: right
       display: none
       color: $text_color
       a
         width: 100%
-        img
-          border-radius: 50%
-          width: 14%
-          vertical-align: middle
-          margin-top: -1 * flex-gutter(12)
-          margin-right: flex-gutter(6)
         color: $text_color
         text-decoration: none
         margin-left: 1.5em
@@ -58,25 +52,13 @@
   padding: 1em 0
   header
     +outer-container
-    ul
-      +span-columns(6)
-      list-style: none
-      li
-        +span-columns(2)
-        text-align: center
-        &:first-child
-          +shift(1)
-    h2
-      color: $button_text_color
-    h3
-      color: $text_color
 #content
-  padding: flex-gutter(6) 0
+  padding: 4em 0
   +outer-container
   >section
     +span-columns(6)
 #footer_wrapper
-  padding: flex-gutter(6) 0
+  padding: 4em 0
   background: $footer_color
   footer
     +outer-container
@@ -93,20 +75,12 @@
     h5
       color: $footer_text_color
     .user
-      margin: flex-gutter(6) * 0.618 0 flex-gutter(4) 0
-      +media($tablet)
-        margin: flex-gutter(8) * 0.618 0 flex-gutter(6) 0
+      margin-bottom: 4em
       +media($desktop)
         display: none
       a
         +unlock_button
-        margin-left: flex-gutter(8) * 0.618
+        font-size: 1em
+        margin-left: 0.5em
         &:first-child
           margin-left: 0
-    .social
-      width: 320px
-      margin: flex-gutter(6) * 0.618 auto
-      +media($tablet)
-        margin: flex-gutter(8) * 0.618 auto
-      +media($desktop)
-        margin: flex-gutter(12) * 0.618 auto
