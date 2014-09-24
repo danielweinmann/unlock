@@ -45,11 +45,20 @@ GEM
       rinku (~> 1.5.0)
     autosize-rails (1.18.8)
       rails (>= 3.1)
+    aws-sdk (1.53.0)
+      aws-sdk-v1 (= 1.53.0)
+    aws-sdk-v1 (1.53.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -94,6 +103,7 @@ GEM
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     mime-types (2.3)
+    mini_portile (0.6.0)
     minitest (5.4.1)
     moip-assinaturas (0.4.2)
       activesupport (>= 2.3.2)
@@ -104,8 +114,17 @@ GEM
     neat (1.5.1)
       bourbon (>= 3.1)
       sass (~> 3.2.19)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     normalize-rails (3.0.1)
     orm_adapter (0.5.0)
+    paperclip (4.1.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+    paperclip-meta (1.1.0)
+      paperclip (>= 3.0.2, < 5.0)
     pg (0.17.1)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
@@ -184,6 +203,7 @@ DEPENDENCIES
   active_decorator
   auto_html (= 1.5.1)
   autosize-rails
+  aws-sdk
   coffee-rails
   devise
   devise-i18n
@@ -196,6 +216,8 @@ DEPENDENCIES
   moip-assinaturas
   neat
   normalize-rails
+  paperclip (~> 4.1.1)
+  paperclip-meta
   pg
   pundit
   rails (= 4.1.6)
