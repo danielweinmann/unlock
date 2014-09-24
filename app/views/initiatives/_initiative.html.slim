@@ -1,16 +1,16 @@
 article.initiative
   a href=initiative_path(initiative) title=initiative.name
     .image= image_tag(initiative.image.url(:medium)) if initiative.image.present?
-    .info
-      h3= truncate initiative.name, length: 48
-      h4= truncate initiative.first_text, length: 140
     .status
-      h2
+      h5
         span.currency= "R$ "
         span.number= initiative.total_value
         div= "arrecadados por mês"
-      h2
+      h5
         span.number= initiative.total_contributions
         div
           = "pessoa".pluralize(initiative.total_contributions)
           = " apoia".pluralize(initiative.total_contributions)
+    .info
+      h3= truncate initiative.name, length: 48
+      h4= truncate initiative.first_text, length: 140

@@ -78,11 +78,10 @@
   &:last-child
     margin-bottom: 0
   &:hover
-    background-color: $box_hover_color
-    h3
-      color: $box_hover_link_color
-      &:hover
-        color: $box_hover_link_hover_color
+    .image
+      display: none
+    .status
+      display: block
   +media($tablet)
     font-size: 1.382em
     +span-columns(4)
@@ -96,39 +95,57 @@
     margin-bottom: 4em
   +media($large_desktop)
     height: 263px
-  .image
-    background: $border_color
+  .image, .status
     overflow: hidden
     height: 61.8%
     img
       width: 100%
-  .info
-  a
-    color: $text_color
-    text-decoration: none
-    &:hover
-      color: $text_color
-  h3
-    width: 100%
-    +margin(0 0 1em 0)
-    font-size: 1em
-    line-height: 1em
-    color: $link_color
-  h4
-    font-size: 0.8em
-    line-height: 1em
+  .image
+    background: $border_color
   .status
     display: none
-    margin-top: 1em
-  h5
-    background-color: $container_color
-    padding: 1em 0
-    +span-columns(3)
-    text-align: center
-    font-size: 0.6em
-    line-height: 1em
-    span
+    background-color: $box_hover_color
+    padding: 1em 0.4em
+    h5
+      +span-columns(3)
+      &:first-child
+        text-align: left
+        +media($tablet)
+          text-align: right
+        +media($desktop)
+          text-align: right
+      +media($tablet)
+        +span-columns(8)
+      +media($desktop)
+        +span-columns(12)
       color: $text_color
+      font-weight: $normal_weight
+      font-size: 0.9em
+      text-align: right
+      margin-bottom: 1em
+      span.currency
+        font-size: 1em
+      span.number
+        color: $box_color
+        font-size: 2.6em
+        font-weight: $bold_weight
+  a
+    text-decoration: none
+  .info
+    padding: 0.4em
+    height: 38.2%
+    h3, h4
+      font-family: $standard_font
+      font-style: normal
+      font-size: 0.6em
+      color: $text_color
+      +media($tablet)
+        font-size: 0.7em
+    h3
+      font-weight: $bold_weight
+      margin-bottom: 0.8em
+    h4
+      font-weight: $normal_weight
 .editable
   cursor: pointer
   &::before
