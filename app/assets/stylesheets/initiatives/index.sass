@@ -1,26 +1,13 @@
 body[data-action="index"][data-controller="initiatives"][data-namespace="null"]
-  #content
-    .new .button
-      margin: flex-gutter(6) 0
+  #header_wrapper header
+    h1
+      padding: 1em 0
+    .new
       +span-columns(6)
-      +media($tablet)
-        +span-columns(4)
-        +shift(2)
-      +media($desktop)
-        +span-columns(4)
-        +shift(4)
-    .initiatives + .new
-      .button
-        margin-bottom: 0
-    .about
-      ul
-        padding: 0
-        list-style: none
-        li
-          text-align: center
-          +span-columns(6)
-          +media($tablet)
-            +span-columns(8)
-          +media($desktop)
-            +span-columns(4)
-
+      padding: 2em 0 6em 0
+  #content_wrapper
+    background: $container_color
+  #content
+    .text
+      text-align: center
+      margin: 3em 0 6em 0

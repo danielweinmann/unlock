@@ -3,23 +3,33 @@
   = "Financiamento coletivo recorrente, sem taxa e sem curadoria"
 - content_for :url do
   = root_url
+- content_for :header do
+  = link_to :root do
+    h1= image_tag 'logo.png', alt: "Unlock", title: "Unlock"
+  h2 Crie seu financiamento coletivo recorrente
+  h3 Compartilhe valor e receba todo mês
+  section.new= link_to 'Criar', new_initiative_path, class: 'button'
+- content_for :post_header do
+  ul
+    li
+      = image_tag "no_fee.png"
+      h2 Sem taxa
+      h3 Só do meio de pagamento
+    li
+      = image_tag "not_curated.png"
+      h2 Sem curadoria
+      h3 Autonomia total
 - content_for :meta_tags do
   meta name="description" content="Unlock é uma plataforma de financiamento coletivo recorrente. Sem taxa, só do meio de pagamento. Sem curadoria, 100% autonomia."
   meta name="keywords" content="unlock plataforma financiamento coletivo recorrente sem taxa meio pagamento curadoria autonomia"
   meta property="og:title" content="Financiamento coletivo recorrente, sem taxa e sem curadoria"
   meta property="og:type" content="website"
   meta property="og:url" content=(root_url)
-  meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
+  meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo.png")}"
   meta property="og:description" content="Unlock é uma plataforma de financiamento coletivo recorrente. Sem taxa, só do meio de pagamento. Sem curadoria, 100% autonomia."
-section.about
-  ul
-    li Financiamento coletivo recorrente
-    li Sem taxa, só do meio de pagamento
-    li Sem curadoria, 100% autonomia
-section.new
-  = link_to 'Crie sua iniciativa', new_initiative_path, class: 'button'
+section.text
+  h2 Liberte potencial
+  h3 Financie e sustente o que você quer que exista
 - if @initiatives.exists?
   section.initiatives
     = render @initiatives
-  section.new
-    = link_to 'Crie sua iniciativa', new_initiative_path, class: 'button'

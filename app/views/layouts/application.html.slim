@@ -14,7 +14,7 @@ html
       meta property="og:title" content=yield(:title)
       meta property="og:type" content="website"
       meta property="og:url" content=(content_for?(:url) ? yield(:url) : request.url)
-      meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
+      meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo.png")}"
       meta property="og:description" content=yield(:title)
     / Metatags for every page
     meta name="author" content="Daniel Weinmann"
@@ -44,13 +44,8 @@ html
       - for key, msg in flash
         - unless key == :timedout
           div class="#{key}" = msg
-    #header_wrapper
+    #pre_header_wrapper
       header
-        -if content_for?(:header)
-          = yield :header
-        - else
-          = link_to :root do
-            h1 Unlock
         - if current_user
           .menu
             a.open href="#"
@@ -65,14 +60,21 @@ html
           nav.sign_in
             = link_to "Cadastre-se", new_user_registration_path
             = link_to "Login", new_user_session_path
-    #content
-      - if add_headline_and_article?
-        article
-          - if content_for?(:title)
-            h2= yield :title
+    - if content_for?(:header)
+      #header_wrapper
+        header= yield :header
+    - if content_for?(:post_header)
+      #post_header_wrapper
+        header= yield :post_header
+    #content_wrapper
+      #content
+        - if add_headline_and_article?
+          article
+            - if content_for?(:title)
+              h2= yield :title
+            = yield
+        - else
           = yield
-      - else
-        = yield
     #footer_wrapper
       footer
         section.user
@@ -83,20 +85,25 @@ html
             - elsif namespace != "devise"
                 = link_to "Cadastre-se", new_user_registration_path
                 = link_to "Login", new_user_session_path
-        / section.social
-        /   h5 Curta esta página no Facebook
-        /   .fb-like data-href=(content_for?(:url) ? yield(:url) : request.url) data-width="320" data-show-faces="true" data-share="true"
         section.credits
-          h4= link_to 'Unlock', root_path
+          h4
+            = link_to :root do
+              = image_tag 'logo_footer.png', alt: "Unlock", title: "Unlock"
           h5
             = "Feito com amor e "
             = link_to 'Open Source', 'https://github.com/danielweinmann/unlock'
-            = " em 2014, por criadores do "
+            = " em 2014 ♥"
+          h5
+            = "Por "
+            = link_to 'Daniel Weinmann', 'http://fb.com/danielweinmann'
+            = ", criador do "
             = link_to 'Catarse', 'http://catarse.me'
-            = ", do "
-            = link_to 'Nós.vc', 'http://nos.vc'
-            = ", da "
+            = " e da "
             = link_to 'Engage', 'http://engage.is'
+            = ", e "
+            = link_to 'Daniel Larusso', 'http://larusso.com.br'
+            = ", criador do "
+            = link_to 'Nós.vc', 'http://nos.vc'
             = " e do "
             = link_to 'Estaleiro Liberdade', 'http://estaleiroliberdade.com.br'
-            = "  ♥"
+            = "."

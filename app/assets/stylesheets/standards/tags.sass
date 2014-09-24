@@ -13,8 +13,11 @@ a
   color: $link_color
   &:hover
     color: $hover_color
-h1
+h1, h2, h3, h4, h5
+  line-height: 100%
+h1, h2
   color: $headline_color
+h1
   font-family: $headline_font
   font-size: 3em
   margin: flex-gutter(6) 0
@@ -22,10 +25,15 @@ h1
     margin: flex-gutter(8) 0
   +media($desktop)
     margin: flex-gutter(12) 0
-h2, h3, h4, h5
-  color: $subheadline_color
-  font-family: $standard_font
+h2
+  font-size: 2.2em
   font-weight: $bold_weight
+h3
+  font-size: 1.5em
+  font-weight: normal
+  font-style: italic
+  font-family: $subheadline_font
+  color: $subheadline_color
 h2, h3
   margin: flex-gutter(6) * 0.618 0
   +media($tablet)
@@ -33,6 +41,7 @@ h2, h3
   +media($desktop)
     margin: flex-gutter(12) * 0.618 0
 h4, h5
+  line-height: 100%
   margin-top: 0
   margin-bottom: 0.4em
 hr
