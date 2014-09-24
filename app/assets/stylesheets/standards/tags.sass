@@ -38,6 +38,7 @@ hr
 img
   max-width: 100%
 form
+  margin: 2em 0
   #error_explanation
     background-color: tint($flash_failure_color, 80%)
     padding: 2em
@@ -50,14 +51,12 @@ label
 [type=checkbox]~label
   display: inline-block
   margin-left: 0.5em
-  margin-bottom: 4em
+  margin-bottom: 1em
 #{$all-text-inputs}, textarea, select, [type=file]
   display: block
   +span-columns(6)
+  margin-bottom: 1em
 [type=submit]
-  @extend .button
-  +span-columns(6)
-  +media($desktop)
-    +span-columns(3)
-    +shift(9)
-  margin-bottom: 4em
+  +unlock_button
+  font-size: 1.5em
+  padding: 0.5em 1.2em
