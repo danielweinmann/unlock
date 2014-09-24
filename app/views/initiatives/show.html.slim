@@ -30,7 +30,7 @@ article id=dom_id(@initiative)
       a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
   - if policy(@initiative).update?
     section.admin
-      h4 Editar
+      h2 Editar
       .field#image
         = form_for(@initiative) do |form|
           = form.label :image

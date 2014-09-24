@@ -8,6 +8,14 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
         max-height: em(229.2)
       img
         width: 100%
+  #header_wrapper header h1
+    margin-left: auto
+    margin-right: auto
+    width: 92%
+    +media($tablet)
+      width: 90%
+    +media($desktop)
+      width: 70%
   #post_header_wrapper
     margin-top: 4em
     background-color: $container_color
@@ -33,15 +41,20 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       +span-columns(6)
       text-align: center
       margin: flex-gutter(4) 0
-    .first_text, .second_text
-      +span-columns(6)
+    .first_text, .second_text, .admin
+      margin-left: auto
+      margin-right: auto
+      width: 92%
+      +media($tablet)
+        width: 90%
+      +media($desktop)
+        width: 70%
     .admin
-      +span-columns(6)
-      margin: flex-gutter(6) 0
-      padding: 0.6em
-      background-color: $alternative_box_color
-      h4
-        color: $alternative_box_text_color
+      margin-top: flex-gutter(6)
+      margin-bottom: flex-gutter(6)
+      h2
+        text-align: center
+        margin-bottom: flex-gutter(6)
       label
         font-size: 0.9em
         font-weight: $bold_weight

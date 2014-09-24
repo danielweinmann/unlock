@@ -86,6 +86,9 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.11)
+    icomoon-rails (0.1.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0)
@@ -209,6 +212,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   fb-channel-file
+  icomoon-rails
   inherited_resources
   jbuilder
   jquery-rails
