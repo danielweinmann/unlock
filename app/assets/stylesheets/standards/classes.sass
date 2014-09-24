@@ -70,9 +70,10 @@
 .initiative
   position: relative
   +span-columns(6)
-  height: 30.9vw
+  height: 38.625vw
   overflow: hidden
   background-color: $box_color
+  border-bottom: 0.2em solid $border_color
   margin-bottom: 1em
   &:last-child
     margin-bottom: 0
@@ -91,11 +92,17 @@
     font-size: 1.382em
     +span-columns(4)
     +omega(3n)
-    height: 20.6vw
+    height: 22vw
     margin-bottom: 4em
   +media($large_desktop)
-    height: 226.72516359px
-  padding: 1em
+    height: 263px
+  .image
+    background: $border_color
+    overflow: hidden
+    height: 61.8%
+    img
+      width: 100%
+  .info
   a
     color: $text_color
     text-decoration: none
@@ -111,6 +118,7 @@
     font-size: 0.8em
     line-height: 1em
   .status
+    display: none
     margin-top: 1em
   h5
     background-color: $container_color

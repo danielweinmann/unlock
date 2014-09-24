@@ -56,9 +56,11 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
           font-size: 3em
           font-weight: $bold_weight
   #content
+    padding-bottom: 0
     .contribute
       +span-columns(6)
       text-align: center
+      padding-bottom: 4em
     .second_text, .admin
       line-height: 2em
       margin-left: auto
@@ -69,10 +71,8 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       +media($desktop)
         width: 70%
     .second_text
-      padding-top: 4em
       margin-bottom: 4em
     .admin
-      padding-top: 6em
       margin-bottom: 4em
       h2
         text-align: center
@@ -87,6 +87,7 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
         background: $container_color
         padding: 0.5em
     .links
+      padding-bottom: 4em
       .delete
         background: $careful_color
         &:hover

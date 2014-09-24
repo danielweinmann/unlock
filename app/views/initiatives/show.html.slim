@@ -23,11 +23,12 @@
         = "pessoa".pluralize(@initiative.total_contributions)
         = " apoia".pluralize(@initiative.total_contributions)
 article id=dom_id(@initiative)
-  section.contribute
-    a.button href=new_initiative_contribution_path(@initiative) Apoiar
+  - if @initiative.moip_key.present? && @initiative.moip_token.present?
+    section.contribute
+      a.button href=new_initiative_contribution_path(@initiative) Apoiar
   - if @initiative.second_text.present?
     section.second_text= @initiative.second_text_html
-    - if @initiative.second_text.length > 400
+    - if @initiative.second_text.length > 400 && @initiative.moip_key.present? && @initiative.moip_token.present?
       section.contribute
         a.button href=new_initiative_contribution_path(@initiative) Apoiar
   - if policy(@initiative).update?
@@ -52,6 +53,6 @@ article id=dom_id(@initiative)
       .field
         = label_tag :moip_key, Initiative.human_attribute_name(:moip_key)
         .editable data-attribute="moip_key" data-placeholder="Clique para editar"= @initiative.moip_key
-  section.links
     - if policy(@initiative).destroy?
-      = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
+      section.links
+        = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
