@@ -1,33 +1,34 @@
 body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
-  header
-    h1
-      span
-        position: relative
-        &::before
-          font-size: 0.2em
-          float: none
-          position: absolute
-          top: 6vw
-          right: 0
-          +media($desktop)
-            top: 3vw
-        &.rip-active
-          &::after
-            font-size: 0.3em
-            line-height: 1.8em
-  #content
+  #pre_header_wrapper
+    .image
+      margin-bottom: 4em
+      max-height: 19.1vw
+      overflow: hidden
+      +media($large_desktop)
+        max-height: em(229.2)
+      img
+        width: 100%
+  #post_header_wrapper
+    margin-top: 4em
+    background-color: $container_color
     .status
       h2
+        color: $text_color
+        font-weight: $normal_weight
+        font-size: 1.5em
         +media($tablet)
           +span-columns(4)
         +media($desktop)
           +span-columns(6)
-        background-color: $box_color
         text-align: center
         padding: flex-gutter(6) 0
-        span
-          color: $text_color
-          font-size: 1.2em
+        span.currency
+          font-size: 1.5em
+        span.number
+          color: $link_color
+          font-size: 3em
+          font-weight: $bold_weight
+  #content
     .contribute
       +span-columns(6)
       text-align: center
@@ -36,7 +37,7 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       +span-columns(6)
     .admin
       +span-columns(6)
-      margin-top: flex-gutter(6)
+      margin: flex-gutter(6) 0
       padding: 0.6em
       background-color: $alternative_box_color
       h4

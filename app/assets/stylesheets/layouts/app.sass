@@ -21,6 +21,11 @@
   background-color: $container_color
   header
     +outer-container
+    .logo
+      float: left
+      img
+        width: 2.2em
+        vertical-align: middle
     .sign_in, .menu
       padding: 1em 0
       font-size: 0.8em
@@ -48,21 +53,6 @@
   header
     text-align: center
     +outer-container
-    position: relative
-    h1
-      +span-columns(6)
-      +omega
-      margin: 0
-      font-size: 10vw
-      line-height: 10vw
-      +media($desktop)
-        bottom: -30%
-        left: 10%
-        font-size: 6vw
-      +media($large_desktop)
-        font-size: 4em
-        line-height: 1em
-        bottom: -5%
 #post_header_wrapper
   background-color: $button_color
   padding: 1em 0

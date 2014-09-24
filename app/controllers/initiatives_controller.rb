@@ -51,11 +51,11 @@ class InitiativesController < ApplicationController
   private
 
   def permitted_params
-    params.permit(initiative: [:name, :first_text, :second_text, :moip_token, :moip_key])
+    params.permit(initiative: [:name, :first_text, :second_text, :moip_token, :moip_key, :image])
   end
 
   def initiative_params
-    params.require(:initiative).permit(:name, :first_text, :second_text, :moip_token, :moip_key)
+    params.require(:initiative).permit(:name, :first_text, :second_text, :moip_token, :moip_key, :image)
   end
 
 end

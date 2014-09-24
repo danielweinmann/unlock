@@ -3,16 +3,22 @@
   = @initiative.name
 - content_for :url do
   = initiative_url(@initiative)
+- content_for :pre_header do
+  .image
+    - if @initiative.image.present?
+      = link_to image_tag(@initiative.image.url, style: "margin-top: #{@initiative.margin}"), @initiative.image.url, target: :_blank
 - content_for :header do
   h1= @initiative.name
-article id=dom_id(@initiative)
+- content_for :post_header do
   section.status
     h2
-      span= @initiative.total_value
-      = "/mês arrecadados"
+      span.currency= "R$ "
+      span.number= @initiative.total_value
+      div= "arrecadados por mês"
     h2
-      span= @initiative.total_contributions
-      = " contribuição".pluralize(@initiative.total_contributions)
+      span.number= @initiative.total_contributions
+      div= "pessoa apoia".pluralize(@initiative.total_contributions)
+article id=dom_id(@initiative)
   section.first_text= @initiative.first_text_html
   section.contribute
     a.button href=new_initiative_contribution_path(@initiative) Quero contribuir
@@ -23,6 +29,10 @@ article id=dom_id(@initiative)
   - if policy(@initiative).update?
     section.admin
       h4 Atualizar informações da sua iniciativa
+      .field#image
+        = form_for(@initiative) do |form|
+          = form.label :image
+          = form.file_field :image
       .field
         = label_tag :name, Initiative.human_attribute_name(:name)
         .editable data-attribute="name" data-placeholder="Nome do seu evento"= @initiative.name
@@ -38,3 +48,6 @@ article id=dom_id(@initiative)
       .field
         = label_tag :moip_key, Initiative.human_attribute_name(:moip_key)
         .editable data-attribute="moip_key" data-placeholder="Informe sua chave de acesso à API do MoIP"= @initiative.moip_key
+  section.links
+    - if policy(@initiative).destroy?
+      = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button"

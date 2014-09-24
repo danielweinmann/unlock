@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :namespace, :add_headline_and_article!, :suppress_headline_and_article!, :add_headline_and_article?
+  helper_method :namespace, :add_headline_and_article!, :suppress_headline_and_article!, :add_headline_and_article?, :add_logo!, :suppress_logo!, :add_logo?
 
   after_action :verify_authorized, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
@@ -22,6 +22,18 @@ class ApplicationController < ActionController::Base
 
   def suppress_headline_and_article!
     @suppress_headline_and_article = true
+  end
+
+  def add_logo?
+    !@suppress_logo
+  end
+
+  def add_logo!
+    @suppress_logo = false
+  end
+
+  def suppress_logo!
+    @suppress_logo = true
   end
 
   def namespace

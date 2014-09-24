@@ -46,6 +46,9 @@ html
           div class="#{key}" = msg
     #pre_header_wrapper
       header
+        - if add_logo?
+          .logo= link_to :root do
+            h1= image_tag 'logo.png', alt: "Unlock", title: "Unlock"
         - if current_user
           .menu
             a.open href="#"
@@ -60,6 +63,7 @@ html
           nav.sign_in
             = link_to "Cadastre-se", new_user_registration_path
             = link_to "Login", new_user_session_path
+      = yield :pre_header
     - if content_for?(:header)
       #header_wrapper
         header= yield :header
