@@ -9,5 +9,8 @@
 //= require underscore
 //= require rest_in_place
 //= require jquery.autosize
+//= require pickadate/picker
+//= require pickadate/picker.date
+//= require pickadate/translations/pt_BR
 //= require_tree ./lib
 //= require_tree .

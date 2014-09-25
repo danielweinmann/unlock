@@ -21,7 +21,8 @@
     = user_fields.label :phone_number, User.human_attribute_name(:phone_number)
     = user_fields.text_field :phone_number
     = user_fields.label :birthdate, User.human_attribute_name(:birthdate)
-    = user_fields.text_field :birthdate
+    = text_field_tag :pickadate_birthdate, (@contribution.user.birthdate.strftime('%d/%m/%Y') if @contribution.user.birthdate), class: "date", placeholder: "Data de nascimento"
+    = user_fields.hidden_field :birthdate
     = user_fields.label :address_street, User.human_attribute_name(:address_street)
     = user_fields.text_field :address_street
     = user_fields.label :address_number, User.human_attribute_name(:address_number)

@@ -17,8 +17,13 @@ class Initiatives::ContributionsController < ApplicationController
   end
   
   def create
-
-    # Setting contribution
+    
+    # Getting the date from Pickadate
+    if params[:pickadate_birthdate_submit]
+      params[:contribution][:user_attributes][:birthdate] = params[:pickadate_birthdate_submit]
+    end
+    
+    # Creating the contribution
     @initiative = Initiative.find(params[:initiative_id])
     @contribution = @initiative.contributions.new(contribution_params)
     authorize @contribution
@@ -26,9 +31,16 @@ class Initiatives::ContributionsController < ApplicationController
       flash[:success] = "Apoio criado com sucesso! Agora é só realizar o pagamento :D"
       redirect_to pay_initiative_contribution_path(@initiative.id, @contribution)
     else
-      flash[:failure] = "Ooops. Ocorreu um erro ao realizar seu apoio."
-      redirect_to initiative_by_permalink_path(@initiative)
+      render action: 'new'
     end
+    
+  end
+
+  def pay
+    authorize resource
+  end
+  
+  def checkout
     # 
     # # Setting credit card
     # credit_card = params[:contribution][:credit_card]
@@ -95,15 +107,6 @@ class Initiatives::ContributionsController < ApplicationController
     #     return redirect_to initiative_by_permalink_path(@initiative)
     #   end
     # end
-    
-  end
-
-  def pay
-    authorize resource
-    
-  end
-  
-  def checkout
   end
   
   private

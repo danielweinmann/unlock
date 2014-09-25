@@ -129,6 +129,8 @@ GEM
     paperclip-meta (1.1.0)
       paperclip (>= 3.0.2, < 5.0)
     pg (0.17.1)
+    pickadate-rails (3.5.3.0)
+      railties (>= 3.1.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     rack (1.5.2)
@@ -223,6 +225,7 @@ DEPENDENCIES
   paperclip (~> 4.1.1)
   paperclip-meta
   pg
+  pickadate-rails
   pundit
   rails (= 4.1.6)
   rails-i18n!
