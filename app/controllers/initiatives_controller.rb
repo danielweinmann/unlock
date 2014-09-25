@@ -18,8 +18,12 @@ class InitiativesController < ApplicationController
   def show
     @initiative = Initiative.find_by_permalink(params[:id])
     @initiative = Initiative.find_by_id(params[:id]) unless @initiative
-    authorize @initiative
-    return redirect_to initiative_by_permalink_path(params[:id]) unless request.path == "/#{params[:id]}"
+    authorize @initiative if @initiative
+    show! do |format|
+      format.html do
+        return redirect_to initiative_by_permalink_path(params[:id]) unless request.path == "/#{params[:id]}"
+      end
+    end
   end
 
   def new

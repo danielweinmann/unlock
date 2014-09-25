@@ -22,7 +22,7 @@
       div
         = "pessoa".pluralize(@initiative.total_contributions)
         = " apoia".pluralize(@initiative.total_contributions)
-article id=dom_id(@initiative)
+article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
   - if @initiative.moip_key.present? && @initiative.moip_token.present?
     section.contribute
       a.button href=new_initiative_contribution_path(@initiative) Apoiar

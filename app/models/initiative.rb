@@ -9,7 +9,12 @@ class Initiative < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates_presence_of :user, :name
-  validates_uniqueness_of :permalink
+  validates_uniqueness_of :permalink, allow_nil: true
+  # Permalink cannot be a number, so it can't be confused with the id
+  validates_format_of :permalink, :with => /[^\d]+/, allow_nil: true
+  before_save do
+    self.permalink = self.permalink.parameterize if self.permalink
+  end
   
   require 'redcloth'
 
