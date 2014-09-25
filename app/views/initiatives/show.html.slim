@@ -25,12 +25,12 @@
 article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
   - if @initiative.moip_key.present? && @initiative.moip_token.present?
     section.contribute
-      a.button href=new_initiative_contribution_path(@initiative) Apoiar
+      a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
   - if @initiative.second_text.present?
     section.second_text= @initiative.second_text_html
     - if @initiative.second_text.length > 400 && @initiative.moip_key.present? && @initiative.moip_token.present?
       section.contribute
-        a.button href=new_initiative_contribution_path(@initiative) Apoiar
+        a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
   - if policy(@initiative).update?
     section.admin
       h2 Editar
