@@ -35,7 +35,7 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
     section.admin
       h2 Editar
       .field#image
-        = form_for(@initiative) do |form|
+        = form_for(@initiative, url: initiative_path(@initiative.id)) do |form|
           = form.label :image
           = form.file_field :image
       .field
