@@ -1,5 +1,5 @@
 article.initiative
-  a href=initiative_path(initiative) title=initiative.name
+  a href=initiative_by_permalink_path(initiative) title=initiative.name
     .image= image_tag(initiative.image.url(:medium)) if initiative.image.present?
     .status
       h5

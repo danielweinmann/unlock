@@ -16,7 +16,10 @@ class InitiativesController < ApplicationController
   end
 
   def show
-    show! { authorize @initiative }
+    @initiative = Initiative.find_by_permalink(params[:id])
+    @initiative = Initiative.find_by_id(params[:id]) unless @initiative
+    authorize @initiative
+    return redirect_to initiative_by_permalink_path(params[:id]) unless request.path == "/#{params[:id]}"
   end
 
   def new
@@ -26,7 +29,7 @@ class InitiativesController < ApplicationController
     @initiative.name = current_user.name
     if @initiative.save
       flash[:success] = "Criado com sucesso! Agora, é só editar :D"
-      redirect_to @initiative
+      redirect_to initiative_by_permalink_path(@initiative)
     else
       flash[:failure] = "Ooops. Ocorreu um erro."
       redirect_to :root
@@ -51,11 +54,11 @@ class InitiativesController < ApplicationController
   private
 
   def permitted_params
-    params.permit(initiative: [:name, :first_text, :second_text, :moip_token, :moip_key, :image])
+    params.permit(initiative: [:name, :first_text, :second_text, :moip_token, :moip_key, :image, :permalink])
   end
 
   def initiative_params
-    params.require(:initiative).permit(:name, :first_text, :second_text, :moip_token, :moip_key, :image)
+    params.require(:initiative).permit(:name, :first_text, :second_text, :moip_token, :moip_key, :image, :permalink)
   end
 
 end

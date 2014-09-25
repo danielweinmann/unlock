@@ -40,13 +40,16 @@ article id=dom_id(@initiative)
           = form.file_field :image
       .field
         = label_tag :name, Initiative.human_attribute_name(:name)
-        .editable data-attribute="name" data-placeholder="Nome do seu evento"= @initiative.name
+        .editable data-attribute="name"= @initiative.name
       .field
         = label_tag :first_text, Initiative.human_attribute_name(:first_text)
         .editable data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique para editar"= @initiative.first_text
       .field
         = label_tag :second_text, Initiative.human_attribute_name(:second_text)
         .editable data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique para editar"= @initiative.second_text
+      .field
+        = label_tag :permalink, Initiative.human_attribute_name(:permalink)
+        .editable data-attribute="permalink" data-placeholder="Clique para editar"= @initiative.permalink
       .field
         = label_tag :moip_token, Initiative.human_attribute_name(:moip_token)
         .editable data-attribute="moip_token" data-placeholder="Clique para editar"= @initiative.moip_token
@@ -55,4 +58,4 @@ article id=dom_id(@initiative)
         .editable data-attribute="moip_key" data-placeholder="Clique para editar"= @initiative.moip_key
     - if policy(@initiative).destroy?
       section.links
-        = link_to 'Excluir', @event, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
+        = link_to 'Excluir', @initiative, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"

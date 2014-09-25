@@ -9,6 +9,7 @@ class Initiative < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates_presence_of :user, :name
+  validates_uniqueness_of :permalink
   
   require 'redcloth'
 
@@ -48,12 +49,8 @@ class Initiative < ActiveRecord::Base
     link target: :_blank
   end
 
-  before_create do
-    self.permalink = self.name unless self.permalink.present?
-  end
-
   def to_param
-    "#{self.id}-#{self.permalink.parameterize}"
+    (self.permalink && self.permalink.parameterize) || "#{self.id}-#{self.name.parameterize}"
   end
 
 end

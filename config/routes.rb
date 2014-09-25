@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   root "initiatives#index"
 
+  get "/:id" => "initiatives#show", as: :initiative_by_permalink
+
 end

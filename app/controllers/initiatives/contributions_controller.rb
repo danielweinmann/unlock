@@ -47,7 +47,7 @@ class Initiatives::ContributionsController < ApplicationController
       request = Moip::Assinaturas::Plan.create(plan)
       unless request[:success]
         flash[:failure] = "Ooops. Houve um erro ao criar o plano no MoIP Assinaturas."
-        return redirect_to @initiative
+        return redirect_to initiative_by_permalink_path(@initiative)
       end
     end
     
@@ -87,7 +87,7 @@ class Initiatives::ContributionsController < ApplicationController
       request = Moip::Assinaturas::Customer.create(customer, new_valt = true)
       unless request[:success]
         flash[:failure] = "Ooops. Houve um erro ao criar o plano no MoIP Assinaturas."
-        return redirect_to @initiative
+        return redirect_to initiative_by_permalink_path(@initiative)
       end
     end
     
