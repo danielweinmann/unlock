@@ -5,7 +5,7 @@ pt-BR:
     models:
       initiative: Iniciativa
       user: Usuário
-      contribution: Contribuição
+      contribution: Apoio
     attributes:
       user:
         name: Nome

@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   get '/sitemap' => "initiatives#sitemap", :as => :sitemap
   
   resources :initiatives, except: [:edit] do
-    resources :contributions, controller: 'initiatives/contributions', only: [:new, :create]
+    resources :contributions, controller: 'initiatives/contributions', only: [:new, :create] do
+      member do
+        get "pay"
+        put "checkout"
+      end
+    end
     collection do
       get "sitemap"
     end
@@ -14,6 +19,5 @@ Rails.application.routes.draw do
   root "initiatives#index"
 
   get "/:id" => "initiatives#show", as: :initiative_by_permalink
-  # put "/:id" => "initiatives#update", as: :update_initiative_by_permalink
 
 end
