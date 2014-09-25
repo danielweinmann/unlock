@@ -46,17 +46,23 @@ form
       font-size: 1.17em
       color: $flash_failure_color
     margin-bottom: 4em
-label
-  display: block
-[type=checkbox]~label
-  display: inline-block
-  margin-left: 0.5em
-  margin-bottom: 1em
-#{$all-text-inputs}, textarea, select, [type=file]
-  display: block
-  +span-columns(6)
-  margin-bottom: 1em
-[type=submit]
-  +unlock_button
-  font-size: 1.5em
-  padding: 0.5em 1.2em
+  label
+    display: block
+  [type=checkbox]~label
+    display: inline-block
+    margin-left: 0.2em
+    margin-bottom: 2em
+  #{$all-text-inputs}, textarea, select, [type=file]
+    display: block
+    +span-columns(6)
+    margin-bottom: 2em
+    background: $container_color
+    border: none
+    padding: 0.4em
+    line-height: 2em
+  [type=submit]
+    +unlock_button
+    font-size: 1.5em
+    padding: 0.5em 1.2em
+  em
+    display: block
