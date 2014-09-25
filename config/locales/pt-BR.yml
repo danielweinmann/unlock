@@ -1,6 +1,5 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 pt-BR:
   activerecord:
     models:
@@ -41,3 +40,10 @@ pt-BR:
       medium_short: ! '%-d/%-m, %k:%M'
       time: ! '%H:%M'
       week: ! '%A'
+  devise:
+    passwords:
+      edit:
+        change_my_password: Alterar minha senha
+        change_your_password: Alterar sua senha
+        confirm_new_password: Confirme sua nova senha
+        new_password: Nova senha
