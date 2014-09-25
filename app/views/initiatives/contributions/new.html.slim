@@ -8,8 +8,9 @@
         - @contribution.errors.full_messages.each do |msg|
           li= msg
   = form.hidden_field :user_id
-  = form.label :value
+  h3 Com quanto você quer contribuir por mês?
   = form.text_field :value
+  h3 Informe seus dados para realizar o apoio
   = form.fields_for :user do |user_fields|
     = user_fields.hidden_field :id
     = user_fields.label :full_name, User.human_attribute_name(:full_name)

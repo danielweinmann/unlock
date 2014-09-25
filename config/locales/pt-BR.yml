@@ -26,7 +26,7 @@ pt-BR:
         address_state: Estado
         address_zipcode: CEP
       contribution:
-        value: Com quanto você quer contribuir por mês?
+        value: Valor
       initiative:
         image: Imagem
         name: Título
