@@ -54,6 +54,9 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
+    brhelper (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -209,6 +212,7 @@ DEPENDENCIES
   auto_html (= 1.5.1)
   autosize-rails
   aws-sdk
+  brhelper
   coffee-rails
   devise
   devise-i18n

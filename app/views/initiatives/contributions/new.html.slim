@@ -34,7 +34,7 @@
     = user_fields.label :address_city, User.human_attribute_name(:address_city)
     = user_fields.text_field :address_city
     = user_fields.label :address_state, User.human_attribute_name(:address_state)
-    = user_fields.text_field :address_state
+    = user_fields.select :address_state, options_for_select(ActionView::Helpers::FormOptionsHelper::ESTADOS_BRASILEIROS, @contribution.user.address_state)
     = user_fields.label :address_zipcode, User.human_attribute_name(:address_zipcode)
     = user_fields.text_field :address_zipcode
   = form.submit "Revisar e realizar pagamento"
