@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :contributions, controller: 'initiatives/contributions', only: [:new, :create] do
       member do
         get "pay"
-        put "checkout"
       end
     end
     collection do

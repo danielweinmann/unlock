@@ -1,19 +1,15 @@
 - content_for :title do
   = "Informe seus dados de pagamento"
-= form_for [@initiative, @contribution], url: checkout_initiative_contribution_path(@initiative.id, @contribution), method: :put do |form|
-  - if @contribution.errors.any?
-    #error_explanation
-      h3 = "#{pluralize(@contribution.errors.count, "erro impediu", "erros impediram")} que este apoio fosse salvo:"
-      ul
-        - @contribution.errors.full_messages.each do |msg|
-          li= msg
-  = form.fields_for :credit_card do |credit_card_fields|
-    = credit_card_fields.label :holder_name, "Nome escrito no cartão"
-    = credit_card_fields.text_field :holder_name
-    = credit_card_fields.label :number, "Número do cartão"
-    = credit_card_fields.text_field :number
-    = credit_card_fields.label :expiration_month, "Mês de expiração do cartão"
-    = credit_card_fields.text_field :expiration_month
-    = credit_card_fields.label :expiration_year, "Ano de expiração do cartão"
-    = credit_card_fields.text_field :expiration_year
-  = form.submit "Confirmar apoio"
+- content_for :external_js do
+  script type="text/javascript" src="https://api.moip.com.br/moip-assinaturas.min.js"
+form#pay_form data-token=@contribution.initiative.moip_token data-plan="unlock#{@contribution.value.to_i}"
+  = label_tag :holder_name, "Nome escrito no cartão"
+  = text_field_tag :holder_name
+  = label_tag :number, "Número do cartão"
+  = text_field_tag :number
+  = label_tag :expiration_month, "Mês de expiração do cartão"
+  = text_field_tag :expiration_month
+  = label_tag :expiration_year, "Ano de expiração do cartão"
+  = text_field_tag :expiration_year
+  = submit_tag "Confirmar apoio e realizar pagamento"
+  .status Enviando dados de pagamento para o Moip...
