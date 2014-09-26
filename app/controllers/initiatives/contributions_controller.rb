@@ -32,7 +32,7 @@ class Initiatives::ContributionsController < ApplicationController
 
       # Configuring Moip
       Moip::Assinaturas.config do |config|
-        config.sandbox = true
+        config.sandbox = @initiative.sandbox?
         config.token = @initiative.moip_token
         config.key = @initiative.moip_key
       end

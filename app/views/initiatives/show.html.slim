@@ -56,6 +56,9 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
       .field
         = label_tag :moip_key, Initiative.human_attribute_name(:moip_key)
         .editable data-attribute="moip_key" data-placeholder="Clique para editar"= @initiative.moip_key
+      .field
+        = check_box_tag :sandbox, "1", @initiative.sandbox, :class => "editable", :"data-attribute" => "sandbox", :"data-formtype" => "checkbox"
+        = label_tag :sandbox, Initiative.human_attribute_name(:sandbox)
     - if policy(@initiative).destroy?
       section.links
         = link_to 'Excluir', @initiative, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
