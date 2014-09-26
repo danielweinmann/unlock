@@ -28,7 +28,12 @@ $(document).ready ->
             subscription.with_plan_code(plan_code)
             moip.subscribe(subscription)
           else
+            console.log response
             status.addClass 'success'
+            status.find('ul').append("<li>Seu código de assinatura é <strong>#{form.data('subscription')}</strong></li>")
+            status.find('ul').append("<li>Seu pagamento ainda será processado pelo <a href='https://www.moip.com.br/'>Moip</a></li>")
+            status.find('ul').append("<li>Se você quiser suspender seu apoio, basta acessar o menu Meus apoios e solicitar a suspensão.</li>")
+            status.find('ul').append("<li>Sua próxima cobrança será realizada em #{response.next_invoice_date.day}/#{response.next_invoice_date.month}/#{response.next_invoice_date.year}.</li>")
             form.find('input, label').hide()
           end
         else

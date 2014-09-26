@@ -8,8 +8,14 @@ body[data-action="pay"][data-controller="contributions"][data-namespace="initiat
       font-size: 1.2em
       line-height: 100%
       margin-bottom: 0
-    ul li:first-child
-      margin-top: 1em
+    ul
+      li
+        &:first-child
+          margin-top: 1em
+        a
+          color: $button_text_color
+          &:hover
+            color: $link_color
     padding: 1.2em
     margin-bottom: 2em
     &.failure

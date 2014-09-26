@@ -1,7 +1,7 @@
 - content_for :title do
   = "Informe seus dados de pagamento"
 - content_for :external_js do
-  script type="text/javascript" src="https://api.moip.com.br/moip-assinaturas.min.js"
+  script type="text/javascript" src="https://sandbox.moip.com.br/moip-assinaturas.min.js"
 form#pay_form data-token=@contribution.initiative.moip_token data-plan="unlock#{@contribution.value.to_i}" data-customer="unlock#{@contribution.user.id}" data-subscription="unlock#{@contribution.id}"
   = label_tag :holder_name, "Nome escrito no cartão"
   = text_field_tag :holder_name
