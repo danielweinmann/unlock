@@ -2,7 +2,7 @@
   = "Informe seus dados de pagamento"
 - content_for :external_js do
   script type="text/javascript" src="https://api.moip.com.br/moip-assinaturas.min.js"
-form#pay_form data-token=@contribution.initiative.moip_token data-plan="unlock#{@contribution.value.to_i}"
+form#pay_form data-token=@contribution.initiative.moip_token data-plan="unlock#{@contribution.value.to_i}" data-customer="unlock#{@contribution.user.id}" data-subscription="unlock#{@contribution.id}"
   = label_tag :holder_name, "Nome escrito no cartão"
   = text_field_tag :holder_name
   = label_tag :number, "Número do cartão"
@@ -11,5 +11,5 @@ form#pay_form data-token=@contribution.initiative.moip_token data-plan="unlock#{
   = text_field_tag :expiration_month
   = label_tag :expiration_year, "Ano de expiração do cartão"
   = text_field_tag :expiration_year
+  .status
   = submit_tag "Confirmar apoio e realizar pagamento"
-  .status Enviando dados de pagamento para o Moip...

@@ -28,14 +28,6 @@ class Initiatives::ContributionsController < ApplicationController
     @contribution = @initiative.contributions.new(contribution_params)
     authorize @contribution
 
-    # TODO make this work somehow
-    # Validating presence of user attributes
-    %w(full_name document phone_area_code phone_number birthdate address_street address_number address_complement address_district address_city address_state address_zipcode).each do |attribute|
-      unless @contribution.user.attributes[attribute].present?
-        @contribution.errors.add("user.#{attribute}", "não pode ficar em branco")
-      end
-    end
-
     if @contribution.save
 
       # Configuring Moip
@@ -48,73 +40,80 @@ class Initiatives::ContributionsController < ApplicationController
       # Creating the plan, if needed
       plan_code = "unlock#{@contribution.value.to_i}"
       begin
-        request = Moip::Assinaturas::Plan.details(plan_code)
+        response = Moip::Assinaturas::Plan.details(plan_code)
       rescue
-        # TODO make this message without :user field
-        @contribution.errors.add(:user, "Ocorreu um erro de conexão ao verificar o plano de assinaturas no Moip. Por favor, tente novamente.")
+        @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o plano de assinaturas no Moip. Por favor, tente novamente.")
         return render action: 'new'
       end
-      unless request[:success]
+      unless response[:success]
         plan = {
           code: plan_code,
           name: "Unlock #{@contribution.value.to_i}",
           amount: (@contribution.value * 100).to_i
         }
         begin
-          request = Moip::Assinaturas::Plan.create(plan)
+          response = Moip::Assinaturas::Plan.create(plan)
         rescue
-          # TODO make this message without :user field
-          @contribution.errors.add(:user, "Ocorreu um erro de conexão ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
+          @contribution.errors.add(:base, "Ocorreu um erro de conexão ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
           return render action: 'new'
         end
-        unless request[:success]
-          # TODO make this message without :user field
-          @contribution.errors.add(:user, "Ocorreu um erro ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
+        unless response[:success]
+          @contribution.errors.add(:base, "Ocorreu um erro ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
           return render action: 'new'
         end
       end
 
       # Creating the client, if needed
-      customer_code = "unlock#{current_user.id}"
+      customer_code = "unlock#{@contribution.user.id}"
+      customer = {
+        code: customer_code,
+        email: @contribution.user.email,
+        fullname: @contribution.user.full_name,
+        cpf: @contribution.user.document,
+        phone_area_code: @contribution.user.phone_area_code,
+        phone_number: @contribution.user.phone_number,
+        birthdate_day: @contribution.user.birthdate.strftime('%d'),
+        birthdate_month: @contribution.user.birthdate.strftime('%m'),
+        birthdate_year: @contribution.user.birthdate.strftime('%Y'),
+        address: {
+          street: @contribution.user.address_street,
+          number: @contribution.user.address_number,
+          complement: @contribution.user.address_complement,
+          district: @contribution.user.address_district,
+          city: @contribution.user.address_city,
+          state: @contribution.user.address_state,
+          country: "BRA",
+          zipcode: @contribution.user.address_zipcode
+        }
+      }
       begin
-        request = Moip::Assinaturas::Customer.details(customer_code)
+        response = Moip::Assinaturas::Customer.details(customer_code)
       rescue
-        # TODO make this message without :user field
-        @contribution.errors.add(:user, "Ocorreu um erro de conexão ao verificar o cadastro de cliente no Moip. Por favor, tente novamente.")
+        @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o cadastro de cliente no Moip. Por favor, tente novamente.")
         return render action: 'new'
       end
-      unless request[:success]
-        customer = {
-          code: customer_code,
-          email: current_user.email,
-          fullname: current_user.full_name,
-          cpf: current_user.document,
-          phone_area_code: current_user.phone_area_code,
-          phone_number: current_user.phone_number,
-          birthdate_day: current_user.birthdate.strftime('%d'),
-          birthdate_month: current_user.birthdate.strftime('%m'),
-          birthdate_year: current_user.birthdate.strftime('%Y'),
-          address: {
-            street: current_user.address_street,
-            number: current_user.address_number,
-            complement: current_user.address_complement,
-            district: current_user.address_district,
-            city: current_user.address_city,
-            state: current_user.address_state,
-            country: "BRA",
-            zipcode: current_user.address_zipcode
-          }
-        }
+      if response[:success]
         begin
-          request = Moip::Assinaturas::Customer.create(customer, new_valt = true)
+          Moip::Assinaturas::Customer.update(customer_code, customer)
         rescue
-          # TODO make this message without :user field
-          @contribution.errors.add(:user, "Ocorreu um erro de conexão ao realizar o cadastro de cliente no Moip. Por favor, tente novamente.")
+          @contribution.errors.add(:base, "Ocorreu um erro de conexão ao atualizar o cadastro de cliente no Moip. Por favor, tente novamente.")
           return render action: 'new'
         end
-        unless request[:success]
-          # TODO make this message without :user field
-          @contribution.errors.add(:user, "Ocorreu um erro ao realizar o cadastro de cliente no Moip. Por favor, tente novamente.")
+      else
+        begin
+          response = Moip::Assinaturas::Customer.create(customer, new_vault = false)
+        rescue
+          @contribution.errors.add(:base, "Ocorreu um erro de conexão ao realizar o cadastro de cliente no Moip. Por favor, tente novamente.")
+          return render action: 'new'
+        end
+        unless response[:success]
+          if response[:errors] && response[:errors].kind_of?(Array)
+            response[:errors].each do |error|
+              @contribution.errors.add(:base, "#{response[:message]} (Moip). #{error[:description]}")
+            end
+          else
+            @contribution.errors.add(:base, "Ocorreu um erro ao realizar o cadastro de cliente no Moip. Por favor, tente novamente.")
+          end
           return render action: 'new'
         end
       end
@@ -123,7 +122,6 @@ class Initiatives::ContributionsController < ApplicationController
       return redirect_to pay_initiative_contribution_path(@initiative.id, @contribution)
 
     else
-      raise @contribution.errors.inspect
       return render action: 'new'
     end
     

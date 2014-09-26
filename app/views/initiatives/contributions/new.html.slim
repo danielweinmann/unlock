@@ -1,6 +1,6 @@
 - content_for :title do
   = "Apoiar #{@initiative.name}"
-= form_for [@initiative, @contribution], url: initiative_contributions_path(@initiative.id) do |form|
+= form_for [@initiative, @contribution], url: initiative_contributions_path(@initiative.id), method: :post do |form|
   - if @contribution.errors.any?
     #error_explanation
       h3 = "#{pluralize(@contribution.errors.count, "erro impediu", "erros impediram")} que este apoio fosse salvo:"
