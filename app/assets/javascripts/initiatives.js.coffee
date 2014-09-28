@@ -37,7 +37,7 @@ $(document).ready ->
                 status.addClass 'success'
                 status.find('ul').append("<li>Seu código de assinatura é <strong>#{form.data('subscription')}</strong></li>")
                 status.find('ul').append("<li>Seu pagamento ainda será processado pelo <a href='https://www.moip.com.br/' target='_blank'>Moip</a></li>")
-                status.find('ul').append("<li>Se você quiser suspender seu apoio, basta acessar o menu Meus apoios e solicitar a suspensão.</li>")
+                status.find('ul').append("<li>Se você quiser suspender ou cancelar seu apoio, basta acessar o menu <a href='/my_contributions'>Unlocks apoiados</a>.</li>")
                 status.find('ul').append("<li>Sua próxima cobrança será realizada em #{next_invoice}.</li>")
                 form.find('input, label').hide()
               error: (response) ->

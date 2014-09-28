@@ -12,7 +12,11 @@ class Contribution < ActiveRecord::Base
   accepts_nested_attributes_for :user
   
   def self.visible
-    with_state(:active).joins(:initiative).where("initiatives.sandbox = contributions.sandbox")
+    with_state(:active).joins(:initiative).where("initiatives.sandbox = contributions.sandbox").order("updated_at DESC")
+  end
+  
+  def self.not_pending
+    where("state <> 0").order("updated_at DESC")
   end
   
   state_machine initial: :pending do

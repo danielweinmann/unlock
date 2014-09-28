@@ -33,7 +33,7 @@ class InitiativesController < ApplicationController
     @initiative.user = current_user
     @initiative.name = current_user.name
     if @initiative.save
-      flash[:success] = "Criado com sucesso! Agora, é só editar :D"
+      flash[:success] = "Unlock criado com sucesso! Agora, é só editar :D"
       redirect_to initiative_by_permalink_path(@initiative)
     else
       flash[:failure] = "Ooops. Ocorreu um erro."
@@ -43,12 +43,12 @@ class InitiativesController < ApplicationController
 
   def update
     authorize resource
-    update!(notice: "Atualizado com sucesso :D")
+    update!(notice: "Unlock atualizado com sucesso :D")
   end
 
   def destroy
     authorize resource
-    destroy!(notice: "Excluído com sucesso :D") { root_path }
+    destroy!(notice: "Unlock excluído com sucesso :D") { root_path }
   end
 
   def sitemap
