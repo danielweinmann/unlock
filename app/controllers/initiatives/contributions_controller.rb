@@ -26,6 +26,7 @@ class Initiatives::ContributionsController < ApplicationController
     # Creating the contribution
     @initiative = Initiative.find(params[:initiative_id])
     @contribution = @initiative.contributions.new(contribution_params)
+    @contribution.sandbox = @initiative.sandbox
     authorize @contribution
 
     if @contribution.save
@@ -38,17 +39,16 @@ class Initiatives::ContributionsController < ApplicationController
       end
 
       # Creating the plan, if needed
-      plan_code = "unlock#{@contribution.value.to_i}"
       begin
-        response = Moip::Assinaturas::Plan.details(plan_code)
+        response = Moip::Assinaturas::Plan.details(@contribution.plan_code)
       rescue
         @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o plano de assinaturas no Moip. Por favor, tente novamente.")
         return render action: 'new'
       end
       unless response[:success]
         plan = {
-          code: plan_code,
-          name: "Unlock #{@contribution.value.to_i}",
+          code: @contribution.plan_code,
+          name: "#{@initiative.name} #{@contribution.value.to_i}#{' (Sandbox)' if @initiative.sandbox?}",
           amount: (@contribution.value * 100).to_i
         }
         begin
@@ -58,15 +58,20 @@ class Initiatives::ContributionsController < ApplicationController
           return render action: 'new'
         end
         unless response[:success]
-          @contribution.errors.add(:base, "Ocorreu um erro ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
-          return render action: 'new'
+          if response[:errors] && response[:errors].kind_of?(Array)
+            response[:errors].each do |error|
+              @contribution.errors.add(:base, "#{response[:message]} (Moip). #{error[:description]}")
+            end
+          else
+            @contribution.errors.add(:base, "Ocorreu um erro ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
+            return render action: 'new'
+          end
         end
       end
 
       # Creating the client, if needed
-      customer_code = "unlock#{@contribution.user.id}"
       customer = {
-        code: customer_code,
+        code: @contribution.customer_code,
         email: @contribution.user.email,
         fullname: @contribution.user.full_name,
         cpf: @contribution.user.document,
@@ -87,14 +92,24 @@ class Initiatives::ContributionsController < ApplicationController
         }
       }
       begin
-        response = Moip::Assinaturas::Customer.details(customer_code)
+        response = Moip::Assinaturas::Customer.details(@contribution.customer_code)
       rescue
         @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o cadastro de cliente no Moip. Por favor, tente novamente.")
         return render action: 'new'
       end
       if response[:success]
         begin
-          Moip::Assinaturas::Customer.update(customer_code, customer)
+          response = Moip::Assinaturas::Customer.update(@contribution.customer_code, customer)
+          unless response[:success]
+            if response[:errors] && response[:errors].kind_of?(Array)
+              response[:errors].each do |error|
+                @contribution.errors.add(:base, "#{response[:message]} (Moip). #{error[:description]}")
+              end
+            else
+              @contribution.errors.add(:base, "Ocorreu um erro ao atualizar o cadastro de cliente no Moip. Por favor, tente novamente.")
+              return render action: 'new'
+            end
+          end
         rescue
           @contribution.errors.add(:base, "Ocorreu um erro de conexão ao atualizar o cadastro de cliente no Moip. Por favor, tente novamente.")
           return render action: 'new'
@@ -118,7 +133,7 @@ class Initiatives::ContributionsController < ApplicationController
         end
       end
 
-      flash[:success] = "Apoio criado com sucesso! Agora é só realizar o pagamento :D"
+      flash[:success] = "Apoio iniciado com sucesso! Agora é só realizar o pagamento :D"
       return redirect_to pay_initiative_contribution_path(@initiative.id, @contribution)
 
     else

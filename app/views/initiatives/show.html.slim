@@ -23,12 +23,12 @@
         = "pessoa".pluralize(@initiative.total_contributions)
         = " apoia".pluralize(@initiative.total_contributions)
 article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
-  - if @initiative.moip_key.present? && @initiative.moip_token.present?
+  - if @initiative.can_contribute?
     section.contribute
       a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
   - if @initiative.second_text.present?
     section.second_text= @initiative.second_text_html
-    - if @initiative.second_text.length > 400 && @initiative.moip_key.present? && @initiative.moip_token.present?
+    - if @initiative.second_text.length > 400 && @initiative.can_contribute?
       section.contribute
         a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
   - if policy(@initiative).update?

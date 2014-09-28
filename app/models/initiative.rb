@@ -13,7 +13,7 @@ class Initiative < ActiveRecord::Base
   # Permalink cannot be a number, so it can't be confused with the id
   validates_format_of :permalink, :with => /[^\d]+/, allow_nil: true
   before_save do
-    self.permalink = self.permalink.parameterize if self.permalink
+    self.permalink = self.permalink.gsub(/[^0-9a-z]/i, '') if self.permalink
   end
   
   require 'redcloth'
@@ -58,4 +58,8 @@ class Initiative < ActiveRecord::Base
     (self.permalink && self.permalink.parameterize) || "#{self.id}-#{self.name.parameterize}"
   end
 
+  def can_contribute?
+    self.moip_key.present? && self.moip_token.present? && self.permalink.present?
+  end
+  
 end
