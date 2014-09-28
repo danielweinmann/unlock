@@ -1,0 +1,6 @@
+- content_for :title do
+  = "Meus apoios"
+- if @user.contributions.visible.exists?
+  ul.contributions= render @user.contributions.visible
+- else
+  em Você ainda não realizou nenhum apoio

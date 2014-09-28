@@ -27,6 +27,12 @@ pt-BR:
         address_zipcode: CEP
       contribution:
         value: Valor
+        state: Status
+        states:
+          pending: Pendente
+          active: Ativo
+          suspended: Suspenso
+          canceled: Cancelado
       initiative:
         image: Imagem
         name: Título

@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   root "initiatives#index"
 
+  get "/my_contributions" => "users#my_contributions", as: :my_contributions
+  get "/my_initiatives" => "users#my_initiatives", as: :my_initiatives
+  
   get "/:id" => "initiatives#show", as: :initiative_by_permalink
 
 end

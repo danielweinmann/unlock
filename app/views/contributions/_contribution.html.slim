@@ -1,0 +1,19 @@
+li.contribution
+  a href=initiative_by_permalink_path(contribution.initiative) title=contribution.initiative.name
+    .image= image_tag(contribution.initiative.image.url(:medium), style: "margin-top: #{contribution.margin}") if contribution.initiative.image.present?
+    .info
+      h3= truncate contribution.initiative.name, length: 60
+      h4= truncate contribution.initiative.first_text, length: 150
+    .status
+      h5= "Apoio #{t("activerecord.attributes.contribution.states.#{contribution.state_name}").downcase}"
+      h5
+        span.currency= "R$ "
+        span.number= contribution.display_value
+        div= "apoiados por mês"
+  .actions
+    - if contribution.can_activate?
+      a.button#activate Reativar
+    - if contribution.can_suspend?
+      a.button#activate Suspender
+    - if contribution.can_cancel?
+      a.button#activate Cancelar

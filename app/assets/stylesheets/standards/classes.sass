@@ -10,6 +10,7 @@
   line-height: 100%
   text-decoration: none
   width: auto
+  cursor: pointer
   &:hover
     background: $button_hover_color
     color: $button_text_color
@@ -139,6 +140,94 @@
       color: $text_color
       +media($tablet)
         font-size: 0.7em
+    h3
+      font-weight: $bold_weight
+      margin-bottom: 0.8em
+    h4
+      font-weight: $normal_weight
+.contributions
+  padding: 0
+  list-style: none
+.contribution
+  position: relative
+  +span-columns(6)
+  height: 10em
+  overflow: hidden
+  background-color: $container_color
+  margin-bottom: 2em
+  .image, .actions, .info, .status
+    overflow: hidden
+    float: left
+  .image, .info
+    height: 61.8%
+  .actions, .status
+    height: 38.2%
+  .image
+    background: $border_color
+    width: 50%
+    img
+      width: 100%
+  .actions
+    width: 50%
+    background-color: $border_color
+    padding: 1em
+    text-align: right
+    .button
+      background: $button_hover_color
+      font-size: 0.8em
+      margin-left: 0.5em
+      line-height: 3em
+      padding: 0.5em 1em
+      +media($tablet)
+      +media($desktop)
+        font-size: 1em
+        margin-left: 1em
+        line-height: 2em
+        padding: 0.5em 1em
+      &:first-child
+        margin-left: 0
+      &:hover
+        background: $button_color
+  .status
+    width: 50%
+    background-color: $box_hover_color
+    padding: 1em
+    h5
+      width: 50%
+      float: left
+      color: $text_color
+      font-weight: $normal_weight
+      font-size: 0.7em
+      text-align: right
+      span.currency
+        font-size: 1em
+      span.number
+        font-size: 2em
+        color: $box_color
+        font-weight: $bold_weight
+      &:first-child
+        color: $box_color
+        font-weight: $bold_weight
+        text-align: left
+        font-size: 1em
+        +media($tablet)
+          font-size: 2em
+        +media($desktop)
+          font-size: 2em
+  a
+    text-decoration: none
+  .info
+    width: 50%
+    padding: 0.4em
+    h3, h4
+      font-family: $standard_font
+      font-style: normal
+      font-size: 0.6em
+      color: $text_color
+      +media($tablet)
+        font-size: 0.8em
+      +media($desktop)
+        font-size: 1em
     h3
       font-weight: $bold_weight
       margin-bottom: 0.8em

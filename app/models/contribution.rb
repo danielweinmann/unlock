@@ -11,6 +11,10 @@ class Contribution < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
   
+  def self.visible
+    with_state(:active).joins(:initiative).where("initiatives.sandbox = contributions.sandbox")
+  end
+  
   state_machine initial: :pending do
 
     state :pending, value: 0

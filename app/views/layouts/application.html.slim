@@ -55,8 +55,9 @@ html
               = truncate current_user.name, length: 18
               span ▾
             nav
-              = link_to "Criar iniciativa", new_initiative_path
-              = link_to "Meus dados", edit_user_registration_path
+              = link_to "Meus apoios", my_contributions_path
+              = link_to "Minhas iniciativas", my_initiatives_path
+              = link_to "Perfil", edit_user_registration_path
               hr
               = link_to "Sair", destroy_user_session_path, method: :delete
         - else
@@ -84,6 +85,8 @@ html
         section.user
           nav
             - if current_user
+                = link_to "Meus apoios", my_contributions_path
+                = link_to "Minhas iniciativas", my_initiatives_path
                 = link_to "Perfil", edit_user_registration_path
                 = link_to "Sair", destroy_user_session_path, method: :delete
             - elsif namespace != "devise"
