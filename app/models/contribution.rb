@@ -11,6 +11,46 @@ class Contribution < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
   
+  state_machine initial: :pending do
+
+    state :pending, value: 0
+    state :active, value: 1
+    state :suspended, value: 2
+    state :expired, value: 3 # not currently used
+    state :overdue, value: 4 # not currently used
+    state :canceled, value: 5
+    state :trial, value: 6 # not currently used
+
+    event :activate do
+      transition [:pending, :suspended] => :active
+    end
+
+    event :suspend do
+      transition :active => :suspended
+    end
+
+    event :cancel do
+      transition [:active, :suspended] => :canceled
+    end
+
+  end
+
+  def plan_code
+    "#{self.initiative.permalink[0..29]}#{self.value.to_i}#{'sandbox' if self.initiative.sandbox?}"
+  end
+  
+  def customer_code
+    "#{self.initiative.permalink[0..29]}#{self.user.id}#{'sandbox' if self.initiative.sandbox?}"
+  end
+  
+  def subscription_code
+    "#{self.initiative.permalink[0..29]}#{self.id}#{'sandbox' if self.initiative.sandbox?}"
+  end
+  
+  def moip_auth
+    { token: self.initiative.moip_token, key: self.initiative.moip_key, sandbox: self.initiative.sandbox? }
+  end
+  
   private
   
   def presence_of_user_attributes
@@ -25,18 +65,6 @@ class Contribution < ActiveRecord::Base
         self.errors.add("initiative.#{attribute}", "não pode ficar em branco")
       end
     end
-  end
-  
-  def plan_code
-    "#{self.initiative.permalink}#{self.value.to_i}#{'sandbox' if self.initiative.sandbox?}"
-  end
-  
-  def customer_code
-    "#{self.initiative.permalink}#{self.user.id}#{'sandbox' if self.initiative.sandbox?}"
-  end
-  
-  def subscription_code
-    "#{self.initiative.permalink}#{self.id}#{'sandbox' if self.initiative.sandbox?}"
   end
   
 end

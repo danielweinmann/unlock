@@ -2,8 +2,10 @@ class Initiatives::ContributionsController < ApplicationController
 
   inherit_resources
   actions :index, :new, :create
-  custom_actions member: %i[pay]
+  custom_actions member: %i[pay activate suspend cancel]
   belongs_to :initiative, parent_class: Initiative
+  respond_to :html, except: [:activate, :suspend, :cancel]
+  respond_to :json, only: [:activate, :suspend, :cancel]
 
   after_action :verify_authorized, except: %i[index]
   after_action :verify_policy_scoped, only: %i[index]
@@ -31,16 +33,9 @@ class Initiatives::ContributionsController < ApplicationController
 
     if @contribution.save
 
-      # Configuring Moip
-      Moip::Assinaturas.config do |config|
-        config.sandbox = @initiative.sandbox?
-        config.token = @initiative.moip_token
-        config.key = @initiative.moip_key
-      end
-
       # Creating the plan, if needed
       begin
-        response = Moip::Assinaturas::Plan.details(@contribution.plan_code)
+        response = Moip::Assinaturas::Plan.details(@contribution.plan_code, moip_auth: @contribution.moip_auth)
       rescue
         @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o plano de assinaturas no Moip. Por favor, tente novamente.")
         return render action: 'new'
@@ -48,11 +43,11 @@ class Initiatives::ContributionsController < ApplicationController
       unless response[:success]
         plan = {
           code: @contribution.plan_code,
-          name: "#{@initiative.name} #{@contribution.value.to_i}#{' (Sandbox)' if @initiative.sandbox?}",
+          name: "#{@initiative.name[0..29]} #{@contribution.value.to_i}#{' (Sandbox)' if @initiative.sandbox?}",
           amount: (@contribution.value * 100).to_i
         }
         begin
-          response = Moip::Assinaturas::Plan.create(plan)
+          response = Moip::Assinaturas::Plan.create(plan, moip_auth: @contribution.moip_auth)
         rescue
           @contribution.errors.add(:base, "Ocorreu um erro de conexão ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
           return render action: 'new'
@@ -64,8 +59,8 @@ class Initiatives::ContributionsController < ApplicationController
             end
           else
             @contribution.errors.add(:base, "Ocorreu um erro ao criar o plano de assinaturas no Moip. Por favor, tente novamente.")
-            return render action: 'new'
           end
+          return render action: 'new'
         end
       end
 
@@ -92,14 +87,14 @@ class Initiatives::ContributionsController < ApplicationController
         }
       }
       begin
-        response = Moip::Assinaturas::Customer.details(@contribution.customer_code)
+        response = Moip::Assinaturas::Customer.details(@contribution.customer_code, moip_auth: @contribution.moip_auth)
       rescue
         @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o cadastro de cliente no Moip. Por favor, tente novamente.")
         return render action: 'new'
       end
       if response[:success]
         begin
-          response = Moip::Assinaturas::Customer.update(@contribution.customer_code, customer)
+          response = Moip::Assinaturas::Customer.update(@contribution.customer_code, customer, moip_auth: @contribution.moip_auth)
           unless response[:success]
             if response[:errors] && response[:errors].kind_of?(Array)
               response[:errors].each do |error|
@@ -107,8 +102,8 @@ class Initiatives::ContributionsController < ApplicationController
               end
             else
               @contribution.errors.add(:base, "Ocorreu um erro ao atualizar o cadastro de cliente no Moip. Por favor, tente novamente.")
-              return render action: 'new'
             end
+            return render action: 'new'
           end
         rescue
           @contribution.errors.add(:base, "Ocorreu um erro de conexão ao atualizar o cadastro de cliente no Moip. Por favor, tente novamente.")
@@ -116,7 +111,7 @@ class Initiatives::ContributionsController < ApplicationController
         end
       else
         begin
-          response = Moip::Assinaturas::Customer.create(customer, new_vault = false)
+          response = Moip::Assinaturas::Customer.create(customer, new_vault = false, moip_auth: @contribution.moip_auth)
         rescue
           @contribution.errors.add(:base, "Ocorreu um erro de conexão ao realizar o cadastro de cliente no Moip. Por favor, tente novamente.")
           return render action: 'new'
@@ -144,6 +139,54 @@ class Initiatives::ContributionsController < ApplicationController
 
   def pay
     authorize resource
+  end
+  
+  def activate
+    authorize resource
+    errors = []
+    if @contribution.can_activate?
+      begin
+        response = Moip::Assinaturas::Subscription.activate(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
+        @contribution.activate! if response[:success]
+      rescue
+        errors << "Não foi possível ativar sua assinatura no Moip Assinaturas"
+      end
+    else
+      errors << "Não é permitido ativar este apoio."
+    end
+    render(json: {success: (errors.size == 0), errors: errors}, status: ((errors.size == 0) ? 200 : 422))
+  end
+  
+  def suspend
+    authorize resource
+    errors = []
+    if @contribution.can_suspend?
+      begin
+        response = Moip::Assinaturas::Subscription.suspend(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
+        @contribution.suspend! if response[:success]
+      rescue
+        errors << "Não foi possível suspender sua assinatura no Moip Assinaturas"
+      end
+    else
+      errors << "Não é permitido suspender este apoio."
+    end
+    render(json: {success: (errors.size == 0), errors: errors}, status: ((errors.size == 0) ? 200 : 422))
+  end
+  
+  def cancel
+    authorize resource
+    errors = []
+    if @contribution.can_cancel?
+      begin
+        response = Moip::Assinaturas::Subscription.cancel(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
+        @contribution.cancel! if response[:success]
+      rescue
+        errors << "Não foi possível cancelar sua assinatura no Moip Assinaturas"
+      end
+    else
+      errors << "Não é permitido cancelar este apoio."
+    end
+    render(json: {success: (errors.size == 0), errors: errors}, status: ((errors.size == 0) ? 200 : 422))
   end
   
   private

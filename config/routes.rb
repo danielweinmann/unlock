@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :contributions, controller: 'initiatives/contributions', only: [:new, :create] do
       member do
         get "pay"
+        put "activate"
+        put "suspend"
+        put "cancel"
       end
     end
     collection do

@@ -28,14 +28,24 @@ $(document).ready ->
             subscription.with_plan_code(plan_code)
             moip.subscribe(subscription)
           else
-            console.log response
-            status.addClass 'success'
-            status.find('ul').append("<li>Seu código de assinatura é <strong>#{form.data('subscription')}</strong></li>")
-            status.find('ul').append("<li>Seu pagamento ainda será processado pelo <a href='https://www.moip.com.br/'>Moip</a></li>")
-            status.find('ul').append("<li>Se você quiser suspender seu apoio, basta acessar o menu Meus apoios e solicitar a suspensão.</li>")
-            status.find('ul').append("<li>Sua próxima cobrança será realizada em #{response.next_invoice_date.day}/#{response.next_invoice_date.month}/#{response.next_invoice_date.year}.</li>")
-            form.find('input, label').hide()
-          end
+            next_invoice = "#{response.next_invoice_date.day}/#{response.next_invoice_date.month}/#{response.next_invoice_date.year}"
+            $.ajax
+              url: form.data('activate'),
+              type: 'PUT',
+              dataType: 'json',
+              success: (response) ->
+                status.addClass 'success'
+                status.find('ul').append("<li>Seu código de assinatura é <strong>#{form.data('subscription')}</strong></li>")
+                status.find('ul').append("<li>Seu pagamento ainda será processado pelo <a href='https://www.moip.com.br/' target='_blank'>Moip</a></li>")
+                status.find('ul').append("<li>Se você quiser suspender seu apoio, basta acessar o menu Meus apoios e solicitar a suspensão.</li>")
+                status.find('ul').append("<li>Sua próxima cobrança será realizada em #{next_invoice}.</li>")
+                form.find('input, label').hide()
+              error: (response) ->
+                status.find('h4').html("Não foi possível ativar sua assinatura")
+                status.addClass 'failure'
+                for error in response.responseJSON.errors
+                  status.find('ul').append("<li>#{error}</li>")
+                submit.show()
         else
           status.addClass 'failure'
           for error in response.errors
