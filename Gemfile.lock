@@ -84,6 +84,7 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    high_voltage (2.2.1)
     hike (1.2.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -219,6 +220,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   fb-channel-file
+  high_voltage
   icomoon-rails
   inherited_resources
   jbuilder

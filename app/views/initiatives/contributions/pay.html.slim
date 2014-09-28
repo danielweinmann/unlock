@@ -11,5 +11,8 @@ form#pay_form autocomplete="off" data-token=@initiative.moip_token data-plan=@co
   = text_field_tag :expiration_month, "", autocomplete: "off"
   = label_tag :expiration_year, "Ano de expiração do cartão"
   = text_field_tag :expiration_year, "", autocomplete: "off"
+  .field
+    = check_box_tag :terms, "1", true
+    = label_tag :terms, "Eu li e aceito os #{ link_to 'termos de uso', page_path('terms'), target: :_blank }.".html_safe
   .status
   = submit_tag "Confirmar apoio e realizar pagamento"
