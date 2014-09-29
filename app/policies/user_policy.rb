@@ -4,4 +4,8 @@ class UserPolicy < ApplicationPolicy
     record
   end
   
+  def my_initiatives?
+    record
+  end
+  
 end

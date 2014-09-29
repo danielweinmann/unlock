@@ -1,0 +1,6 @@
+- content_for :title do
+  = "Unlocks criados"
+- if @user.initiatives.exists?
+  section.initiatives= render @user.initiatives
+- else
+  em Você ainda não criou nenhum Unlock
