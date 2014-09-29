@@ -3,7 +3,7 @@ li.contribution
     .image= image_tag(contribution.initiative.image.url(:medium), style: "margin-top: #{contribution.margin}") if contribution.initiative.image.present?
     .info
       h3= truncate contribution.initiative.name, length: 60
-      h4= truncate contribution.initiative.first_text, length: 150
+      h4= truncate strip_tags(contribution.initiative.first_text_html), length: 150
     .status
       h5= "Apoio #{t("activerecord.attributes.contribution.states.#{contribution.state_name}").downcase}"
       h5

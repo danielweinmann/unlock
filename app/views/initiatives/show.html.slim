@@ -3,6 +3,14 @@
   = @initiative.name
 - content_for :url do
   = initiative_url(@initiative)
+- content_for :meta_tags do
+  meta name="description" content=strip_tags(@initiative.first_text_html)
+  meta name="keywords" content=strip_tags(@initiative.first_text_html)
+  meta property="og:title" content=@initiative.name
+  meta property="og:type" content="website"
+  meta property="og:url" content=initiative_url(@initiative)
+  meta property="og:image" content=(@initiative.image.present? ? @initiative.image.url : "#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}")
+  meta property="og:description" content=strip_tags(@initiative.first_text_html)
 - content_for :pre_header do
   .image
     - if @initiative.image.present?
