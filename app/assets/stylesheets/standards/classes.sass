@@ -150,81 +150,95 @@
   list-style: none
 .contribution
   position: relative
-  +span-columns(6)
-  height: 10em
   overflow: hidden
   background-color: $container_color
+  border-bottom: 0.2em solid $border_color
   margin-bottom: 2em
+  +span-columns(6)
+  height: 77.25vw
+  +media($tablet)
+    +span-columns(4)
+    +omega(2n)
+    margin-bottom: 2em
+  +media($desktop)
+    +span-columns(4)
+    +omega(3n)
+    height: 44vw
+    margin-bottom: 4em
+  +media($large_desktop)
+    height: 526px
   .image, .contribution_actions, .info, .status
     overflow: hidden
-    float: left
-  .image, .info
-    height: 61.8%
-  .contribution_actions, .status
-    height: 38.2%
+  .image, .status
+    height: 30.9%
+  .contribution_actions, .info
+    height: 19.1%
   .image
     background: $border_color
-    width: 50%
     img
       width: 100%
   .contribution_actions
-    width: 50%
-    background-color: $border_color
-    padding: 1em
-    text-align: right
+    padding: 1.2em
+    +media($tablet)
+      padding: 2.6em 1em
+    +media($desktop)
+      padding: 2.2em 1em
+    text-align: center
     h5
       display: none
       font-size: 1em
-      +media($desktop)
-        line-height: 2em
       &.success
         color: $flash_success_color
       &.failure
         color: $flash_failure_color
     .button
-      background: $button_hover_color
-      font-size: 0.8em
-      margin-left: 0.5em
-      line-height: 3em
-      padding: 0.5em 1em
+      font-size: 1.2em
       +media($tablet)
+        font-size: 2em
       +media($desktop)
-        font-size: 1em
-        margin-left: 1em
-        line-height: 2em
-        padding: 0.5em 1em
-      &:first-child
-        margin-left: 0
+        font-size: 2em
+    #suspend
+      background: $careful_color
       &:hover
-        background: $button_color
+        background: $careful_hover_color
   .status
-    width: 50%
     background-color: $box_hover_color
-    padding: 1em
+    &.suspended
+      background-color: $careful_color
+    padding: 1.6em
     h5
-      width: 50%
-      float: left
+      float: right
+      +media($tablet)
+        float: none
+      +media($desktop)
+        float: none
+      &:first-child
+        text-align: right
       color: $text_color
       font-weight: $normal_weight
-      font-size: 0.7em
+      font-size: 1.2em
       text-align: right
+      margin-bottom: 1em
       span.currency
         font-size: 1em
       span.number
-        font-size: 2em
         color: $box_color
+        font-size: 2.6em
         font-weight: $bold_weight
-      &:first-child
-        color: $box_color
-        font-weight: $bold_weight
-        text-align: left
-        font-size: 1em
-        +media($desktop)
-          font-size: 1.5em
+    .state
+      text-align: right
+      color: $box_color
+      font-size: 2.6em
+      font-weight: $bold_weight
+      line-height: 1em
+      float: left
+      +media($tablet)
+        float: none
+      +media($desktop)
+        float: none
   a
     text-decoration: none
   .info
-    width: 50%
     padding: 0.4em
     h3, h4
       font-family: $standard_font
@@ -232,7 +246,8 @@
       font-size: 0.6em
       color: $text_color
       +media($tablet)
-        font-size: 0.8em
+        font-size: 1em
+        line-height: 1.2em
       +media($desktop)
         font-size: 1em
     h3

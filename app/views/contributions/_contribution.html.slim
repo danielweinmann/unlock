@@ -2,14 +2,14 @@ li.contribution
   a href=initiative_by_permalink_path(contribution.initiative) title=contribution.initiative.name
     .image= image_tag(contribution.initiative.image.url(:medium)) if contribution.initiative.image.present?
     .info
-      h3= truncate contribution.initiative.name, length: 60
-      h4= truncate strip_tags(contribution.initiative.first_text_html), length: 150
-    .status
-      h5= "Apoio #{t("activerecord.attributes.contribution.states.#{contribution.state_name}").downcase}"
+      h3= truncate contribution.initiative.name, length: 40
+      h4= truncate strip_tags(contribution.initiative.first_text_html), length: 100
+    .status class=contribution.state_name
       h5
         span.currency= "R$ "
         span.number= contribution.display_value
         div= "apoiados por mês"
+      .state= t("activerecord.attributes.contribution.states.#{contribution.state_name}")
   .contribution_actions data-initiative=contribution.initiative.id data-contribution=contribution.id
     h5
     - if contribution.can_activate?
