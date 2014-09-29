@@ -41,7 +41,7 @@ pt-BR:
         moip_token: Token de acesso Moip
         moip_key: Chave de acesso Moip
         permalink: Permalink
-        sandbox: Usar sandbox no Moip?
+        sandbox: Usar Sandbox do Moip?
   time:
     formats:
       medium: ! '%a, %-d/%-m, %k:%M'

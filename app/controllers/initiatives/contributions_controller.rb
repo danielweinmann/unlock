@@ -36,7 +36,14 @@ class Initiatives::ContributionsController < ApplicationController
       # Creating the plan, if needed
       begin
         response = Moip::Assinaturas::Plan.details(@contribution.plan_code, moip_auth: @contribution.moip_auth)
-      rescue
+      rescue Moip::Assinaturas::WebServerResponseError => e
+        if @initiative.sandbox?
+          @contribution.errors.add(:base, "Parece que este Unlock não está autorizado a utilizar o ambiente de Sandbox do Moip Assinaturas.#{ ' Você já solicitou acesso ao Moip Assinaturas? Verifique também se configurou o Token e a Chave de API.' if @initiative.user == current_user }")
+        else
+          @contribution.errors.add(:base, "Parece que este Unlock não está autorizado a utilizar o ambiente de produção do Moip Assinaturas.#{ ' Você já homologou sua conta para produção no Moip Assinaturas? Verifique também se configurou o Token e a Chave de API.' if @initiative.user == current_user }")
+        end
+        return render action: 'new'
+      rescue => e
         @contribution.errors.add(:base, "Ocorreu um erro de conexão ao verificar o plano de assinaturas no Moip. Por favor, tente novamente.")
         return render action: 'new'
       end
