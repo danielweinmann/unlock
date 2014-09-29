@@ -1,6 +1,6 @@
 li.contribution
   a href=initiative_by_permalink_path(contribution.initiative) title=contribution.initiative.name
-    .image= image_tag(contribution.initiative.image.url(:medium), style: "margin-top: #{contribution.margin}") if contribution.initiative.image.present?
+    .image= image_tag(contribution.initiative.image.url(:medium)) if contribution.initiative.image.present?
     .info
       h3= truncate contribution.initiative.name, length: 60
       h4= truncate strip_tags(contribution.initiative.first_text_html), length: 150
