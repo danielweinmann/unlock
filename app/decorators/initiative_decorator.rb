@@ -13,8 +13,8 @@ module InitiativeDecorator
   def margin
     return "0" unless self.image.width && self.image.height
     ratio = self.image.height.to_f / self.image.width
-    return "0" if ratio <= 0.191
-    "-#{(ratio / 2.0 * 100) - 19.1}%"
+    return "0" if ratio <= 0.3333
+    "-#{(ratio / 2.0 * 100) - 33.33}%"
   end
 
 end
