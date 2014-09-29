@@ -11,7 +11,7 @@
   h3 Com quanto você quer apoiar por mês?
   = form.label :value
   = form.text_field :value, class: "has_em"
-  em Assinatura mensal cobrada via cartão de crédito pelo meio de pagamentos #{link_to 'Moip', 'https://moip.com.br/'}. Você pode suspender a qualquer momento.
+  em Assinatura mensal cobrada via cartão de crédito pelo meio de pagamentos #{link_to 'Moip', 'https://moip.com.br/', target: :_blank }. Você pode suspender #{ link_to 'a qualquer momento', my_contributions_path, target: :_blank }.
   h3 Preencha e revise os dados para pagamento
   = form.fields_for :user do |user_fields|
     = user_fields.hidden_field :id
