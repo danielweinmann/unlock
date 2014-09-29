@@ -13,4 +13,4 @@ article.initiative
           = " apoia".pluralize(initiative.total_contributions)
     .info
       h3= truncate initiative.name, length: 48
-      h4= truncate initiative.first_text, length: 140
+      h4= truncate strip_tags(initiative.first_text_html), length: 140
