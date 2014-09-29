@@ -20,6 +20,10 @@ class Initiative < ActiveRecord::Base
     where("moip_token IS NOT NULL AND moip_token <> '' AND moip_key IS NOT NULL AND moip_key <> '' AND permalink IS NOT NULL AND permalink <> ''").order("updated_at DESC")
   end
   
+  def self.not_sandbox
+    where('NOT sandbox')
+  end
+  
   require 'redcloth'
 
   AutoHtml.add_filter(:redcloth).with({}) do |text, options|
