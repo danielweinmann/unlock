@@ -1,8 +1,14 @@
 - content_for :title do
   = "Apoiar #{@initiative.name}"
 = form_for [@initiative, @contribution], url: initiative_contributions_path(@initiative.id), method: :post do |form|
+  - if @initiative.sandbox
+    .warning
+      h3 Atenção! Este unlock encontra-se em modo de testes (Sandbox) no Moip.
+      ul
+        li Nenhum apoio realizado neste modo será concretizado.
+        li Você pode testar livremente, sem medo de ser debitado.
   - if @contribution.errors.any?
-    #error_explanation
+    #error_explanation.warning
       h3 = "#{pluralize(@contribution.errors.count, "erro impediu", "erros impediram")} que este apoio fosse salvo:"
       ul
         - @contribution.errors.full_messages.each do |msg|

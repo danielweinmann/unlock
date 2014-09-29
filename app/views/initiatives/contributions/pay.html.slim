@@ -3,6 +3,12 @@
 - content_for :external_js do
   script type="text/javascript" src="https://#{( @initiative.sandbox ? 'sandbox' : 'api' )}.moip.com.br/moip-assinaturas.min.js"
 form#pay_form autocomplete="off" data-token=@initiative.moip_token data-plan=@contribution.plan_code data-customer=@contribution.customer_code data-subscription=@contribution.subscription_code data-activate=activate_initiative_contribution_path
+  - if @initiative.sandbox
+    .warning
+      h3 Atenção! Este unlock encontra-se em modo de testes (Sandbox) no Moip.
+      ul
+        li Nenhum apoio realizado neste modo será concretizado.
+        li Você pode testar livremente, sem medo de ser debitado.
   .field
     = label_tag :holder_name, "Nome escrito no cartão"
     = text_field_tag :holder_name, "", autocomplete: "off"
