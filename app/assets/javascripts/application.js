@@ -9,6 +9,7 @@
 //= require underscore
 //= require rest_in_place
 //= require jquery.autosize
+//= require maskmoney
 //= require pickadate/picker
 //= require pickadate/picker.date
 //= require pickadate/translations/pt_BR

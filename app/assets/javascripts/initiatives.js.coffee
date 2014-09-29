@@ -1,6 +1,10 @@
 $(document).ready ->
   $('.field#image input[type=file]').on "change", ->
     $(@).parent().submit()
+  $('#contribution_value').maskMoney
+    thousands: ''
+    decimal: ''
+    precision: 0
   $('#pay_form [type=submit]').on "click", (event) ->
     event.preventDefault()
     event.stopPropagation()
