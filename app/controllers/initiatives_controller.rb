@@ -33,6 +33,7 @@ class InitiativesController < ApplicationController
     authorize @initiative
     @initiative.user = current_user
     @initiative.name = current_user.name
+    @initiative.sandbox = true
     if @initiative.save
       flash[:success] = "Unlock criado com sucesso! Agora, é só editar :D"
       redirect_to initiative_by_permalink_path(@initiative)
