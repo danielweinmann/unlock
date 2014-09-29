@@ -6,7 +6,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :initiative
 
   validates_presence_of :user, :initiative, :value
-  validates :value, numericality: { only_integer: true, greater_than: 9 }, allow_blank: true
+  validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 10 }, allow_blank: true
   validate :presence_of_user_attributes
 
   accepts_nested_attributes_for :user
