@@ -16,6 +16,10 @@ class Initiative < ActiveRecord::Base
     self.permalink = self.permalink.gsub(/[^0-9a-z]/i, '') if self.permalink
   end
   
+  def self.can_contribute
+    where("moip_token IS NOT NULL AND moip_key IS NOT NULL AND permalink IS NOT NULL").order("updated_at DESC")
+  end
+  
   require 'redcloth'
 
   AutoHtml.add_filter(:redcloth).with({}) do |text, options|

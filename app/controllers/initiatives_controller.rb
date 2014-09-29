@@ -12,7 +12,7 @@ class InitiativesController < ApplicationController
   before_action :authenticate_user!, only: %i[new]
 
   def index
-    @initiatives = policy_scope(Initiative).order("created_at DESC")
+    @initiatives = policy_scope(Initiative).can_contribute
     index!
   end
 
