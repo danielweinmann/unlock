@@ -1,28 +1,34 @@
 body[data-action="pay"][data-controller="contributions"][data-namespace="initiatives"]
-  .status
-    +span-columns(6)
-    display: none
-    background: $border_color
-    h4
-      font-weight: $bold_weight
-      font-size: 1.2em
-      line-height: 100%
+  article
+    width: 92%
+    +media($tablet)
+      width: 90%
+    +media($desktop)
+      width: 70%
+    .status
+      +span-columns(6)
+      display: none
+      background: $border_color
+      h4
+        font-weight: $bold_weight
+        font-size: 1.2em
+        line-height: 100%
+        margin-bottom: 0
+      ul
+        li
+          &:first-child
+            margin-top: 1em
+          a
+            color: $button_text_color
+            &:hover
+              color: $link_color
+      padding: 1.2em
+      margin-bottom: 2em
+      &.failure
+        background: $flash_failure_color
+        color: $flash_text_color
+      &.success
+        background: $flash_success_color
+        color: $flash_text_color
+    .field
       margin-bottom: 0
-    ul
-      li
-        &:first-child
-          margin-top: 1em
-        a
-          color: $button_text_color
-          &:hover
-            color: $link_color
-    padding: 1.2em
-    margin-bottom: 2em
-    &.failure
-      background: $flash_failure_color
-      color: $flash_text_color
-    &.success
-      background: $flash_success_color
-      color: $flash_text_color
-  .field
-    margin-bottom: 0
