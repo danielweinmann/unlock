@@ -18,7 +18,7 @@ pt-BR:
         phone_area_code: DDD
         phone_number: Telefone
         birthdate: Data de nascimento
-        address_street: Logradouro
+        address_street: Endereço
         address_number: Número
         address_complement: Complemento
         address_district: Bairro
@@ -26,7 +26,7 @@ pt-BR:
         address_state: Estado
         address_zipcode: CEP
       contribution:
-        value: Valor
+        value: R$/mês
         state: Status
         states:
           pending: Pendente

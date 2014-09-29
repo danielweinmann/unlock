@@ -8,34 +8,48 @@
         - @contribution.errors.full_messages.each do |msg|
           li= msg
   = form.hidden_field :user_id
-  h3 Com quanto você quer contribuir por mês?
-  = form.text_field :value
-  h3 Informe seus dados para realizar o apoio
+  h3 Com quanto você quer apoiar por mês?
+  = form.label :value
+  = form.text_field :value, class: "has_em"
+  em Assinatura mensal cobrada via cartão de crédito pelo meio de pagamentos #{link_to 'Moip', 'https://moip.com.br/'}. Você pode suspender a qualquer momento.
+  h3 Preencha e revise os dados para pagamento
   = form.fields_for :user do |user_fields|
     = user_fields.hidden_field :id
-    = user_fields.label :full_name, User.human_attribute_name(:full_name)
-    = user_fields.text_field :full_name
-    = user_fields.label :document, User.human_attribute_name(:document)
-    = user_fields.text_field :document
-    = user_fields.label :phone_area_code, User.human_attribute_name(:phone_area_code)
-    = user_fields.text_field :phone_area_code
-    = user_fields.label :phone_number, User.human_attribute_name(:phone_number)
-    = user_fields.text_field :phone_number
-    = user_fields.label :birthdate, User.human_attribute_name(:birthdate)
-    = text_field_tag :pickadate_birthdate, (@contribution.user.birthdate.strftime('%d/%m/%Y') if @contribution.user.birthdate), class: "date", placeholder: "Data de nascimento"
-    = user_fields.hidden_field :birthdate
-    = user_fields.label :address_street, User.human_attribute_name(:address_street)
-    = user_fields.text_field :address_street
-    = user_fields.label :address_number, User.human_attribute_name(:address_number)
-    = user_fields.text_field :address_number
-    = user_fields.label :address_complement, User.human_attribute_name(:address_complement)
-    = user_fields.text_field :address_complement
-    = user_fields.label :address_district, User.human_attribute_name(:address_district)
-    = user_fields.text_field :address_district
-    = user_fields.label :address_city, User.human_attribute_name(:address_city)
-    = user_fields.text_field :address_city
-    = user_fields.label :address_state, User.human_attribute_name(:address_state)
-    = user_fields.select :address_state, options_for_select(ActionView::Helpers::FormOptionsHelper::ESTADOS_BRASILEIROS, @contribution.user.address_state)
-    = user_fields.label :address_zipcode, User.human_attribute_name(:address_zipcode)
-    = user_fields.text_field :address_zipcode
-  = form.submit "Revisar e realizar pagamento"
+    .field
+      = user_fields.label :full_name
+      = user_fields.text_field :full_name
+    .field.document
+      = user_fields.label :document
+      = user_fields.text_field :document
+    .field.birthdate
+      = user_fields.label :birthdate
+      = text_field_tag :pickadate_birthdate, (@contribution.user.birthdate.strftime('%d/%m/%Y') if @contribution.user.birthdate), class: "date", placeholder: "Data de nascimento"
+      = user_fields.hidden_field :birthdate
+    .field.street
+      = user_fields.label :address_street
+      = user_fields.text_field :address_street
+    .field.number
+      = user_fields.label :address_number
+      = user_fields.text_field :address_number
+    .field.complement
+      = user_fields.label :address_complement
+      = user_fields.text_field :address_complement
+    .field.district
+      = user_fields.label :address_district
+      = user_fields.text_field :address_district
+    .field.city
+      = user_fields.label :address_city
+      = user_fields.text_field :address_city
+    .field.state
+      = user_fields.label :address_state
+      = user_fields.select :address_state, options_for_select(ActionView::Helpers::FormOptionsHelper::ESTADOS_BRASILEIROS, @contribution.user.address_state)
+    .field.zipcode
+      = user_fields.label :address_zipcode
+      = user_fields.text_field :address_zipcode
+    .field.phone_area_code
+      = user_fields.label :phone_area_code
+      = user_fields.text_field :phone_area_code
+    .field.phone_number
+      = user_fields.label :phone_number
+      = user_fields.text_field :phone_number
+  .submit= form.submit "Realizar pagamento"
