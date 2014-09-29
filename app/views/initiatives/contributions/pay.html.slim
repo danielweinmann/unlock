@@ -1,18 +1,22 @@
 - content_for :title do
-  = "Informe seus dados de pagamento"
+  = "Dados de pagamento"
 - content_for :external_js do
   script type="text/javascript" src="https://#{( @initiative.sandbox ? 'sandbox' : 'api' )}.moip.com.br/moip-assinaturas.min.js"
 form#pay_form autocomplete="off" data-token=@initiative.moip_token data-plan=@contribution.plan_code data-customer=@contribution.customer_code data-subscription=@contribution.subscription_code data-activate=activate_initiative_contribution_path
-  = label_tag :holder_name, "Nome escrito no cartão"
-  = text_field_tag :holder_name, "", autocomplete: "off"
-  = label_tag :number, "Número do cartão"
-  = text_field_tag :number, "", autocomplete: "off"
-  = label_tag :expiration_month, "Mês de expiração do cartão"
-  = text_field_tag :expiration_month, "", autocomplete: "off"
-  = label_tag :expiration_year, "Ano de expiração do cartão"
-  = text_field_tag :expiration_year, "", autocomplete: "off"
+  .field
+    = label_tag :holder_name, "Nome escrito no cartão"
+    = text_field_tag :holder_name, "", autocomplete: "off"
+  .field.number
+    = label_tag :number, "Número do cartão"
+    = text_field_tag :number, "", autocomplete: "off"
+  .field.month
+    = label_tag :expiration_month, "Mês de expiração"
+    = text_field_tag :expiration_month, "", autocomplete: "off"
+  .field.year
+    = label_tag :expiration_year, "Ano de expiração"
+    = text_field_tag :expiration_year, "", autocomplete: "off"
   .field
     = check_box_tag :terms, "1", true
     = label_tag :terms, "Eu li e aceito os #{ link_to 'termos de uso', page_path('terms'), target: :_blank }.".html_safe
   .status
-  = submit_tag "Confirmar apoio e realizar pagamento"
+  .submit= submit_tag "Confirmar pagamento"

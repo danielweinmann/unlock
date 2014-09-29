@@ -7,12 +7,26 @@ body[data-action="pay"][data-controller="contributions"][data-namespace="initiat
       width: 70%
     margin-left: auto
     margin-right: auto
+    form
+      .field
+        float: left
+        width: 100%
+        margin-bottom: 0
+      .number
+        width: 47.5%
+        margin-right: 5%
+      .month
+        width: 21.25%
+        margin-right: 5%
+      .year
+        width: 21.25%
     .status
       +span-columns(6)
       display: none
       background: $border_color
       h4
-        font-weight: $bold_weight
+        font-family: $subheadline_font
+        font-style: italic
         font-size: 1.2em
         line-height: 100%
         margin-bottom: 0
@@ -20,17 +34,13 @@ body[data-action="pay"][data-controller="contributions"][data-namespace="initiat
         li
           &:first-child
             margin-top: 1em
-          a
-            color: $button_text_color
-            &:hover
-              color: $link_color
       padding: 1.2em
       margin-bottom: 2em
       &.failure
-        background: $flash_failure_color
-        color: $flash_text_color
+        background-color: tint($flash_failure_color, 80%)
+        h4
+          color: $flash_failure_color
       &.success
-        background: $flash_success_color
-        color: $flash_text_color
-    .field
-      margin-bottom: 0
+        background-color: tint($flash_success_color, 80%)
+        h4
+          color: $flash_success_color
