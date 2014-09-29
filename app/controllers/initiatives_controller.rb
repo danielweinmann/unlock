@@ -6,6 +6,7 @@ class InitiativesController < ApplicationController
   custom_actions collection: %i[sitemap]
   respond_to :html, except: [:sitemap]
   respond_to :xml, only: [:sitemap]
+  respond_to :json, only: [:update, :show]
 
   after_action :verify_authorized, except: %i[index sitemap]
   after_action :verify_policy_scoped, only: %i[index sitemap]
