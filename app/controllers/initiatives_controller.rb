@@ -52,7 +52,7 @@ class InitiativesController < ApplicationController
   end
 
   def sitemap
-    @initiatives = policy_scope(Initiative).order("created_at DESC")
+    @initiatives = policy_scope(Initiative).can_contribute
     sitemap!
   end
 
