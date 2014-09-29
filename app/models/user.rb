@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :initiatives
   has_many :contributions
+  
+  validates :document, cpf: true, allow_nil: true, allow_blank: true
 
   before_save do
     self.name = self.email.match(/(.+)@/)[1] unless self.name.present?
