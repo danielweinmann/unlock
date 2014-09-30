@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
   # This will send the current_user to the view and instantiate UserDecorator
   before_action :current_user
 
+  force_ssl if: :in_production?
+
+  def in_production?
+    Rails.env.production?
+  end
+    
   def add_headline_and_article?
     !@suppress_headline_and_article
   end
