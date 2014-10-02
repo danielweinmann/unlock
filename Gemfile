@@ -41,6 +41,7 @@ gem 'state_machine'
 gem 'high_voltage'
 gem 'validates_cpf_cnpj'
 gem 'maskmoney-rails'
+gem 'rack-timeout'
 
 group :production do
   # Workers, forks and all that jazz
