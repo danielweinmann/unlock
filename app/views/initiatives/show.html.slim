@@ -9,6 +9,7 @@
   meta property="og:url" content=initiative_by_permalink_url(@initiative)
   meta property="og:image" content=(@initiative.image.present? ? @initiative.image.url : "#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}")
   meta property="og:description" content=strip_tags(@initiative.first_text_html)
+  meta name="author" content=@initiative.user.name
 - content_for :pre_header do
   .image
     - if @initiative.image.present?

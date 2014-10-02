@@ -16,8 +16,8 @@ html
       meta property="og:url" content=(content_for?(:url) ? yield(:url) : request.url)
       meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
       meta property="og:description" content=yield(:title)
+      meta name="author" content="Larusso e Weinmann"
     / Metatags for every page
-    meta name="author" content="Larusso e Weinmann"
     meta property="og:site_name" content="Unlock"
     meta property="fb:app_id" content=ENV['FACEBOOK_APP_ID']
     meta property="fb:admins" content=ENV['FACEBOOK_ADMINS']
