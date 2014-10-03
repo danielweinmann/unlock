@@ -5,12 +5,16 @@ class Initiatives::ContributionsController < ApplicationController
   custom_actions member: %i[pay activate suspend cancel]
   belongs_to :initiative, parent_class: Initiative
   respond_to :html, except: [:activate, :suspend, :cancel]
-  respond_to :json, only: [:activate, :suspend, :cancel]
+  respond_to :json, only: [:index, :activate, :suspend, :cancel]
 
   after_action :verify_authorized, except: %i[index]
-  after_action :verify_policy_scoped, only: %i[index]
+  # after_action :verify_policy_scoped, only: %i[index]
   before_action :authenticate_user!, only: %i[new pay]
 
+  def index
+    @contributions = policy_scope(Contribution).where(initiative: parent).visible
+  end
+  
   def new    
     new! do
       @contribution.user = current_user
