@@ -8,7 +8,7 @@ class Initiatives::ContributionsController < ApplicationController
   respond_to :json, only: [:index, :activate, :suspend, :cancel]
 
   after_action :verify_authorized, except: %i[index]
-  # after_action :verify_policy_scoped, only: %i[index]
+  after_action :verify_policy_scoped, only: %i[index]
   before_action :authenticate_user!, only: %i[new pay]
 
   def index
