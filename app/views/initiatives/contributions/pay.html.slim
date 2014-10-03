@@ -24,5 +24,9 @@ form#pay_form autocomplete="off" data-token=@initiative.moip_token data-plan=@co
   .field
     = check_box_tag :terms, "1", true
     = label_tag :terms, "Eu li e aceito os #{ link_to 'termos de uso', page_path('terms'), target: :_blank }.".html_safe
+  h4
+    = "Apoio de "
+    span.value= "R$ #{@contribution.display_value},00"
+    = "/mês"
   .status
   .submit= submit_tag "Confirmar pagamento"
