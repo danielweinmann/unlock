@@ -17,7 +17,7 @@ class Initiative < ActiveRecord::Base
   end
   
   def self.can_contribute
-    where("moip_token IS NOT NULL AND moip_token <> '' AND moip_key IS NOT NULL AND moip_key <> '' AND permalink IS NOT NULL AND permalink <> ''").order("updated_at DESC")
+    where("moip_token IS NOT NULL AND moip_token <> '' AND moip_key IS NOT NULL AND moip_key <> '' AND permalink IS NOT NULL AND permalink <> ''")
   end
   
   def self.with_contributions
@@ -26,6 +26,10 @@ class Initiative < ActiveRecord::Base
   
   def self.not_sandbox
     where('NOT sandbox')
+  end
+  
+  def self.home_page
+    can_contribute.not_sandbox.order("(SELECT coalesce(sum(value), 0) FROM contributions WHERE initiative_id = initiatives.id AND state = 1 AND contributions.sandbox = initiatives.sandbox) DESC, updated_at DESC")
   end
   
   require 'redcloth'

@@ -13,7 +13,7 @@ class InitiativesController < ApplicationController
   before_action :authenticate_user!, only: %i[new]
 
   def index
-    @initiatives = policy_scope(Initiative).can_contribute.not_sandbox
+    @initiatives = policy_scope(Initiative).home_page
     index!
   end
 
@@ -54,7 +54,7 @@ class InitiativesController < ApplicationController
   end
 
   def sitemap
-    @initiatives = policy_scope(Initiative).can_contribute.not_sandbox
+    @initiatives = policy_scope(Initiative).home_page
     sitemap!
   end
 
