@@ -50,7 +50,7 @@ $(document).ready ->
                   status.find('ul').append("<li>Seu pagamento ainda será processado pelo <a href='https://www.moip.com.br/' target='_blank'>Moip</a></li>")
                   status.find('ul').append("<li>Se você quiser suspender seu apoio, basta acessar o menu <a href='/my_contributions'>Unlocks apoiados</a> a qualquer momento.</li>")
                   status.find('ul').append("<li>Sua próxima cobrança será realizada em #{next_invoice}.</li>")
-                  form.find('input, label').hide()
+                  form.find('input, label, h4').hide()
                 error: (response) ->
                   status.find('h4').html("Não foi possível ativar sua assinatura")
                   status.addClass 'failure'
