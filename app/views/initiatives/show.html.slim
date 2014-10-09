@@ -77,4 +77,4 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
         em O sandbox é o ambiente de testes do Moip. Ao deixar esta opção marcada, as transações realizadas servirão apenas para testes e não serão concretizadas.
     - if policy(@initiative).destroy?
       section.links
-        = link_to 'Excluir', @initiative, method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
+        = link_to 'Excluir', initiative_path(@initiative.id), method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
