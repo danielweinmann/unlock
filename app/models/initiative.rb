@@ -58,6 +58,24 @@ class Initiative < ActiveRecord::Base
     end
   end
 
+  AutoHtml.add_filter(:soundcloud).with(:width => '100%', :height => 166, :auto_play => false, :theme_color => '00FF00', :color => '915f33', :show_comments => false, :show_artwork => false) do |text, options|
+    require 'uri'
+    require 'net/http'
+    text.gsub(/(https?:\/\/)?(www.)?soundcloud\.com\/\S*/) do |match|
+      new_uri = match.to_s
+      new_uri = (new_uri =~ /^https?\:\/\/.*/) ? URI(new_uri) : URI("http://#{new_uri}")
+      new_uri.normalize!
+      width = options[:width]
+      height = options[:height]
+      auto_play = options[:auto_play]
+      theme_color = options[:theme_color]
+      color = options[:color]
+      show_artwork = options[:show_artwork]
+      show_comments = options[:show_comments]
+      %{<iframe width="#{width}" height="#{height}" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=#{new_uri}&show_artwork=#{show_artwork}&show_comments=#{show_comments}&auto_play=#{auto_play}"></iframe>}
+    end
+  end
+
   auto_html_for :first_text do
     html_escape map: {
       '&' => '&amp;',
@@ -66,8 +84,9 @@ class Initiative < ActiveRecord::Base
       '"' => '"'
     }
     image
-    youtube width: 600, height: 403, wmode: "opaque"
-    vimeo width: 600, height: 403
+    youtube width: '100%', height: 403, wmode: "opaque"
+    vimeo width: '100%', height: 403
+    soundcloud width: '100%', height: 403
     redcloth target: :_blank
     link target: :_blank
   end
@@ -80,8 +99,9 @@ class Initiative < ActiveRecord::Base
       '"' => '"'
     }
     image
-    youtube width: 600, height: 403, wmode: "opaque"
-    vimeo width: 600, height: 403
+    youtube width: '100%', height: 403, wmode: "opaque"
+    vimeo width: '100%', height: 403
+    soundcloud width: '100%', height: 403
     redcloth target: :_blank
     link target: :_blank
   end
