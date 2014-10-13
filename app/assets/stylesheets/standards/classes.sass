@@ -14,6 +14,13 @@
   &:hover
     background: $button_hover_color
     color: $button_text_color
+@mixin unlock_warning
+  background-color: tint($flash_failure_color, 80%)
+  padding: 2em
+  h2, h3
+    font-size: 1.17em
+    color: $flash_failure_color
+  margin-bottom: 4em
 .button
   +unlock_button
 .links
@@ -21,6 +28,8 @@
   text-align: center
 .field
   margin-bottom: 2em
+.warning
+  +unlock_warning
 .menu
   position: relative
   .open
