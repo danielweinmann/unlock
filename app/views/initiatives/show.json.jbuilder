@@ -13,5 +13,7 @@ if policy(@initiative).update?
   json.moip_key @initiative.moip_key
   json.sandbox @initiative.sandbox
 end
+json.total_value @initiative.total_value
+json.total_contributions @initiative.total_contributions
 json.created_at @initiative.created_at
 json.updated_at @initiative.updated_at
