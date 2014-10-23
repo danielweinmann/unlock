@@ -1,0 +1,6 @@
+- content_for :title do
+  = "Apoiadores de #{@initiative.name}"
+- if @contributions.exists?
+  ul.contributions= render @contributions
+- else
+  em Este unlock ainda não recebeu nenhum apoio

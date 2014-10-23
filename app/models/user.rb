@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :initiatives
   has_many :contributions
   
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
   validates :document, cpf: true, allow_nil: true, allow_blank: true
 
   before_save do

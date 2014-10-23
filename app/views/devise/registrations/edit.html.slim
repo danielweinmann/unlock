@@ -6,6 +6,8 @@ h2= t('.title', :resource => resource_class.model_name.human , :default => 'Edit
 
   = form.label :name
   = form.text_field :name
+  = form.label :image
+  = form.file_field :image
   = form.label :email
   = form.email_field :email
   = form.label :password

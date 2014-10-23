@@ -1,0 +1,7 @@
+li.contributor
+  .image= contribution.user.display_image
+  .info
+    h3= contribution.user.display_name
+    - if policy(@initiative).update?
+      h4= "R$ #{contribution.display_value},00"
+      h5= contribution.user.email

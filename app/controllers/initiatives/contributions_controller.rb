@@ -12,7 +12,10 @@ class Initiatives::ContributionsController < ApplicationController
   before_action :authenticate_user!, only: %i[new pay]
 
   def index
+    @initiative = Initiative.find(params[:initiative_id])
     @contributions = policy_scope(Contribution).where(initiative: parent).visible
+    # This will instantiate UserDecorator for the users
+    @users = @contributions.map &:user
   end
   
   def new    
