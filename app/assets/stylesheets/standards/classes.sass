@@ -164,15 +164,16 @@
   border-bottom: 0.2em solid $border_color
   margin-bottom: 2em
   +span-columns(6)
-  height: 77.25vw
+  height: 100vw
   +media($tablet)
     +span-columns(4)
     +omega(2n)
+    height: 70vw
     margin-bottom: 2em
   +media($desktop)
     +span-columns(4)
     +omega(3n)
-    height: 44vw
+    height: 56vw
     margin-bottom: 4em
   +media($large_desktop)
     height: 586px
@@ -185,7 +186,11 @@
   .info
     height: 15%
   .contribution_actions
-    height: 15%
+    height: 12%
+    +media($tablet)
+      height: 15%
+    +media($desktop)
+      height: 15%
   .options
     height: 15%
   .image
