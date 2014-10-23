@@ -1,5 +1,9 @@
 li.contributor
-  .image= contribution.user.display_image
+  .image
+    - if contribution.hide_name?
+      = image_tag('user.svg')
+    - else
+      = contribution.user.display_image
   .info
     h4 
       - if contribution.hide_name?
