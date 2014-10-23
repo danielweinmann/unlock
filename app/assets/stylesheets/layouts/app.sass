@@ -63,8 +63,11 @@
   footer
     +outer-container
     text-align: center
+    a
+      text-decoration: none
     h4
-      padding-bottom: 1em
+      +span-columns(6)
+      margin-bottom: 2em
       a
         color: $footer_text_color
         text-decoration: none
@@ -75,6 +78,7 @@
     h5
       color: $footer_text_color
     .user
+      +span-columns(6)
       margin-bottom: 4em
       +media($desktop)
         display: none
@@ -85,5 +89,14 @@
         margin-left: 0em
         display: block
         margin-bottom: 1em
-    .help
-      margin-top: 1em
+    .credits
+      +span-columns(6)
+    .links
+      +span-columns(6)
+      +media($desktop)
+        +span-columns(6)
+        +shift(3)
+      margin-bottom: 2em
+      h5
+        +span-columns(2)
+        +omega(3n)
