@@ -25,6 +25,7 @@ pt-BR:
         address_city: Cidade
         address_state: Estado
         address_zipcode: CEP
+        image: Foto
       contribution:
         value: R$/mês
         state: Status
