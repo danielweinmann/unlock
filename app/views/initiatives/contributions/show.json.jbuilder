@@ -29,4 +29,5 @@ json.user do |json|
   json.sandbox @contribution.sandbox?
   json.hide_name @contribution.hide_name?
   json.hide_value @contribution.hide_value?
+  json.state @contribution.state
 end
