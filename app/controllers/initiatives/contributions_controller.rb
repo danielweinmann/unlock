@@ -171,8 +171,12 @@ class Initiatives::ContributionsController < ApplicationController
     errors = []
     if @contribution.can_activate?
       begin
-        response = Moip::Assinaturas::Subscription.activate(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
-        @contribution.activate! if response[:success]
+        if @contribution.moip_state_name != :active
+          response = Moip::Assinaturas::Subscription.activate(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
+          @contribution.activate! if response[:success]
+        else
+          @contribution.activate!
+        end
       rescue
         errors << "Não foi possível ativar sua assinatura no Moip Assinaturas"
       end
@@ -187,8 +191,12 @@ class Initiatives::ContributionsController < ApplicationController
     errors = []
     if @contribution.can_suspend?
       begin
-        response = Moip::Assinaturas::Subscription.suspend(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
-        @contribution.suspend! if response[:success]
+        if @contribution.moip_state_name != :suspended
+          response = Moip::Assinaturas::Subscription.suspend(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
+          @contribution.suspend! if response[:success]
+        else
+          @contribution.suspend!
+        end
       rescue
         errors << "Não foi possível suspender sua assinatura no Moip Assinaturas"
       end
@@ -203,8 +211,12 @@ class Initiatives::ContributionsController < ApplicationController
     errors = []
     if @contribution.can_cancel?
       begin
-        response = Moip::Assinaturas::Subscription.cancel(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
-        @contribution.cancel! if response[:success]
+        if @contribution.moip_state_name != :canceled
+          response = Moip::Assinaturas::Subscription.cancel(@contribution.subscription_code, moip_auth: @contribution.moip_auth)
+          @contribution.cancel! if response[:success]
+        else
+          @contribution.cancel!
+        end
       rescue
         errors << "Não foi possível cancelar sua assinatura no Moip Assinaturas"
       end
