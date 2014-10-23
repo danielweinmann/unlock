@@ -16,7 +16,7 @@ class Contribution < ActiveRecord::Base
   end
   
   def self.not_pending
-    where("state <> 0").order("updated_at DESC")
+    where("state <> 0 AND initiative_id IN (SELECT id FROM initiatives)").order("updated_at DESC")
   end
   
   state_machine initial: :pending do
