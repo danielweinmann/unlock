@@ -1,11 +1,11 @@
 class Initiatives::ContributionsController < ApplicationController
 
   inherit_resources
-  actions :index, :new, :create
+  actions :all, except: [:edit, :destroy]
   custom_actions member: %i[pay activate suspend cancel]
   belongs_to :initiative, parent_class: Initiative
-  respond_to :html, except: [:activate, :suspend, :cancel]
-  respond_to :json, only: [:index, :activate, :suspend, :cancel]
+  respond_to :html, except: [:activate, :suspend, :cancel, :update, :show]
+  respond_to :json, only: [:index, :activate, :suspend, :cancel, :update, :show]
 
   after_action :verify_authorized, except: %i[index]
   after_action :verify_policy_scoped, only: %i[index]
@@ -25,6 +25,17 @@ class Initiatives::ContributionsController < ApplicationController
     end
   end
   
+  def update
+    authorize resource
+    update!
+  end
+
+  def show
+    authorize resource
+    @user = @contribution.user
+    show!
+  end
+
   def create
     
     # Getting the date from Pickadate
@@ -206,11 +217,11 @@ class Initiatives::ContributionsController < ApplicationController
   private
 
   def permitted_params
-    params.permit(contribution: [:value, :user_id, user_attributes: [ :id, :full_name, :document, :phone_area_code, :phone_number, :birthdate, :address_street, :address_number, :address_complement, :address_district, :address_city, :address_state, :address_zipcode ]])
+    params.permit(contribution: [:value, :user_id, :hide_name, :hide_value, user_attributes: [ :id, :full_name, :document, :phone_area_code, :phone_number, :birthdate, :address_street, :address_number, :address_complement, :address_district, :address_city, :address_state, :address_zipcode ]])
   end
 
   def contribution_params
-    params.require(:contribution).permit(:value, :user_id, user_attributes: [ :id, :full_name, :document, :phone_area_code, :phone_number, :birthdate, :address_street, :address_number, :address_complement, :address_district, :address_city, :address_state, :address_zipcode ])
+    params.require(:contribution).permit(:value, :user_id, :hide_name, :hide_value, user_attributes: [ :id, :full_name, :document, :phone_area_code, :phone_number, :birthdate, :address_street, :address_number, :address_complement, :address_district, :address_city, :address_state, :address_zipcode ])
   end
 
 end

@@ -28,6 +28,8 @@ pt-BR:
       contribution:
         value: R$/mês
         state: Status
+        hide_name: Não quero divulgar meu nome
+        hide_value: Não quero divulgar o valor do meu apoio
         states:
           pending: Pendente
           active: Ativo

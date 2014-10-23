@@ -16,3 +16,10 @@ li.contribution
       a.button#activate Reativar
     - if contribution.can_suspend?
       a.button#suspend Suspender
+  .options id=dom_id(contribution) data-url=initiative_contribution_path(contribution.initiative.id, contribution.id)
+    .field
+      = check_box_tag :"hide_name_#{contribution.id}", "1", contribution.hide_name, :class => "editable", :"data-attribute" => "hide_name", :"data-formtype" => "checkbox"
+      = label_tag :"hide_name_#{contribution.id}", Contribution.human_attribute_name(:hide_name)
+    .field
+      = check_box_tag :"hide_value_#{contribution.id}", "1", contribution.hide_value, :class => "editable", :"data-attribute" => "hide_value", :"data-formtype" => "checkbox"
+      = label_tag :"hide_value_#{contribution.id}", Contribution.human_attribute_name(:hide_value)

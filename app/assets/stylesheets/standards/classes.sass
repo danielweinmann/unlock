@@ -175,17 +175,28 @@
     height: 44vw
     margin-bottom: 4em
   +media($large_desktop)
-    height: 526px
-  .image, .contribution_actions, .info, .status
+    height: 586px
+  .image, .contribution_actions, .info, .status, .options
     overflow: hidden
-  .image, .status
-    height: 30.9%
-  .contribution_actions, .info
-    height: 19.1%
+  .image
+    height: 30%
+  .status
+    height: 25%
+  .info
+    height: 15%
+  .contribution_actions
+    height: 15%
+  .options
+    height: 15%
   .image
     background: $border_color
     img
       width: 100%
+  .options
+    padding: 1.2em
+    font-size: 0.9em
+    .field
+      margin: 0
   .contribution_actions
     padding: 1.2em
     +media($tablet)
@@ -268,6 +279,8 @@
   background-color: $container_color
   border-bottom: 0.2em solid $border_color
   margin-bottom: 2em
+  height: 7em
+  overflow: hidden
   +span-columns(6)
   +media($tablet)
     +span-columns(4)

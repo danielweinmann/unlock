@@ -1,7 +1,12 @@
 li.contributor
   .image= contribution.user.display_image
   .info
-    h4= contribution.user.display_name
-    - if policy(@initiative).update?
+    h4 
+      - if contribution.hide_name?
+        = "Apoiador anônimo"
+      - else
+        = truncate contribution.user.display_name, length: 40
+    - unless contribution.hide_value? && !policy(@initiative).update?
       h5= "R$ #{contribution.display_value},00"
+    - if policy(@initiative).update?
       h5= mail_to contribution.user.email
