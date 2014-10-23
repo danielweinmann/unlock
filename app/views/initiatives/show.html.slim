@@ -27,9 +27,10 @@
     h2
       span.number= @initiative.total_contributions
       div
-        = "pessoa".pluralize(@initiative.total_contributions)
+        = link_to "pessoa".pluralize(@initiative.total_contributions), initiative_contributions_path(@initiative.id)
         = " "
-        = link_to "apoia".pluralize(@initiative.total_contributions), initiative_contributions_path(@initiative.id)
+        = "apoia".pluralize(@initiative.total_contributions)
+        / = link_to "apoia".pluralize(@initiative.total_contributions), initiative_contributions_path(@initiative.id)
 article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
   - if @initiative.can_contribute?
     section.contribute
