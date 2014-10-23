@@ -133,5 +133,11 @@ class Initiative < ActiveRecord::Base
   def can_contribute?
     self.moip_key.present? && self.moip_token.present? && self.permalink.present?
   end
+
+  def update_states_from_moip!
+    self.contributions.not_pending.each do |contribution|
+      contribution.update_state_from_moip!
+    end
+  end
   
 end

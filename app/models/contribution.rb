@@ -93,11 +93,11 @@ class Contribution < ActiveRecord::Base
     if self.state != self.moip_state
       case self.moip_state_name
         when :active
-          self.activate!
+          self.activate! if self.can_activate?
         when :suspended
-          self.suspend!
+          self.suspend! if self.can_suspend?
         when :canceled
-          self.cancel!
+          self.cancel! if self.can_cancel?
       end
     end
   end
