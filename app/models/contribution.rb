@@ -4,6 +4,7 @@ class Contribution < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :initiative
+  belongs_to :gateway
 
   validates_presence_of :user, :initiative, :value
   validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 5 }, allow_blank: true
@@ -12,10 +13,12 @@ class Contribution < ActiveRecord::Base
   accepts_nested_attributes_for :user
   
   def self.visible
+    # TODO delegate to gateway to decide which active contributions are visible.
     with_state(:active).joins(:initiative).where("initiatives.sandbox = contributions.sandbox").order("updated_at DESC")
   end
   
   def self.not_pending
+    # TODO delegate to gateway to decide which active contributions are visible.
     where("state <> 0 AND initiative_id IN (SELECT id FROM initiatives)").joins(:initiative).where("initiatives.sandbox = contributions.sandbox").order("updated_at DESC")
   end
   
@@ -24,10 +27,6 @@ class Contribution < ActiveRecord::Base
     state :pending, value: 0
     state :active, value: 1
     state :suspended, value: 2
-    # state :expired, value: 3 # not currently used
-    # state :overdue, value: 4 # not currently used
-    state :canceled, value: 5
-    # state :trial, value: 6 # not currently used
 
     event :activate do
       transition [:pending, :suspended] => :active
@@ -37,20 +36,18 @@ class Contribution < ActiveRecord::Base
       transition :active => :suspended
     end
 
-    event :cancel do
-      transition [:active, :suspended] => :canceled
-    end
-
   end
 
   def plan_code
     "#{self.initiative.permalink[0..29]}#{self.value.to_i}#{'sandbox' if self.initiative.sandbox?}"
   end
   
+  # TODO make this a hash
   def customer_code
     "#{self.initiative.permalink[0..29]}#{self.user.id}#{'sandbox' if self.initiative.sandbox?}"
   end
   
+  # TODO make this a hash
   def subscription_code
     "#{self.initiative.permalink[0..29]}#{self.id}#{'sandbox' if self.initiative.sandbox?}"
   end
@@ -70,10 +67,8 @@ class Contribution < ActiveRecord::Base
       case status
         when 'ACTIVE', 'OVERDUE'
           1
-        when 'SUSPENDED', 'EXPIRED'
+        when 'SUSPENDED', 'EXPIRED', 'CANCELED'
           2
-        when 'CANCELED'
-          5
       end
     end
   end
@@ -84,8 +79,6 @@ class Contribution < ActiveRecord::Base
         :active
       when 2
         :suspended
-      when 5
-        :canceled
     end
   end
 
@@ -96,8 +89,6 @@ class Contribution < ActiveRecord::Base
           self.activate! if self.can_activate?
         when :suspended
           self.suspend! if self.can_suspend?
-        when :canceled
-          self.cancel! if self.can_cancel?
       end
     end
   end

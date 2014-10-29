@@ -33,7 +33,6 @@ class InitiativesController < ApplicationController
     authorize @initiative
     @initiative.user = current_user
     @initiative.name = current_user.name
-    @initiative.sandbox = true
     if @initiative.save
       flash[:success] = "Unlock criado com sucesso! Agora, é só editar :D"
       redirect_to initiative_by_permalink_path(@initiative)
@@ -61,10 +60,12 @@ class InitiativesController < ApplicationController
   private
 
   def permitted_params
+    # TODO use Pundit for params
     params.permit(initiative: [:name, :first_text, :second_text, :moip_token, :moip_key, :image, :permalink, :sandbox])
   end
 
   def initiative_params
+    # TODO use Pundit for params
     params.require(:initiative).permit(:name, :first_text, :second_text, :moip_token, :moip_key, :image, :permalink, :sandbox)
   end
 

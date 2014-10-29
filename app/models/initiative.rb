@@ -22,15 +22,13 @@ class Initiative < ActiveRecord::Base
   end
   
   def self.with_contributions
+    #TODO delegate to gateway to decide which active contributions are visible
     where("id IN (SELECT DISTINCT initiative_id FROM contributions WHERE state = 1 AND NOT sandbox)")
   end
   
-  def self.not_sandbox
-    where('NOT sandbox')
-  end
-  
   def self.home_page
-    can_contribute.not_sandbox.order("(SELECT coalesce(sum(value), 0) FROM contributions WHERE initiative_id = initiatives.id AND state = 1 AND contributions.sandbox = initiatives.sandbox) DESC, updated_at DESC")
+    #TODO delegate to gateway to decide which active contributions are visible
+    can_contribute.order("(SELECT coalesce(sum(value), 0) FROM contributions WHERE initiative_id = initiatives.id AND state = 1 AND contributions.sandbox = initiatives.sandbox) DESC, updated_at DESC")
   end
   
   require 'redcloth'
@@ -135,6 +133,7 @@ class Initiative < ActiveRecord::Base
     self.permalink.present? && self.gateways.active.exists? 
   end
 
+  # TODO move this to UnlockMoip?? How??
   def update_states_from_moip!
     self.contributions.not_pending.each do |contribution|
       contribution.update_state_from_moip!
