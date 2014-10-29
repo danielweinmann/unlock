@@ -4,6 +4,7 @@ class Initiative < ActiveRecord::Base
   
   belongs_to :user
   has_many :contributions
+  has_many :gateways
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
@@ -17,7 +18,7 @@ class Initiative < ActiveRecord::Base
   end
   
   def self.can_contribute
-    where("moip_token IS NOT NULL AND moip_token <> '' AND moip_key IS NOT NULL AND moip_key <> '' AND permalink IS NOT NULL AND permalink <> ''")
+    where("id IN (SELECT DISTINCT initiative_id FROM gateways WHERE active)")
   end
   
   def self.with_contributions
@@ -131,7 +132,7 @@ class Initiative < ActiveRecord::Base
   end
 
   def can_contribute?
-    self.moip_key.present? && self.moip_token.present? && self.permalink.present?
+    self.permalink.present? && self.gateways.active.exists? 
   end
 
   def update_states_from_moip!
