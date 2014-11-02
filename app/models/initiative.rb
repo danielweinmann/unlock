@@ -34,9 +34,9 @@ class Initiative < ActiveRecord::Base
   end
 
   def self.home_page
-    with_state(:published).order("(SELECT coalesce(sum(value), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 1 AND contributions.gateway_state = gateways.state) DESC, updated_at DESC")
+    with_state(:published).order("(SELECT coalesce(sum(value), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 'active' AND contributions.gateway_state = gateways.state) DESC, updated_at DESC")
   end
-  
+
   require 'redcloth'
 
   AutoHtml.add_filter(:redcloth).with({}) do |text, options|

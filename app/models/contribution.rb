@@ -19,14 +19,13 @@ class Contribution < ActiveRecord::Base
   
   def self.not_pending
     without_state(:pending).joins(:initiative).joins(:gateway).where("gateways.state = contributions.gateway_state").order("updated_at DESC")
-    # raise where("contributions.state <> 0").joins(:initiative).joins(:gateway).where("gateways.state = contributions.gateway_state").order("updated_at DESC").to_sql
   end
   
   state_machine initial: :pending do
 
-    state :pending, value: 0
-    state :active, value: 1
-    state :suspended, value: 2
+    state :pending
+    state :active
+    state :suspended
 
     event :activate do
       transition [:pending, :suspended] => :active
