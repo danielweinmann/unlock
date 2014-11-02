@@ -10,7 +10,6 @@ Rails.application.routes.draw do
         get "pay"
         put "activate"
         put "suspend"
-        put "cancel"
       end
     end
     collection do

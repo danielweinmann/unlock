@@ -35,7 +35,6 @@ pt-BR:
           pending: Pendente
           active: Ativo
           suspended: Suspenso
-          canceled: Cancelado
       initiative:
         image: Imagem
         name: Título

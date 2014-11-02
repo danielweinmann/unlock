@@ -12,8 +12,4 @@ class ContributionPolicy < ApplicationPolicy
     update?
   end
   
-  def cancel?
-    update?
-  end
-  
 end

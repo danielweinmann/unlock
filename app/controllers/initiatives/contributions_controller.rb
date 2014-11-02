@@ -2,7 +2,7 @@ class Initiatives::ContributionsController < ApplicationController
 
   inherit_resources
   actions :all, except: [:edit, :destroy]
-  custom_actions member: %i[pay activate suspend cancel]
+  custom_actions member: %i[pay activate suspend]
   belongs_to :initiative, parent_class: Initiative
   respond_to :html, except: [:activate, :suspend, :update, :show]
   respond_to :json, only: [:index, :activate, :suspend, :update, :show]
