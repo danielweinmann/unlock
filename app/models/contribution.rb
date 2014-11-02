@@ -7,7 +7,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :gateway
   store_accessor :gateway_data
 
-  validates_presence_of :user, :initiative, :value
+  validates_presence_of :user, :initiative, :gateway, :value
   validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 5 }, allow_blank: true
   validate :presence_of_user_and_initiative_attributes
 

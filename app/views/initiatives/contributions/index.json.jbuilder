@@ -28,8 +28,9 @@ json.array! @contributions do |contribution|
   json.value (contribution.hide_value ? nil : contribution.value)
   json.created_at contribution.created_at
   json.updated_at contribution.updated_at
-  json.sandbox contribution.sandbox?
   json.hide_name contribution.hide_name?
   json.hide_value contribution.hide_value?
+  json.gateway contribution.gateway.module_name
+  json.gateway_state contribution.gateway_state
   json.state contribution.state
 end
