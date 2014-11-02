@@ -17,18 +17,24 @@ class Initiative < ActiveRecord::Base
     self.permalink = self.permalink.gsub(/[^0-9a-z]/i, '').downcase if self.permalink
   end
   
-  def self.can_contribute
-    where("id IN (SELECT DISTINCT initiative_id FROM gateways WHERE active)")
+  state_machine initial: :draft do
+
+    state :draft
+    state :published
+
+    # TODO validate permalink and existence of at least one gateway in production before publishing
+    event :publish do
+      transition :draft => :online
+    end
+
+    event :revert_to_draft do
+      transition :published => :draft
+    end
+
   end
-  
-  def self.with_contributions
-    #TODO delegate to gateway to decide which active contributions are visible
-    where("id IN (SELECT DISTINCT initiative_id FROM contributions WHERE state = 1 AND NOT sandbox)")
-  end
-  
+
   def self.home_page
-    #TODO delegate to gateway to decide which active contributions are visible
-    can_contribute.order("(SELECT coalesce(sum(value), 0) FROM contributions WHERE initiative_id = initiatives.id AND state = 1 AND contributions.sandbox = initiatives.sandbox) DESC, updated_at DESC")
+    with_state(:published).order("(SELECT coalesce(sum(value), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 1 AND contributions.gateway_state = gateways.state) DESC, updated_at DESC")
   end
   
   require 'redcloth'
@@ -130,7 +136,7 @@ class Initiative < ActiveRecord::Base
   end
 
   def can_contribute?
-    self.permalink.present? && self.gateways.active.exists? 
+    self.gateways.without_state(:draft).exists? 
   end
 
   # TODO move this to UnlockMoip?? How??

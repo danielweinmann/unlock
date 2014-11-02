@@ -56,10 +56,17 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/danielweinmann/projects/unlock"
+		"/Users/danielweinmann/projects/unlock",
+		"/Users/danielweinmann/projects/unlock/app"
 	],
 	"file_history":
 	[
+		"/Users/danielweinmann/projects/unlock/Gemfile",
+		"/Users/danielweinmann/projects/unlock/app/models/contribution.rb",
+		"/Users/danielweinmann/projects/unlock/app/models/initiative.rb",
+		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives/contributions_controller.rb",
+		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives_controller.rb",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20141029204134_delete_canceled_contrbutions.rb",
 		"/Users/danielweinmann/projects/unlock/app/models/gateway.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141029203103_migrate_contribution_sandbox_to_gateway.rb",
 		"/Users/danielweinmann/projects/unlock_moip/unlock_moip.gemspec",
@@ -72,11 +79,8 @@
 		"/Users/danielweinmann/projects/unlock/app/views/initiatives/show.html.slim",
 		"/Users/danielweinmann/projects/unlock/app/views/layouts/application.html.slim",
 		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/layouts/app.sass",
-		"/Users/danielweinmann/projects/unlock/app/models/initiative.rb",
-		"/Users/danielweinmann/projects/unlock/app/models/contribution.rb",
 		"/Users/danielweinmann/projects/unlock/config/locales/pt-BR.yml",
 		"/Users/danielweinmann/projects/unlock/app/views/devise/registrations/edit.html.slim",
-		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives/contributions_controller.rb",
 		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/show.json.jbuilder",
 		"/Users/danielweinmann/Downloads/email riospothomes.txt",
 		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/standards/tags.sass",
@@ -100,6 +104,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"not_sandbox",
 			"sandbox",
 			"moip",
 			"token",

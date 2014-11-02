@@ -5,6 +5,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :user
   belongs_to :initiative
   belongs_to :gateway
+  store_accessor :gateway_data
 
   validates_presence_of :user, :initiative, :value
   validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 5 }, allow_blank: true
@@ -13,13 +14,12 @@ class Contribution < ActiveRecord::Base
   accepts_nested_attributes_for :user
   
   def self.visible
-    # TODO delegate to gateway to decide which active contributions are visible.
-    with_state(:active).joins(:initiative).where("initiatives.sandbox = contributions.sandbox").order("updated_at DESC")
+    with_state(:active).joins(:gateway).where("gateways.state = contributions.gateway_state").order("updated_at DESC")
   end
   
   def self.not_pending
-    # TODO delegate to gateway to decide which active contributions are visible.
-    where("state <> 0 AND initiative_id IN (SELECT id FROM initiatives)").joins(:initiative).where("initiatives.sandbox = contributions.sandbox").order("updated_at DESC")
+    without_state(:pending).joins(:initiative).joins(:gateway).where("gateways.state = contributions.gateway_state").order("updated_at DESC")
+    # raise where("contributions.state <> 0").joins(:initiative).joins(:gateway).where("gateways.state = contributions.gateway_state").order("updated_at DESC").to_sql
   end
   
   state_machine initial: :pending do
