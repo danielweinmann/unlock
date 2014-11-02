@@ -1,7 +1,11 @@
 class ContributionPolicy < ApplicationPolicy
 
+  def create?
+    user && record.gateway
+  end
+
   def pay?
-    is_owner_or_admin?
+    update?
   end
 
   def activate?

@@ -20,6 +20,11 @@ class Initiatives::ContributionsController < ApplicationController
   
   def new    
     new! do
+      if params[:gateway_id]
+        @contribution.gateway = Gateway.find(params[:gateway_id])
+      else
+        @contribution.gateway = @initiative.gateways.without_state(:draft).order(:ordering).first
+      end
       @contribution.user = current_user
       authorize @contribution
     end
