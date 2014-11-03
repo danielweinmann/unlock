@@ -5,15 +5,9 @@ Rails.application.routes.draw do
   get '/sitemap' => "initiatives#sitemap", :as => :sitemap
   
   resources :initiatives, except: [:edit] do
-    resources :contributions, controller: 'initiatives/contributions', except: [:edit, :destroy] do
-      member do
-        get "pay"
-        put "activate"
-        put "suspend"
-      end
-    end
+    resources :contributions, controller: 'initiatives/contributions', except: [:create, :edit, :destroy]
     collection do
-      get "sitemap"
+      get :sitemap
     end
   end
 

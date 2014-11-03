@@ -13,6 +13,8 @@ class Contribution < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
   
+  after_initialize :include_gateway_module
+
   def self.visible
     with_state(:active).joins(:gateway).where("gateways.state = contributions.gateway_state").order("updated_at DESC")
   end
@@ -37,63 +39,15 @@ class Contribution < ActiveRecord::Base
 
   end
 
-  def plan_code
-    "#{self.initiative.permalink[0..29]}#{self.value.to_i}#{'sandbox' if self.initiative.sandbox?}"
-  end
-  
-  # TODO make this a hash
-  def customer_code
-    "#{self.initiative.permalink[0..29]}#{self.user.id}#{'sandbox' if self.initiative.sandbox?}"
-  end
-  
-  # TODO make this a hash
-  def subscription_code
-    "#{self.initiative.permalink[0..29]}#{self.id}#{'sandbox' if self.initiative.sandbox?}"
-  end
-  
-  def moip_auth
-    { token: self.initiative.moip_token, key: self.initiative.moip_key, sandbox: self.initiative.sandbox? }
-  end
-
-  def moip_state
-    begin
-      response = Moip::Assinaturas::Subscription.details(self.subscription_code, moip_auth: self.moip_auth)
-    rescue
-      return nil
-    end
-    if response && response[:success]
-      status = (response[:subscription]["status"].upcase rescue nil)
-      case status
-        when 'ACTIVE', 'OVERDUE'
-          1
-        when 'SUSPENDED', 'EXPIRED', 'CANCELED'
-          2
-      end
-    end
-  end
-
-  def moip_state_name
-    case self.moip_state
-      when 1
-        :active
-      when 2
-        :suspended
-    end
-  end
-
-  def update_state_from_moip!
-    if self.state != self.moip_state
-      case self.moip_state_name
-        when :active
-          self.activate! if self.can_activate?
-        when :suspended
-          self.suspend! if self.can_suspend?
-      end
-    end
-  end
-  
   private
   
+  def include_gateway_module
+    return unless self.gateway && module_name = self.gateway.module_name
+    class_eval do
+      include "#{module_name}::ActiveRecord::Contribution".constantize
+    end
+  end
+
   def presence_of_user_and_initiative_attributes
     return unless self.user.present? && self.initiative.present?
     %w(full_name document phone_area_code phone_number birthdate address_street address_number address_district address_city address_state address_zipcode).each do |attribute|
@@ -101,7 +55,7 @@ class Contribution < ActiveRecord::Base
         self.errors.add("user.#{attribute}", "não pode ficar em branco")
       end
     end
-    %w(moip_token moip_key permalink).each do |attribute|
+    %w(permalink).each do |attribute|
       unless self.initiative.attributes[attribute].present?
         self.errors.add("initiative.#{attribute}", "não pode ficar em branco")
       end

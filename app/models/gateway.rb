@@ -4,6 +4,8 @@ class Gateway < ActiveRecord::Base
   validates_presence_of :initiative, :module_name
   store_accessor :settings
 
+  after_initialize :include_gateway_module
+
   state_machine initial: :draft do
 
     state :draft
@@ -23,6 +25,15 @@ class Gateway < ActiveRecord::Base
       transition [:sandbox, :production] => :draft
     end
 
+  end
+
+  private
+
+  def include_gateway_module
+    return unless module_name = self.module_name
+    class_eval do
+      include "#{module_name}::ActiveRecord::Gateway".constantize
+    end
   end
 
 end

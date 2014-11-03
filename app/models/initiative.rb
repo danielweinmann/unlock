@@ -136,7 +136,7 @@ class Initiative < ActiveRecord::Base
   end
 
   def can_contribute?
-    self.gateways.without_state(:draft).exists? 
+    self.permalink.present? && self.gateways.without_state(:draft).exists? 
   end
 
   # TODO move this to UnlockMoip?? How??

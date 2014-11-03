@@ -3,4 +3,4 @@
   = "Apoiar #{@initiative.name}"
 article
   h2== "Apoiar #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
-  = render partial: "/#{@contribution.gateway.module_name.underscore}/initiatives/contributions/form"
+  = render partial: "/#{@contribution.gateway.module_name.underscore}/contributions/form"
