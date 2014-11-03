@@ -44,7 +44,7 @@ class Contribution < ActiveRecord::Base
   def include_gateway_module
     return unless self.gateway && module_name = self.gateway.module_name
     class_eval do
-      include "#{module_name}::ActiveRecord::Contribution".constantize
+      include "#{module_name}::Models::Contribution".constantize
     end
   end
 

@@ -32,7 +32,7 @@ class Gateway < ActiveRecord::Base
   def include_gateway_module
     return unless module_name = self.module_name
     class_eval do
-      include "#{module_name}::ActiveRecord::Gateway".constantize
+      include "#{module_name}::Models::Gateway".constantize
     end
   end
 
