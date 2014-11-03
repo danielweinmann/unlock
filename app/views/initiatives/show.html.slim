@@ -82,11 +82,21 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
       - if @initiative.gateways.exists?
         ul.gateways= render @initiative.gateways
       - else
-        em Você ainda não configurou nenhum meio de pagamento.
-      .new
+        em.gateways Você ainda não configurou nenhum meio de pagamento.
+      .action
         = link_to "Adicionar meio de pagamento", new_initiative_gateway_path(@initiative.id), class: 'button'
 
-  - if policy(@initiative).destroy?
-    section.delete
-      h2 Quer excluir este Unlock?
-      = link_to 'Sim, eu quero excluir este Unlock', initiative_path(@initiative.id), method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button"
+      - if @initiative.can_publish?
+        h2 Quer publicar este Unlock?
+        .action
+          = link_to "Sim, quero publicar este Unlock", revert_to_draft_initiative_path(@initiative.id), class: 'button'
+
+      - if @initiative.can_revert_to_draft?
+        h2 Quer voltar este Unlock para rascunho?
+        .action
+          = link_to "Sim, quero voltar para rascunho", revert_to_draft_initiative_path(@initiative.id), class: 'button'
+
+      - if policy(@initiative).destroy?
+        h2 Quer excluir este Unlock?
+        .action
+          = link_to 'Sim, quero excluir este Unlock', initiative_path(@initiative.id), method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"

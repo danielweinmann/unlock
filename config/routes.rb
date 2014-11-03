@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         put :revert_to_draft
       end
     end
+    member do
+      put :publish
+      put :revert_to_draft
+    end
     collection do
       get :sitemap
     end

@@ -13,6 +13,8 @@ class InitiativesController < ApplicationController
   after_action :verify_policy_scoped, only: %i[index sitemap]
   before_action :authenticate_user!, only: %i[new]
 
+  # TODO implement publish and revert_to_draft
+
   def index
     @initiatives = policy_scope(Initiative).home_page
     index!

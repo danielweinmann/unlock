@@ -1,10 +1,12 @@
 $(document).ready ->
   $('.field#image input[type=file]').on "change", ->
     $(@).parent().submit()
+  # TODO migrate to UnlockMoip
   $('#contribution_value').maskMoney
     thousands: ''
     decimal: ''
     precision: 0
+  # TODO migrate to UnlockMoip
   $('#pay_form [type=submit]').on "click", (event) ->
     event.preventDefault()
     event.stopPropagation()

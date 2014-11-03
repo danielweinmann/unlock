@@ -23,9 +23,8 @@ class Initiative < ActiveRecord::Base
     state :draft
     state :published
 
-    # TODO validate permalink and existence of at least one gateway in production before publishing
     event :publish do
-      transition :draft => :online
+      transition :draft => :published, :if => :ready_for_publishing?
     end
 
     event :revert_to_draft do
@@ -38,6 +37,7 @@ class Initiative < ActiveRecord::Base
     with_state(:published).order("(SELECT coalesce(sum(value), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 'active' AND contributions.gateway_state = gateways.state) DESC, updated_at DESC")
   end
 
+  # TODO move these to a gem or at least to a Concern
   require 'redcloth'
 
   AutoHtml.add_filter(:redcloth).with({}) do |text, options|
@@ -140,11 +140,15 @@ class Initiative < ActiveRecord::Base
     self.permalink.present? && self.gateways.without_state(:draft).exists? 
   end
 
+  def ready_for_publishing?
+    self.permalink.present? && self.gateways.with_state(:production).exists? 
+  end
+
   # TODO move this to UnlockMoip?? How??
   def update_states_from_moip!
     self.contributions.not_pending.each do |contribution|
       contribution.update_state_from_moip!
     end
   end
-  
+
 end

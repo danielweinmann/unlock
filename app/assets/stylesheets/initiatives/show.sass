@@ -84,20 +84,15 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       .editable
         background: $container_color
         padding: 0.5em
-      .new
+      .action
         +span-columns(6)
         text-align: center
-        margin-top: 3em
+        margin-top: 0.5em
         margin-bottom: 3em
-    .new, .delete
-      .button
-        font-size: 1.2em
-        padding: 0.5em 1.2em
-    .delete
-      text-align: center
-      h2
-        margin-bottom: 1.5em
-      a
-        background: $careful_color
-        &:hover
-          background: $careful_hover_color
+        .button
+          font-size: 1.2em
+          padding: 0.5em 1.2em
+        .delete
+          background: $careful_color
+          &:hover
+            background: $careful_hover_color
