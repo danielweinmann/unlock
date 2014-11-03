@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get '/sitemap' => "initiatives#sitemap", :as => :sitemap
   
-  resources :initiatives, except: [:edit] do
+  resources :initiatives, except: [:create, :edit] do
     resources :contributions, controller: 'initiatives/contributions', except: [:create, :edit, :destroy]
     resources :gateways, controller: 'initiatives/gateways', except: [:index, :show, :destroy] do
       member do

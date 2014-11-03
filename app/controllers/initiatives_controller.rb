@@ -3,6 +3,7 @@
 class InitiativesController < ApplicationController
   
   inherit_resources
+  actions :all, except: [:create, :edit]
   custom_actions collection: %i[sitemap]
   respond_to :html, except: [:sitemap]
   respond_to :xml, only: [:sitemap]
@@ -32,12 +33,11 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.new
     authorize @initiative
     @initiative.user = current_user
-    @initiative.name = current_user.name
     if @initiative.save
       flash[:success] = "Unlock criado com sucesso! Agora, é só editar :D"
       redirect_to initiative_by_permalink_path(@initiative)
     else
-      flash[:failure] = "Ooops. Ocorreu um erro."
+      flash[:failure] = "Ooops. Ocorreu um erro ao criar seu Unlock."
       redirect_to :root
     end
   end

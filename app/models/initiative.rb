@@ -9,11 +9,12 @@ class Initiative < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  validates_presence_of :user, :name
+  validates_presence_of :user
   validates_uniqueness_of :permalink, allow_nil: true
   # Permalink cannot be a number, so it can't be confused with the id
   validates_format_of :permalink, :with => /[^\d]+/, allow_nil: true
   before_save do
+    self.name = self.user.name if self.user && !self.name.present?
     self.permalink = self.permalink.gsub(/[^0-9a-z]/i, '').downcase if self.permalink
   end
   
