@@ -303,6 +303,53 @@
     float: left
     h4
       margin-bottom: 1em
+.gateways
+  +span-columns(6)
+  padding: 0
+  list-style: none
+.gateway
+  +span-columns(6)
+  background-color: $container_color
+  border-bottom: 0.2em solid $border_color
+  margin-bottom: 2em
+  &:last-child
+    margin-bottom: 0
+  .image, .info
+    padding: 1em
+  .image
+    width: 20%
+    float: left
+    text-align: center
+    padding-right: 0
+  .info
+    width: 80%
+    float: left
+    h4
+      color: $text_color
+      .state
+        background-color: $small_color
+        color: $button_text_color
+        font-size: 0.7em
+        padding: 0.5em 1em
+        margin-left: 0.5em
+        border-radius: 0.5em
+    em
+      margin-bottom: 1em
+    .button
+      display: block
+      padding: 0.5em 1.2em
+      margin-bottom: 1em
+      &:last-child
+        margin-bottom: 0
+      +media($desktop)
+        display: inline-block
+        margin-right: 1em
+        &:last-child
+          margin-right: 0
+      font-size: 0.8em
+      background-color: $button_hover_color
+      &:hover
+        background-color: $button_color
 .editable
   cursor: pointer
   &::before

@@ -9,7 +9,7 @@ li.contribution
         span.currency= "R$ "
         span.number= contribution.display_value
         div= "apoiados por mês"
-      .state= t("activerecord.attributes.contribution.states.#{contribution.state_name}")
+      .state= contribution.human_state_name
   .contribution_actions data-initiative=contribution.initiative.id data-contribution=contribution.id
     h5
     - if contribution.can_activate?

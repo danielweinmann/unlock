@@ -61,22 +61,17 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       +span-columns(6)
       text-align: center
       padding-bottom: 4em
-    .second_text, .admin
+    .second_text, .edit, .delete
       line-height: 2em
       margin-left: auto
       margin-right: auto
       width: 92%
+      padding-bottom: 4em
       +media($tablet)
         width: 90%
       +media($desktop)
         width: 70%
-    .second_text
-      margin-bottom: 4em
-    .admin
-      margin-bottom: 4em
-      h2
-        text-align: center
-        margin-bottom: 1em
+    .edit
       label
         margin-top: 1em
         font-size: 0.9em
@@ -89,9 +84,20 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       .editable
         background: $container_color
         padding: 0.5em
-    .links
-      padding-bottom: 4em
-      .delete
+      .new
+        +span-columns(6)
+        text-align: center
+        margin-top: 3em
+        margin-bottom: 3em
+    .new, .delete
+      .button
+        font-size: 1.2em
+        padding: 0.5em 1.2em
+    .delete
+      text-align: center
+      h2
+        margin-bottom: 1.5em
+      a
         background: $careful_color
         &:hover
           background: $careful_hover_color

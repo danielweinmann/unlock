@@ -40,7 +40,7 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
       section.contribute
         a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
   - if policy(@initiative).update?
-    section.admin
+    section.edit
       h2 Editar
       .field#image
         = form_for(@initiative, url: initiative_path(@initiative.id)) do |form|
@@ -64,6 +64,7 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
           | Para habilitar apoios, é necessário escolher um permalink. Ele definirá seu endereço, como em http://unlock.fund/
           strong meupermalink
           | .
+      / TODO move these texts to gateway
       / .field
       /   = label_tag :moip_token, Initiative.human_attribute_name(:moip_token)
       /   .editable data-attribute="moip_token" data-placeholder="Clique para editar"= @initiative.moip_token
@@ -76,6 +77,16 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
       /   = check_box_tag :sandbox, "1", @initiative.sandbox, :class => "editable", :"data-attribute" => "sandbox", :"data-formtype" => "checkbox"
       /   = label_tag :sandbox, Initiative.human_attribute_name(:sandbox)
       /   em O sandbox é o ambiente de testes do Moip. Ao deixar esta opção marcada, as transações realizadas servirão apenas para testes e não serão concretizadas.
-    - if policy(@initiative).destroy?
-      section.links
-        = link_to 'Excluir', initiative_path(@initiative.id), method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
+
+      h2 Meios de pagamento
+      - if @initiative.gateways.exists?
+        ul.gateways= render @initiative.gateways
+      - else
+        em Você ainda não configurou nenhum meio de pagamento.
+      .new
+        = link_to "Adicionar meio de pagamento", new_initiative_gateway_path(@initiative.id), class: 'button'
+
+  - if policy(@initiative).destroy?
+    section.delete
+      h2 Quer excluir este Unlock?
+      = link_to 'Sim, eu quero excluir este Unlock', initiative_path(@initiative.id), method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button"

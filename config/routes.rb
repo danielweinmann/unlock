@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   
   resources :initiatives, except: [:edit] do
     resources :contributions, controller: 'initiatives/contributions', except: [:create, :edit, :destroy]
+    resources :gateways, controller: 'initiatives/gateways', except: [:index, :show, :destroy] do
+      member do
+        put :use_sandbox
+        put :use_production
+        put :revert_to_draft
+      end
+    end
     collection do
       get :sitemap
     end

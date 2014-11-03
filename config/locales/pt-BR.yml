@@ -2,6 +2,19 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 pt-BR:
   activerecord:
+    state_machines:
+      contribution:
+        state:
+          states:
+            pending: Pendente
+            active: Ativo
+            suspended: Suspenso
+      gateway:
+        state:
+          states:
+            draft: Rascunho
+            sandbox: Ambiente de testes (Sandbox)
+            production: Em produção
     models:
       initiative: Iniciativa
       user: Usuário
@@ -31,10 +44,6 @@ pt-BR:
         state: Status
         hide_name: Não quero divulgar meu nome
         hide_value: Não quero divulgar o valor do meu apoio
-        states:
-          pending: Pendente
-          active: Ativo
-          suspended: Suspenso
       initiative:
         image: Imagem
         name: Título
