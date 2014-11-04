@@ -1,4 +1,5 @@
 class Gateway < ActiveRecord::Base
+
   belongs_to :initiative
   validates :module_name, uniqueness: { scope: :initiative_id }
   validates_presence_of :initiative, :module_name
@@ -24,6 +25,13 @@ class Gateway < ActiveRecord::Base
       transition [:sandbox, :production] => :draft
     end
 
+  end
+
+  class_attribute :available_gateways
+  self.available_gateways = []
+
+  def self.register name
+    self.available_gateways << self.new(module_name: name)
   end
 
   private

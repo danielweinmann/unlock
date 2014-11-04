@@ -80,7 +80,7 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
 
       h2 Meios de pagamento
       - if @initiative.gateways.exists?
-        ul.gateways= render @initiative.gateways
+        ul.gateways= render @initiative.gateways.order(:ordering)
       - else
         em.gateways Você ainda não configurou nenhum meio de pagamento.
       .action

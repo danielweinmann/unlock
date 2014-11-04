@@ -334,9 +334,11 @@
         padding: 0.5em 1em
         margin-left: 0.5em
         border-radius: 0.5em
+    h5
+      margin-bottom: 1em
     em
       margin-bottom: 1em
-    .button
+    .button, [type=submit]
       display: block
       padding: 0.5em 1.2em
       margin-bottom: 1em
@@ -351,6 +353,8 @@
       background-color: $button_hover_color
       &:hover
         background-color: $button_color
+    form
+      margin: 0
 .editable
   cursor: pointer
   &::before

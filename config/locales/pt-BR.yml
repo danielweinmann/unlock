@@ -54,6 +54,8 @@ pt-BR:
         moip_key: Chave de acesso Moip
         permalink: Permalink
         sandbox: Usar Sandbox do Moip?
+      gateway:
+        initiative: Unlock
   time:
     formats:
       medium: ! '%a, %-d/%-m, %k:%M'

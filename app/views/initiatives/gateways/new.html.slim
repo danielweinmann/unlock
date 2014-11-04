@@ -1,0 +1,13 @@
+- content_for :title do
+  = "Adicionar meio de pagamento"
+- if @gateway.errors.any?
+  #error_explanation.warning
+    h3 = "#{pluralize(@gateway.errors.count, "erro impediu", "erros impediram")} que este meio de pagamento fosse salvo:"
+    ul
+      - @gateway.errors.full_messages.each do |msg|
+        li= msg
+- if @gateways.empty?
+  em Você já adicionou todos os meios de pagamento disponíveis no Unlock.
+- else
+  ul.gateways= render @gateways
+  
