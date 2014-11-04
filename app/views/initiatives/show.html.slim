@@ -89,12 +89,12 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
       - if @initiative.can_publish?
         h2 Quer publicar este Unlock?
         .action
-          = link_to "Sim, quero publicar este Unlock", revert_to_draft_initiative_path(@initiative.id), class: 'button'
+          = link_to "Sim, quero publicar este Unlock", publish_initiative_path(@initiative.id), method: :put, class: 'button'
 
       - if @initiative.can_revert_to_draft?
         h2 Quer voltar este Unlock para rascunho?
         .action
-          = link_to "Sim, quero voltar para rascunho", revert_to_draft_initiative_path(@initiative.id), class: 'button'
+          = link_to "Sim, quero voltar para rascunho", revert_to_draft_initiative_path(@initiative.id), method: :put, class: 'button'
 
       - if policy(@initiative).destroy?
         h2 Quer excluir este Unlock?

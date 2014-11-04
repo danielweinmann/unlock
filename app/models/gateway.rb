@@ -12,9 +12,8 @@ class Gateway < ActiveRecord::Base
     state :sandbox
     state :production
 
-    # TODO: only enable this event if the gateway has a sandbox configuration. Delegate this to the gateway to decide
     event :use_sandbox do
-      transition [:draft, :production] => :sandbox
+      transition [:draft, :production] => :sandbox, :if => :has_sandbox?
     end
 
     event :use_production do

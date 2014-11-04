@@ -12,4 +12,11 @@ class GatewayPolicy < ApplicationPolicy
     update?
   end
 
+  protected
+
+  def is_owned_by?(user)
+    user.present? && record.initiative.present? && record.initiative.user == user
+  end
+
+
 end

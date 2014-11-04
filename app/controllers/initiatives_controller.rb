@@ -1,6 +1,6 @@
 #coding: utf-8
 
-class InitiativesController < ApplicationController
+class InitiativesController < StateController
   
   inherit_resources
   actions :all, except: [:create, :edit]
@@ -12,8 +12,6 @@ class InitiativesController < ApplicationController
   after_action :verify_authorized, except: %i[index sitemap]
   after_action :verify_policy_scoped, only: %i[index sitemap]
   before_action :authenticate_user!, only: %i[new]
-
-  # TODO implement publish and revert_to_draft
 
   def index
     @initiatives = policy_scope(Initiative).home_page
@@ -59,16 +57,22 @@ class InitiativesController < ApplicationController
     sitemap!
   end
 
+  def publish
+    transition_state(:publish)
+  end
+
+  def revert_to_draft
+    transition_state(:revert_to_draft)
+  end
+
   private
 
   def permitted_params
-    # TODO use Pundit for params
-    params.permit(initiative: [:name, :first_text, :second_text, :moip_token, :moip_key, :image, :permalink, :sandbox])
+    params.permit(initiative: policy(@initiative || Initiative.new).permitted_attributes)
   end
 
   def initiative_params
-    # TODO use Pundit for params
-    params.require(:initiative).permit(:name, :first_text, :second_text, :moip_token, :moip_key, :image, :permalink, :sandbox)
+    params.require(:initiative).permit(*policy(@initiative || Initiative.new).permitted_attributes)
   end
 
 end

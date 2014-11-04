@@ -13,12 +13,13 @@ pt-BR:
         state:
           states:
             draft: Rascunho
-            sandbox: Ambiente de testes (Sandbox)
+            sandbox: Em ambiente de testes
             production: Em produção
     models:
-      initiative: Iniciativa
+      initiative: Unlock
       user: Usuário
       contribution: Apoio
+      gateway: Meio de pagamento
     attributes:
       user:
         name: Nome

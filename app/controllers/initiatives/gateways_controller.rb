@@ -1,4 +1,4 @@
-class Initiatives::GatewaysController < ApplicationController
+class Initiatives::GatewaysController < StateController
 
   inherit_resources
   actions :all, except: [:index, :show, :destroy]
@@ -9,16 +9,22 @@ class Initiatives::GatewaysController < ApplicationController
   after_action :verify_authorized, except: %i[]
   after_action :verify_policy_scoped, only: %i[]
 
-  # TODO implement use_production, use_sandbox and revert_to_draft
+  def use_production
+    transition_state(:use_production)
+  end
 
-  # def use_production
-  #   authorize resource
-  #   if @gateway.can_use_production?
-  #     @gateway.use_production!
-  #   else
-  #     flash[:failure] = "Ooops. Não foi possível utilizar o ambiente de produção deste"
-  #   end
-  #   redirect_to @initiative
-  # end
+  def use_sandbox
+    transition_state(:use_sandbox)
+  end
+
+  def revert_to_draft
+    transition_state(:revert_to_draft)
+  end
+
+  private
+
+  def transition_state(transition)
+    super(transition, resource.initiative)
+  end
 
 end
