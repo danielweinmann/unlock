@@ -3,6 +3,7 @@ class Gateway < ActiveRecord::Base
   belongs_to :initiative
   validates :module_name, uniqueness: { scope: :initiative_id }
   validates_presence_of :initiative, :module_name
+  validates :ordering, numericality: { only_integer: true }, allow_blank: true
   store_accessor :settings
 
   after_initialize :include_gateway_module

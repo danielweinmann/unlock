@@ -14,7 +14,7 @@ class GatewayPolicy < ApplicationPolicy
 
   def permitted_attributes
     if create?
-      [:module_name]
+      [:module_name, :title, :ordering, settings: [record.available_settings.map(&:key)]]
     else
       []
     end

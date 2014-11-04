@@ -64,20 +64,6 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
           | Para habilitar apoios, é necessário escolher um permalink. Ele definirá seu endereço, como em http://unlock.fund/
           strong meupermalink
           | .
-      / TODO move these texts to gateway
-      / .field
-      /   = label_tag :moip_token, Initiative.human_attribute_name(:moip_token)
-      /   .editable data-attribute="moip_token" data-placeholder="Clique para editar"= @initiative.moip_token
-      /   em Com sua conta de negócios Moip habilitada, vá em #{ link_to 'Ferramentas › Moip Assinaturas', 'https://www.moip.com.br/AdmMainMenuMyData.do?method=assinaturas', target: :_blank } e clique em Habilitar acesso. Depois, vá em #{ link_to 'Ferramentas › API Moip › Chaves de acesso', 'https://www.moip.com.br/AdmAPI.do?method=keys', target: :_blank }.
-      / .field
-      /   = label_tag :moip_key, Initiative.human_attribute_name(:moip_key)
-      /   .editable data-attribute="moip_key" data-placeholder="Clique para editar"= @initiative.moip_key
-      /   em Com sua conta de negócios Moip habilitada, vá em #{ link_to 'Ferramentas › Moip Assinaturas', 'https://www.moip.com.br/AdmMainMenuMyData.do?method=assinaturas', target: :_blank } e clique em Habilitar acesso. Depois, vá em #{ link_to 'Ferramentas › API Moip › Chaves de acesso', 'https://www.moip.com.br/AdmAPI.do?method=keys', target: :_blank }.
-      / .field
-      /   = check_box_tag :sandbox, "1", @initiative.sandbox, :class => "editable", :"data-attribute" => "sandbox", :"data-formtype" => "checkbox"
-      /   = label_tag :sandbox, Initiative.human_attribute_name(:sandbox)
-      /   em O sandbox é o ambiente de testes do Moip. Ao deixar esta opção marcada, as transações realizadas servirão apenas para testes e não serão concretizadas.
-
       h2 Meios de pagamento
       - if @initiative.gateways.exists?
         ul.gateways= render @initiative.gateways.order(:ordering)
@@ -85,17 +71,14 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
         em.gateways Você ainda não configurou nenhum meio de pagamento.
       .action
         = link_to "Adicionar meio de pagamento", new_initiative_gateway_path(@initiative.id), class: 'button'
-
       - if @initiative.can_publish?
         h2 Quer publicar este Unlock?
         .action
           = link_to "Sim, quero publicar este Unlock", publish_initiative_path(@initiative.id), method: :put, class: 'button'
-
       - if @initiative.can_revert_to_draft?
         h2 Quer voltar este Unlock para rascunho?
         .action
           = link_to "Sim, quero voltar para rascunho", revert_to_draft_initiative_path(@initiative.id), method: :put, class: 'button'
-
       - if policy(@initiative).destroy?
         h2 Quer excluir este Unlock?
         .action

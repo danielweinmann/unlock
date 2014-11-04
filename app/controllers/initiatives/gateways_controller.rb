@@ -8,8 +8,6 @@ class Initiatives::GatewaysController < StateController
 
   after_action :verify_policy_scoped, only: %i[]
 
-  # TODO implement edit and update
-
   def new
     new! do
       authorize resource
@@ -25,6 +23,15 @@ class Initiatives::GatewaysController < StateController
     @gateway = @initiative.gateways.new(gateway_params)
     authorize @gateway
     create!(notice: "Meio de pagamento adicionado com sucesso!") { @initiative }
+  end
+
+  def edit
+    edit! { authorize resource }
+  end
+
+  def update
+    authorize resource
+    update!(notice: "Configurações atualizadas com sucesso!") { @initiative }
   end
 
   def use_production

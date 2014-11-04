@@ -1,0 +1,21 @@
+- content_for :title do
+  = "Configurações do #{@gateway.name}"
+= form_for @gateway, url: initiative_gateway_path(@initiative.id, @gateway), method: :put do |form|
+  - if @gateway.errors.any?
+    #error_explanation.warning
+      h3 = "#{pluralize(@gateway.errors.count, "erro impediu", "erros impediram")} que as configurações fossem salvas:"
+      ul
+        - @gateway.errors.full_messages.each do |msg|
+          li= msg
+  = form.label :title
+  = form.text_field :title, class: "has_em"
+  em Título do meio de pagamento que irá aparecer na página de apoio. Deixe em branco para usar o padrão '#{@gateway.name}'.
+  = form.label :ordering
+  = form.text_field :ordering, class: "has_em"
+  em Os meios de pagamento de seu Unlock irão aparecer em ordem na página de apoio, de acordo com o número que você preencher aqui.
+  = form.fields_for :settings do |settings|
+    - @gateway.available_settings.each do |setting|
+      = settings.label setting.key, setting.title
+      = settings.text_field setting.key, value: (@gateway.settings[setting.key.to_s] if @gateway.settings), class: "has_em"
+      em== setting.description
+  .submit= form.submit "Salvar"
