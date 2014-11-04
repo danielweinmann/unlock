@@ -9,6 +9,8 @@ class Initiatives::GatewaysController < StateController
   after_action :verify_authorized, except: %i[]
   after_action :verify_policy_scoped, only: %i[]
 
+  # TODO implement edit and update
+  
   def new
     new! do
       authorize resource
