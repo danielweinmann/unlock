@@ -6,11 +6,10 @@ class Initiatives::GatewaysController < StateController
   belongs_to :initiative, parent_class: Initiative
   respond_to :html
 
-  after_action :verify_authorized, except: %i[]
   after_action :verify_policy_scoped, only: %i[]
 
   # TODO implement edit and update
-  
+
   def new
     new! do
       authorize resource

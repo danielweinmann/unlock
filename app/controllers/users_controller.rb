@@ -7,9 +7,8 @@ class UsersController < ApplicationController
   custom_actions member: %i[my_contributions my_initiatives]
   respond_to :html
 
-  after_action :verify_authorized, except: %i[]
   after_action :verify_policy_scoped, only: %i[]
-  before_action :authenticate_user!, only: %i[my_contributions]
+  before_action :authenticate_user!, only: %i[my_contributions my_initiatives]
   
   def my_contributions
     params[:id] = current_user.id
