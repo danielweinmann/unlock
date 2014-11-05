@@ -35,6 +35,10 @@ class Gateway < ActiveRecord::Base
     self.available_gateways << self.new(module_name: name)
   end
 
+  def available_settings
+    []
+  end
+
   private
 
   def include_gateway_module
