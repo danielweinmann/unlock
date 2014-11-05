@@ -1,4 +1,5 @@
 # Be sure to restart your server when you modify this file.
 
 # Configure sensitive parameters which will be filtered from the log file.
-Rails.application.config.filter_parameters += [:password, :password_confirmation, :moip_token, :moip_key]
+
+Rails.application.config.filter_parameters += [:password, :password_confirmation, :settings, :gateway_data]

@@ -11,7 +11,7 @@ $(document).ready ->
       action = $(@).attr('id')
       url = "/initiatives/#{initiative}/contributions/#{contribution}/#{action}"
       parent.find('a').hide()
-      status.html('Enviando solicitação ao Moip Assinaturas...')
+      status.html('Enviando solicitação...')
       status.show()
       $.ajax
         url: url,
