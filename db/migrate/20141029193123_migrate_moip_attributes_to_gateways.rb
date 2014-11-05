@@ -1,6 +1,6 @@
 class MigrateMoipAttributesToGateways < ActiveRecord::Migration
   def up
-    execute("INSERT INTO gateways (initiative_id, module_name, ordering, settings, active) SELECT initiatives.id, 'UnlockMoip', 1, ('token => ' || moip_token || ', key => ' || moip_key || ', sandbox => ' || sandbox || '')::hstore, (moip_token IS NOT NULL AND moip_token <> '' AND moip_key IS NOT NULL AND moip_key <> '') FROM initiatives")
+    execute("INSERT INTO gateways (initiative_id, module_name, ordering, settings, active) SELECT initiatives.id, 'UnlockMoip', 1, ('token => \"' || moip_token || '\", key => \"' || moip_key || '\", sandbox => \"' || sandbox || '\"')::hstore, (moip_token IS NOT NULL AND moip_token <> '' AND moip_key IS NOT NULL AND moip_key <> '') FROM initiatives")
     remove_column :initiatives, :moip_token
     remove_column :initiatives, :moip_key
     remove_column :initiatives, :sandbox
