@@ -6,10 +6,10 @@ $(document).ready ->
     if confirm "Você está certo disso?"
       parent = $(@).parent()
       status = parent.find('h5')
-      initiative = parent.data('initiative')
+      path = parent.data('path')
       contribution = parent.data('contribution')
       action = $(@).attr('id')
-      url = "/initiatives/#{initiative}/contributions/#{contribution}/#{action}"
+      url = "#{path}/#{contribution}/#{action}"
       parent.find('a').hide()
       status.html('Enviando solicitação...')
       status.show()

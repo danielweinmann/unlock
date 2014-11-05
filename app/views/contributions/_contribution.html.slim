@@ -10,7 +10,7 @@ li.contribution
         span.number= contribution.display_value
         div= "apoiados por mês"
       .state= contribution.human_state_name
-  .contribution_actions data-initiative=contribution.initiative.id data-contribution=contribution.id
+  .contribution_actions data-path=contribution.gateway.path data-contribution=contribution.id
     h5
     - if contribution.can_activate?
       a.button#activate Reativar

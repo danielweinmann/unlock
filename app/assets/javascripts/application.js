@@ -15,3 +15,4 @@
 //= require pickadate/translations/pt_BR
 //= require_tree ./lib
 //= require_tree .
+//= require unlock_moip
