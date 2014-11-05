@@ -405,3 +405,26 @@
     color: $alternative_highlight_text_color
     &:hover
       color: $alternative_hover_color
+.gateway_data
+  +span-columns(6)
+  background: $border_color
+  margin-top: 2em
+  h4
+    font-family: $subheadline_font
+    font-style: italic
+    font-size: 1.2em
+    line-height: 100%
+    margin-bottom: 0
+  ul
+    li
+      &:first-child
+        margin-top: 1em
+  padding: 1.2em
+  &.failure
+    background-color: tint($flash_failure_color, 80%)
+    h4
+      color: $flash_failure_color
+  &.success
+    background-color: tint($flash_success_color, 80%)
+    h4
+      color: $flash_success_color

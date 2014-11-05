@@ -3,7 +3,7 @@ class Initiatives::ContributionsController < ApplicationController
   inherit_resources
   actions :all, except: [:edit, :create, :destroy]
   belongs_to :initiative, parent_class: Initiative
-  respond_to :html, except: [:update, :show]
+  respond_to :html, except: [:update]
   respond_to :json, only: [:index, :update, :show]
 
   after_action :verify_authorized, except: %i[index]

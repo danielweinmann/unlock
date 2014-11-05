@@ -1,13 +1,16 @@
 json.array! @contributions do |contribution|
   json.id contribution.id
   json.user do |json|
-    json.id contribution.user.id
     if contribution.hide_name?
+      if policy(@initiative).update? || policy(contribution).update?
+        json.id contribution.user.id
+      end
       json.name "Apoiador anônimo"
     else
+      json.id contribution.user.id
       json.name contribution.user.display_name
     end
-    if policy(@initiative).update?
+    if policy(@initiative).update? || policy(contribution).update?
       json.email contribution.user.email
       json.full_name contribution.user.full_name
       json.document contribution.user.document

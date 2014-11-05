@@ -1,0 +1,38 @@
+- suppress_headline_and_article!
+- content_for :title do
+  - if policy(@contribution).update?
+    = "Muito obrigado pelo seu apoio para #{@initiative.name}!"
+  - else
+    = "Apoio para #{@initiative.name}"
+article
+  h2
+    - if policy(@contribution).update?
+      == "Muito obrigado pelo seu apoio para #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}!"
+    - else
+      == "Apoio para #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
+  .contributor
+    .image
+      - if @contribution.hide_name? && !policy(@contribution).update?
+        = image_tag('user.svg')
+      - else
+        = @contribution.user.display_image
+    .info
+      h4 
+        - if @contribution.hide_name? && !policy(@contribution).update?
+          = "Apoiador anônimo"
+        - else
+          = @contribution.user.display_name
+      - unless @contribution.hide_value? && !policy(@contribution).update?
+        h5= "R$ #{@contribution.display_value},00"
+      - if policy(@contribution).update?
+        .options id=dom_id(@contribution) data-url=initiative_contribution_path(@contribution.initiative.id, @contribution.id)
+          .field
+            = check_box_tag :"hide_name_#{@contribution.id}", "1", @contribution.hide_name, :class => "editable", :"data-attribute" => "hide_name", :"data-formtype" => "checkbox"
+            = label_tag :"hide_name_#{@contribution.id}", Contribution.human_attribute_name(:hide_name)
+          .field
+            = check_box_tag :"hide_value_#{@contribution.id}", "1", @contribution.hide_value, :class => "editable", :"data-attribute" => "hide_value", :"data-formtype" => "checkbox"
+            = label_tag :"hide_value_#{@contribution.id}", Contribution.human_attribute_name(:hide_value)
+  - if policy(@contribution).update?
+    .gateway_data class=(@contribution.active? ? 'success' : ('failure' if @contribution.suspended?))
+      h4= "Seu apoio está #{@contribution.human_state_name.downcase}"
+      = render "/#{@contribution.gateway.module_name.underscore}/contributions/gateway_data"

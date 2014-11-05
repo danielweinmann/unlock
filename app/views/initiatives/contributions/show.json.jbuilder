@@ -1,12 +1,15 @@
 json.id @contribution.id
 json.user do |json|
-  json.id @user.id
   if @contribution.hide_name?
+    if policy(@initiative).update? || policy(@contribution).update?
+      json.id @contribution.user.id
+    end
     json.name "Apoiador anônimo"
   else
-    json.name @user.display_name
+    json.id @contribution.user.id
+    json.name @contribution.user.display_name
   end
-  if policy(@initiative).update?
+  if policy(@initiative).update? || policy(@contribution).update?
     json.email @user.email
     json.full_name @user.full_name
     json.document @user.document
@@ -23,12 +26,12 @@ json.user do |json|
     json.created_at @user.created_at
     json.updated_at @user.updated_at
   end
-  json.value (@contribution.hide_value ? nil : @contribution.value)
-  json.created_at @contribution.created_at
-  json.updated_at @contribution.updated_at
-  json.hide_name @contribution.hide_name?
-  json.hide_value @contribution.hide_value?
-  json.gateway @contribution.gateway.module_name
-  json.gateway_state @contribution.gateway_state
-  json.state @contribution.state
 end
+json.value (@contribution.hide_value ? nil : @contribution.value)
+json.created_at @contribution.created_at
+json.updated_at @contribution.updated_at
+json.hide_name @contribution.hide_name?
+json.hide_value @contribution.hide_value?
+json.gateway @contribution.gateway.module_name
+json.gateway_state @contribution.gateway_state
+json.state @contribution.state
