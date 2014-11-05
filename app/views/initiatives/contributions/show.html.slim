@@ -24,6 +24,8 @@ article
           = @contribution.user.display_name
       - unless @contribution.hide_value? && !policy(@contribution).update?
         h5= "R$ #{@contribution.display_value},00"
+      - if @contribution.gateway_state == 'sandbox'
+        em Apoio realizado <strong>em ambiente de testes</strong> no #{@contribution.gateway.name}
       - if policy(@contribution).update?
         .options id=dom_id(@contribution) data-url=initiative_contribution_path(@contribution.initiative.id, @contribution.id)
           .field
