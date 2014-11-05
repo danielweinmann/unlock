@@ -144,10 +144,9 @@ class Initiative < ActiveRecord::Base
     self.permalink.present? && self.gateways.with_state(:production).exists? 
   end
 
-  # TODO move this to UnlockMoip?? How??
-  def update_states_from_moip!
+  def update_states_from_gateways!
     self.contributions.not_pending.each do |contribution|
-      contribution.update_state_from_moip!
+      contribution.update_state_from_gateway!
     end
   end
 

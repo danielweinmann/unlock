@@ -1,5 +1,4 @@
 $(document).ready ->
-  # TODO use the Gateway's path
   $('.contribution_actions a').on "click", (event) ->
     event.preventDefault()
     event.stopPropagation()
@@ -25,4 +24,3 @@ $(document).ready ->
         error: (response) ->
           status.html('Ocorreu um erro ao realizar sua operação')
           status.addClass('failure')
-
