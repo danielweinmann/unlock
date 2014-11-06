@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/danielweinmann/unlock_moip.git
-  revision: baea1ce5e515e725497712378f7274376a806d2d
+  revision: 6c9fd2a66820fc4961f4c89767db8787201708c3
   branch: master
   specs:
-    unlock_moip (0.0.2)
+    unlock_moip (0.0.3)
       moip-assinaturas (= 0.4.2)
       rails (~> 4.1.6)
 
@@ -271,5 +271,5 @@ DEPENDENCIES
   uglifier
   underscore-rails
   unicorn
-  unlock_moip (= 0.0.2)!
+  unlock_moip (= 0.0.3)!
   validates_cpf_cnpj

@@ -41,7 +41,8 @@ gem 'high_voltage'
 gem 'validates_cpf_cnpj'
 gem 'maskmoney-rails'
 gem 'rack-timeout'
-gem 'unlock_moip', '0.0.2', github: 'danielweinmann/unlock_moip', branch: 'master'
+# gem 'unlock_moip', path: '../unlock_moip'
+gem 'unlock_moip', '0.0.3', github: 'danielweinmann/unlock_moip', branch: 'master'
 
 group :production do
   # Workers, forks and all that jazz
