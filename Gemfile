@@ -47,6 +47,7 @@ gem 'maskmoney-rails'
 gem 'auto_html', '= 1.5.1'
 gem 'RedCloth'
 gem 'aws-sdk'
+gem 'rack-timeout'
 
 # gem 'unlock_moip', path: '../unlock_moip'
 gem 'unlock_moip', '0.0.3', github: 'danielweinmann/unlock_moip', branch: 'master'
@@ -66,5 +67,4 @@ group :production do
   # Monitoring with the new new relic
   gem 'newrelic_rpm'
   gem 'rails_12factor'
-  gem 'rack-timeout'
 end
