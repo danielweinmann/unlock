@@ -54,6 +54,7 @@ gem 'unlock_moip', '0.0.3', github: 'danielweinmann/unlock_moip', branch: 'maste
 
 group :test, :development do
   gem 'rspec-rails'
+  gem "shoulda-matchers"
   gem 'letter_opener'
   gem 'spring'
 end
