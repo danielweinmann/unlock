@@ -1,6 +1,7 @@
 #coding: utf-8
 
 class Contribution < ActiveRecord::Base
+  MINIMUM_VALUE = 5
   
   belongs_to :user
   belongs_to :initiative
@@ -8,7 +9,7 @@ class Contribution < ActiveRecord::Base
   store_accessor :gateway_data
 
   validates_presence_of :user, :initiative, :gateway, :value
-  validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 5 }, allow_blank: true
+  validates :value, numericality: { only_integer: true, greater_than_or_equal_to: MINIMUM_VALUE }, allow_blank: true
   validate :presence_of_user_and_initiative_attributes
 
   accepts_nested_attributes_for :user
