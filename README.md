@@ -31,6 +31,7 @@ Every initiative on Unlock can add and configure multiple payment gateways, whic
 ### Available gateways
 
 [unlock_moip](https://github.com/danielweinmann/unlock_moip) (Moip Assinaturas)
+
 [unlock_paypal](https://github.com/danielweinmann/unlock_paypal) (PayPal recurring)
 
 ### Creating a new gateway
