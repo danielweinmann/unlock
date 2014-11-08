@@ -8,7 +8,7 @@ $(document).ready ->
       path = parent.data('path')
       contribution = parent.data('contribution')
       action = $(@).attr('id')
-      url = "#{path}/#{contribution}/#{action}"
+      url = "#{path}/#{contribution}/#{action}.json"
       parent.find('a').hide()
       status.html('Enviando solicitação...')
       status.show()

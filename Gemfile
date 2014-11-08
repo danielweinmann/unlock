@@ -50,9 +50,10 @@ gem 'aws-sdk'
 gem 'rack-timeout'
 
 # Payment gateways
-# gem 'unlock_moip', path: '../unlock_moip'
-gem 'unlock_moip', '0.0.5'
+gem 'unlock_gateway', path: '../unlock_gateway'
+gem 'unlock_moip', path: '../unlock_moip'
 gem 'unlock_paypal', path: '../unlock_paypal'
+# gem 'unlock_moip', '0.0.5'
 
 group :test, :development do
   gem 'rspec-rails'

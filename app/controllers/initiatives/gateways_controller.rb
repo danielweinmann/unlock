@@ -2,7 +2,7 @@ class Initiatives::GatewaysController < StateController
 
   inherit_resources
   actions :all, except: [:index, :show, :destroy]
-  custom_actions member: %i[use_sandbox use_production revert_to_draft]
+  custom_actions resource: %i[use_sandbox use_production revert_to_draft]
   belongs_to :initiative, parent_class: Initiative
   respond_to :html
 

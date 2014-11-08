@@ -8,6 +8,20 @@ GIT
       railties (~> 4.0)
 
 PATH
+  remote: ../unlock_gateway
+  specs:
+    unlock_gateway (0.0.5)
+      rails (~> 4.1.6)
+
+PATH
+  remote: ../unlock_moip
+  specs:
+    unlock_moip (0.0.5)
+      moip-assinaturas (= 0.4.2)
+      rails (~> 4.1.6)
+      unlock_gateway (= 0.0.5)
+
+PATH
   remote: ../unlock_paypal
   specs:
     unlock_paypal (0.0.5)
@@ -242,12 +256,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    unlock_gateway (0.0.5)
-      rails (~> 4.1.6)
-    unlock_moip (0.0.5)
-      moip-assinaturas (= 0.4.2)
-      rails (~> 4.1.6)
-      unlock_gateway (= 0.0.5)
     validates_cpf_cnpj (0.2.0)
       activemodel (>= 3.0.0)
     valuable (0.9.8)
@@ -300,6 +308,7 @@ DEPENDENCIES
   uglifier
   underscore-rails
   unicorn
-  unlock_moip (= 0.0.5)
+  unlock_gateway!
+  unlock_moip!
   unlock_paypal!
   validates_cpf_cnpj
