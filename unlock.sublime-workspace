@@ -4,12 +4,92 @@
 		"selected_items":
 		[
 			[
-				"state",
-				"state_temp"
+				"ga",
+				"gateway"
+			],
+			[
+				"margi",
+				"margin-top"
 			],
 			[
 				"gate",
-				"gateway_state"
+				"gateway_data"
+			],
+			[
+				"peri",
+				"permitted_attributes"
+			],
+			[
+				"my",
+				"my_initiatives"
+			],
+			[
+				"module",
+				"module_name"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"margn",
+				"margin-bottom"
+			],
+			[
+				"can",
+				"can_contribute"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"button",
+				"button_text_color"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"text",
+				"text_color"
+			],
+			[
+				"span",
+				"span-columns"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"per",
+				"permitted_params"
+			],
+			[
+				"state",
+				"state_temp"
 			],
 			[
 				"initia",
@@ -74,38 +154,72 @@
 	[
 		"/Users/danielweinmann/projects/unlock",
 		"/Users/danielweinmann/projects/unlock/app",
-		"/Users/danielweinmann/projects/unlock/app/controllers",
-		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives",
-		"/Users/danielweinmann/projects/unlock/app/models",
-		"/Users/danielweinmann/projects/unlock/app/views",
-		"/Users/danielweinmann/projects/unlock/app/views/initiatives",
 		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions"
 	],
 	"file_history":
 	[
-		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/show.json.jbuilder",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/application.css.sass",
+		"/Users/danielweinmann/projects/unlock/app/assets/javascripts/application.js",
+		"/Users/danielweinmann/projects/unlock/Gemfile",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/show.html.slim",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20141029193123_migrate_moip_attributes_to_gateways.rb",
+		"/Users/danielweinmann/projects/unlock/app/assets/images/.keep",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/standards/classes.sass",
+		"/Users/danielweinmann/projects/unlock/app/decorators/contribution_decorator.rb",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/initiatives/contributions/show.sass",
+		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives/contributions_controller.rb",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/initiatives/contributions/new.sass",
 		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/index.json.jbuilder",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/show.json.jbuilder",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20141105184452_store_gateway_data_on_contributions.rb",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20141105183829_add_key_to_users.rb",
+		"/Users/danielweinmann/projects/unlock/app/models/initiative.rb",
+		"/Users/danielweinmann/projects/unlock/app/assets/javascripts/users.js.coffee",
+		"/Users/danielweinmann/projects/unlock/app/views/contributions/_contribution.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/assets/javascripts/initiatives.js.coffee",
+		"/Users/danielweinmann/projects/unlock/app/assets/javascripts/lib/controller.js",
+		"/Users/danielweinmann/projects/unlock/app/models/gateway.rb",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20140923193531_add_moip_columns_to_users.rb",
+		"/Users/danielweinmann/projects/unlock/config/initializers/filter_parameter_logging.rb",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/initiatives/contributions/pay.sass",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/pay.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/new.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/show.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/decorators/gateway_decorator.rb",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/gateways/edit.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives/gateways_controller.rb",
+		"/Users/danielweinmann/projects/unlock/app/policies/gateway_policy.rb",
+		"/Users/danielweinmann/projects/unlock/config/locales/pt-BR.yml",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/gateways/_gateway.html.slim",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20141104173301_remove_description_from_gateways.rb",
+		"/Users/danielweinmann/projects/unlock/app/controllers/users_controller.rb",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/gateways/new.html.slim",
+		"/Users/danielweinmann/projects/unlock/config/application.rb",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/initiatives/gateways/new.sass",
+		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives_controller.rb",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/show.json.jbuilder",
+		"/Users/danielweinmann/projects/unlock/app/policies/initiative_policy.rb",
+		"/Users/danielweinmann/projects/unlock/app/controllers/state_controller.rb",
+		"/Users/danielweinmann/projects/unlock/app/views/gateways/_gateway.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/initiatives/show.sass",
+		"/Users/danielweinmann/projects/unlock/app/models/.keep",
+		"/Users/danielweinmann/projects/unlock/config/routes.rb",
+		"/Users/danielweinmann/projects/unlock/app/views/initiatives/index.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/layouts/app.sass",
 		"/Users/danielweinmann/projects/unlock/app/models/contribution.rb",
 		"/Users/danielweinmann/projects/unlock/app/policies/contribution_policy.rb",
-		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/new.html.slim",
-		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives/contributions_controller.rb",
+		"/Users/danielweinmann/projects/unlock/db/migrate/20141103022007_remove_active_from_gateways.rb",
+		"/Users/danielweinmann/projects/unlock/app/views/layouts/application.html.slim",
+		"/Users/danielweinmann/projects/unlock/app/controllers/application_controller.rb",
 		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/index.html.slim",
-		"/Users/danielweinmann/projects/unlock/config/locales/pt-BR.yml",
-		"/Users/danielweinmann/projects/unlock/config/routes.rb",
-		"/Users/danielweinmann/projects/unlock/app/models/initiative.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102174051_change_contribution_state_to_string.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102171933_set_contributions_gateways.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102164402_add_gateway_state_to_contributions.rb",
-		"/Users/danielweinmann/projects/unlock/app/views/initiatives/show.html.slim",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102165719_set_initiatives_states.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102162147_add_state_to_gateways.rb",
-		"/Users/danielweinmann/projects/unlock/app/models/gateway.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102163238_set_gateways_states.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102153914_add_state_to_initiatives.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141102154332_set_initiative_states.rb",
-		"/Users/danielweinmann/projects/unlock/db/migrate/20141029193123_migrate_moip_attributes_to_gateways.rb",
-		"/Users/danielweinmann/projects/unlock/Gemfile",
-		"/Users/danielweinmann/projects/unlock/app/controllers/initiatives_controller.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141029204134_delete_canceled_contrbutions.rb",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141029203103_migrate_contribution_sandbox_to_gateway.rb",
 		"/Users/danielweinmann/projects/unlock_moip/unlock_moip.gemspec",
@@ -114,9 +228,6 @@
 		"/Users/danielweinmann/projects/unlock/lib/unlock/gateways/base.rb",
 		"/Users/danielweinmann/projects/unlock/lib/unlock/gateway.rb",
 		"/Users/danielweinmann/projects/unlock/app/models/user.rb",
-		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/standards/classes.sass",
-		"/Users/danielweinmann/projects/unlock/app/views/layouts/application.html.slim",
-		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/layouts/app.sass",
 		"/Users/danielweinmann/projects/unlock/app/views/devise/registrations/edit.html.slim",
 		"/Users/danielweinmann/Downloads/email riospothomes.txt",
 		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/standards/tags.sass",
@@ -125,7 +236,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
@@ -140,6 +251,43 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"moip",
+			"TODO",
+			".human",
+			".state",
+			"status",
+			"contribution",
+			"TODO",
+			"gateway_data",
+			"TODO",
+			"action",
+			"moip",
+			"TODO",
+			"user_fields",
+			"headline",
+			"has_em",
+			".field",
+			"contribution",
+			"ordering",
+			"full_name",
+			"user_fields",
+			"ordering",
+			"contribution",
+			"event",
+			"Event",
+			"event",
+			"TODO",
+			"online",
+			"new",
+			"new_initiative",
+			"medium",
+			"alternative_highlight_color",
+			"white",
+			"contribution.states",
+			"medium",
+			"links",
+			"admin",
+			"main_app",
 			"slim",
 			"cancel",
 			"state=",
@@ -186,7 +334,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 29.0
 	},
 	"input":
 	{
@@ -222,7 +370,7 @@
 	"project": "unlock.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 54.0
 	},
 	"save_all_on_build": true,
 	"select_file":

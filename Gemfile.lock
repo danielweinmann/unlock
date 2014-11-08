@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/danielweinmann/unlock_moip.git
-  revision: 6c9fd2a66820fc4961f4c89767db8787201708c3
-  branch: master
-  specs:
-    unlock_moip (0.0.3)
-      moip-assinaturas (= 0.4.2)
-      rails (~> 4.1.6)
-
-GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
   revision: ef4b73623bfe0131ab27bcac92a6ba30f40bd124
   branch: master
@@ -242,6 +233,12 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unlock_gateway (0.0.5)
+      rails (~> 4.1.6)
+    unlock_moip (0.0.5)
+      moip-assinaturas (= 0.4.2)
+      rails (~> 4.1.6)
+      unlock_gateway (= 0.0.5)
     validates_cpf_cnpj (0.2.0)
       activemodel (>= 3.0.0)
     valuable (0.9.8)
@@ -294,5 +291,5 @@ DEPENDENCIES
   uglifier
   underscore-rails
   unicorn
-  unlock_moip (= 0.0.3)!
+  unlock_moip (= 0.0.5)
   validates_cpf_cnpj

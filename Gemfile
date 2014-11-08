@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.1.3'
+ruby '2.0.0'
 
 gem 'rails', '4.1.6'
 
@@ -50,7 +50,7 @@ gem 'aws-sdk'
 gem 'rack-timeout'
 
 # gem 'unlock_moip', path: '../unlock_moip'
-gem 'unlock_moip', '0.0.3', github: 'danielweinmann/unlock_moip', branch: 'master'
+gem 'unlock_moip', '0.0.5'
 
 group :test, :development do
   gem 'rspec-rails'
