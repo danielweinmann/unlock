@@ -14,3 +14,11 @@ $(document).ready ->
   $(window).on "click", ->
     $('#flash').slideUp('slow')
     $('.open').parent().find("nav").hide()
+  $('.accordion h4').on "click", (event) ->
+    event.preventDefault()
+    event.stopPropagation()
+    accordion = $(@).parent().parent()
+    item = $(@).parent()
+    wasSelected = item.hasClass('visible')
+    accordion.children('li').removeClass 'visible'
+    item.addClass('visible') unless wasSelected

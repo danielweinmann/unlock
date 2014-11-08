@@ -256,8 +256,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    validates_cpf_cnpj (0.2.0)
-      activemodel (>= 3.0.0)
     valuable (0.9.8)
     warden (1.2.3)
       rack (>= 1.0)
@@ -311,4 +309,3 @@ DEPENDENCIES
   unlock_gateway!
   unlock_moip!
   unlock_paypal!
-  validates_cpf_cnpj

@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  validates :document, cpf: true, allow_nil: true, allow_blank: true
-
   before_validation do
     self.name = self.email.match(/(.+)@/)[1] unless self.name.present?
     self.document = self.document.scan(/\d/).join('') if self.document

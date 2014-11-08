@@ -7,8 +7,13 @@ article
     = render partial: "/#{first_gateway.module_name.underscore}/contributions/form", locals: { gateway: first_gateway }
   - else
     ul.accordion
+      - if params[:gateway_id].present?
+        - open_id = params[:gateway_id]
+      - elsif session[:gateway_id].present?
+        - open_id = session[:gateway_id]
+      - else
+        - open_id = first_gateway.id
       - @gateways.each do |gateway|
-        li
-          input type='radio' name="select_gateway" id="select_#{gateway.module_name.underscore}" checked=('checked' if gateway == first_gateway)
-          label for="select_#{gateway.module_name.underscore}"= gateway.display_title
+        li class=('visible' if gateway.id == open_id)
+          h4= gateway.display_title
           .content= render partial: "/#{gateway.module_name.underscore}/contributions/form", locals: { gateway: gateway }

@@ -150,4 +150,11 @@ class Initiative < ActiveRecord::Base
     end
   end
 
+  def available_gateways
+    module_names = self.gateways.map(&:module_name)
+    Gateway.available_gateways.delete_if do |gateway|
+      module_names.include?(gateway.module_name)
+    end
+  end
+
 end

@@ -1,0 +1,7 @@
+= form.hidden_field :user_id
+= form.hidden_field :initiative_id
+= form.hidden_field :gateway_id, value: gateway.id
+h3 Com quanto você quer apoiar por mês?
+= form.label :value
+= form.text_field :value, class: "has_em"
+em Assinatura mensal cobrada via cartão de crédito pelo meio de pagamentos #{link_to gateway.name, gateway.url, target: :_blank }. Você pode suspender #{ link_to 'a qualquer momento', my_contributions_path, target: :_blank }.
