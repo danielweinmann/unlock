@@ -12,23 +12,17 @@ Simple and quick:
 
   1. Just clone the repo and get in the directory:
 
-  ``` terminal
-  git clone git@github.com:danielweinmann/unlock.git
-  cd unlock
-  ```
+		git clone git@github.com:danielweinmann/unlock.git
+		cd unlock
     
   2. Install the gems (you might need to adjust the ruby version in the Gemfile):
   
-  ``` terminal
-bundle
-  ```
+  		bundle
   		
   3. Create the database configuration file, create the database and run the migrations:
 
-  ``` terminal
-  cp config/database.sample.yml config/database.yml
-  rake db:setup
-  ```
+        cp config/database.sample.yml config/database.yml
+        rake db:setup
 
 ## Payment gateways
 
