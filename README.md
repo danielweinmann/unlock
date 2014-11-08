@@ -20,7 +20,7 @@ Simple and quick:
   2. Install the gems (you might need to adjust the ruby version in the Gemfile):
   
   ``` terminal
-	bundle
+bundle
   ```
   		
   3. Create the database configuration file, create the database and run the migrations:
