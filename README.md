@@ -12,10 +12,10 @@ Simple and quick:
 
   1. Just clone the repo and get in the directory:
 
-  ``` terminal
-	git clone git@github.com:danielweinmann/unlock.git
-	cd unlock
-  ```
+``` terminal
+git clone git@github.com:danielweinmann/unlock.git
+cd unlock
+```
     
   2. Install the gems (you might need to adjust the ruby version in the Gemfile):
   
