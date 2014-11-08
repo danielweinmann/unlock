@@ -3,5 +3,12 @@
   = "Apoiar #{@initiative.name}"
 article
   h2== "Apoiar #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
-  - @gateways.each do |gateway|
-    = render partial: "/#{gateway.module_name.underscore}/contributions/form", locals: { gateway: gateway }
+  - if(first_gateway = @gateways.first) && @gateways.size == 1
+    = render partial: "/#{first_gateway.module_name.underscore}/contributions/form", locals: { gateway: first_gateway }
+  - else
+    ul.accordion
+      - @gateways.each do |gateway|
+        li
+          input type='radio' name="select_gateway" id="select_#{gateway.module_name.underscore}" checked=('checked' if gateway == first_gateway)
+          label for="select_#{gateway.module_name.underscore}"= gateway.display_title
+          .content= render partial: "/#{gateway.module_name.underscore}/contributions/form", locals: { gateway: gateway }

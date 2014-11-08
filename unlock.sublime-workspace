@@ -152,15 +152,15 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/danielweinmann/projects/unlock",
-		"/Users/danielweinmann/projects/unlock/app",
-		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions"
+		"/Users/danielweinmann/projects/unlock"
 	],
 	"file_history":
 	[
+		"/Users/danielweinmann/projects/unlock/Gemfile",
+		"/Users/danielweinmann/projects/unlock/.ruby-version",
+		"/Users/danielweinmann/projects/unlock/README.md",
 		"/Users/danielweinmann/projects/unlock/app/assets/stylesheets/application.css.sass",
 		"/Users/danielweinmann/projects/unlock/app/assets/javascripts/application.js",
-		"/Users/danielweinmann/projects/unlock/Gemfile",
 		"/Users/danielweinmann/projects/unlock/app/views/initiatives/contributions/show.html.slim",
 		"/Users/danielweinmann/projects/unlock/db/migrate/20141029193123_migrate_moip_attributes_to_gateways.rb",
 		"/Users/danielweinmann/projects/unlock/app/assets/images/.keep",

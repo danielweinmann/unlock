@@ -428,3 +428,34 @@
     background-color: tint($flash_success_color, 80%)
     h4
       color: $flash_success_color
+.accordion
+  +span-columns(6)
+  padding: 0
+  border: 1px solid $border_color
+  border-top: none
+  >li
+    +span-columns(6)
+    margin: 0
+    >input[type='radio']
+      display: none
+    >label
+      margin: 0
+      display: block
+      border-top: 1px solid $border_color
+      padding: 0.5em
+      font-weight: $bold_weight
+      &:before
+        content: '▸ '
+      &:hover
+        cursor: pointer
+    >input[type='radio']:checked + label
+      &:before
+        content: '▾ '
+      &:hover
+        cursor: default
+    .content
+      border-top: 1px solid $border_color
+      padding: 0 1em
+      display: none
+    >input[type='radio']:checked ~ .content
+      display: block
