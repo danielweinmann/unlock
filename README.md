@@ -36,7 +36,7 @@ Every initiative on Unlock can add and configure multiple payment gateways, whic
 
 ### Creating a new gateway
 
-Just create a gem that follows the [UnlockGateway](https://github.com/danielweinmann/unlock_gateway) pattern, integrate it with Unlock's code, and create a a Pull Request. Se "Contributing" for details on how to contribute.
+Just create a gem that follows the [UnlockGateway](https://github.com/danielweinmann/unlock_gateway) pattern, integrate it with Unlock's code, and create a a Pull Request. Se [Contributing](#contributing) for details on how to contribute.
 
 ## Contributing
 
