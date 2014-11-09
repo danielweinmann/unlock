@@ -3,17 +3,18 @@
   = "Apoiar #{@initiative.name}"
 article
   h2== "Apoiar #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
+  = render partial: 'error_explanation', locals: { resource: @contribution }
   - if(first_gateway = @gateways.first) && @gateways.size == 1
     = render partial: "/#{first_gateway.module_name.underscore}/contributions/form", locals: { gateway: first_gateway }
   - else
     ul.accordion
       - if params[:gateway_id].present?
-        - open_id = params[:gateway_id]
+        - expanded_id = params[:gateway_id]
       - elsif session[:gateway_id].present?
-        - open_id = session[:gateway_id]
+        - expanded_id = session[:gateway_id]
       - else
-        - open_id = first_gateway.id
+        - expanded_id = first_gateway.id
       - @gateways.each do |gateway|
-        li class=('visible' if gateway.id == open_id)
+        li class=('expanded' if gateway.id == expanded_id)
           h4= gateway.display_title
           .content= render partial: "/#{gateway.module_name.underscore}/contributions/form", locals: { gateway: gateway }

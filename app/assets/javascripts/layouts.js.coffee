@@ -19,6 +19,6 @@ $(document).ready ->
     event.stopPropagation()
     accordion = $(@).parent().parent()
     item = $(@).parent()
-    wasSelected = item.hasClass('visible')
-    accordion.children('li').removeClass 'visible'
-    item.addClass('visible') unless wasSelected
+    wasSelected = item.hasClass('expanded')
+    accordion.children('li').removeClass 'expanded'
+    item.addClass('expanded') unless wasSelected
