@@ -22,3 +22,7 @@ $(document).ready ->
     wasSelected = item.hasClass('expanded')
     accordion.children('li').removeClass 'expanded'
     item.addClass('expanded') unless wasSelected
+  $('.money').maskMoney
+    thousands: ''
+    decimal: ''
+    precision: 0

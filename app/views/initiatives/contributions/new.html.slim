@@ -8,13 +8,11 @@ article
     = render partial: "/#{first_gateway.module_name.underscore}/contributions/form", locals: { gateway: first_gateway }
   - else
     ul.accordion
-      - if params[:gateway_id].present?
-        - expanded_id = params[:gateway_id]
-      - elsif session[:gateway_id].present?
-        - expanded_id = session[:gateway_id]
+      - if current_user.module_name.present?
+        - expanded = current_user.module_name
       - else
-        - expanded_id = first_gateway.id
+        - expanded = first_gateway.module_name
       - @gateways.each do |gateway|
-        li class=('expanded' if gateway.id == expanded_id)
+        li class=('expanded' if gateway.module_name == expanded)
           h4= gateway.display_title
           .content= render partial: "/#{gateway.module_name.underscore}/contributions/form", locals: { gateway: gateway }

@@ -1,25 +1,16 @@
 li.contribution
-  a href=initiative_by_permalink_path(contribution.initiative) title=contribution.initiative.name
-    .image= image_tag(contribution.initiative.image.url(:medium)) if contribution.initiative.image.present?
+  = link_to initiative_contribution_path(contribution.initiative.id, contribution) do
+    .image
+      - if contribution.hide_name?
+        = image_tag('user.svg')
+      - else
+        = contribution.user.display_image
     .info
-      h3= truncate contribution.initiative.name, length: 40
-      h4= truncate strip_tags(contribution.initiative.first_text_html), length: 100
-    .status class=contribution.state_name
-      h5
-        span.currency= "R$ "
-        span.number= contribution.display_value
-        div= "apoiados por mês"
-      .state= contribution.human_state_name
-  .contribution_actions data-path=contribution.gateway.path data-contribution=contribution.id
-    h5
-    - if contribution.can_activate?
-      a.button#activate Reativar
-    - if contribution.can_suspend?
-      a.button#suspend Suspender
-  .options id=dom_id(contribution) data-url=initiative_contribution_path(contribution.initiative.id, contribution.id)
-    .field
-      = check_box_tag :"hide_name_#{contribution.id}", "1", contribution.hide_name, :class => "editable", :"data-attribute" => "hide_name", :"data-formtype" => "checkbox"
-      = label_tag :"hide_name_#{contribution.id}", Contribution.human_attribute_name(:hide_name)
-    .field
-      = check_box_tag :"hide_value_#{contribution.id}", "1", contribution.hide_value, :class => "editable", :"data-attribute" => "hide_value", :"data-formtype" => "checkbox"
-      = label_tag :"hide_value_#{contribution.id}", Contribution.human_attribute_name(:hide_value)
+      h4 
+        - if contribution.hide_name?
+          = "Apoiador anônimo"
+        - else
+          = truncate contribution.user.display_name, length: 40
+      - unless contribution.hide_value? && !policy(contribution.initiative).update?
+        h5= "R$ #{contribution.display_value},00"
+      em Há #{time_ago_in_words(contribution.created_at)}

@@ -25,6 +25,10 @@
   margin-bottom: 2em
 .button
   +unlock_button
+.suspend
+  background: $careful_color
+  &:hover
+    background: $careful_hover_color
 .links
   +span-columns(6)
   text-align: center
@@ -160,129 +164,6 @@
   padding: 0
   list-style: none
 .contribution
-  position: relative
-  overflow: hidden
-  background-color: $container_color
-  border-bottom: 0.2em solid $border_color
-  margin-bottom: 2em
-  +span-columns(6)
-  height: 100vw
-  +media($tablet)
-    +span-columns(4)
-    +omega(2n)
-    height: 70vw
-    margin-bottom: 2em
-  +media($desktop)
-    +span-columns(4)
-    +omega(3n)
-    height: 56vw
-    margin-bottom: 4em
-  +media($large_desktop)
-    height: 586px
-  .image, .contribution_actions, .info, .status, .options
-    overflow: hidden
-  .image
-    height: 30%
-  .status
-    height: 25%
-  .info
-    height: 15%
-  .contribution_actions
-    height: 12%
-    +media($tablet)
-      height: 15%
-    +media($desktop)
-      height: 15%
-  .options
-    height: 15%
-  .image
-    background: $border_color
-    img
-      width: 100%
-  .options
-    padding: 1.2em
-    font-size: 0.9em
-    .field
-      margin: 0
-  .contribution_actions
-    padding: 1.2em
-    +media($tablet)
-      padding: 2.6em 1em
-    +media($desktop)
-      padding: 2.2em 1em
-    text-align: center
-    h5
-      display: none
-      font-size: 1em
-      &.success
-        color: $flash_success_color
-      &.failure
-        color: $flash_failure_color
-    .button
-      font-size: 1.2em
-      +media($tablet)
-        font-size: 2em
-      +media($desktop)
-        font-size: 2em
-    #suspend
-      background: $careful_color
-      &:hover
-        background: $careful_hover_color
-  .status
-    background-color: $box_hover_color
-    &.suspended
-      background-color: $careful_color
-    padding: 1.6em
-    h5
-      float: right
-      +media($tablet)
-        float: none
-      +media($desktop)
-        float: none
-      &:first-child
-        text-align: right
-      color: $text_color
-      font-weight: $normal_weight
-      font-size: 1.2em
-      text-align: right
-      margin-bottom: 1em
-      span.currency
-        font-size: 1em
-      span.number
-        color: $box_color
-        font-size: 2.6em
-        font-weight: $bold_weight
-    .state
-      text-align: right
-      color: $box_color
-      font-size: 2.6em
-      font-weight: $bold_weight
-      line-height: 1em
-      float: left
-      +media($tablet)
-        float: none
-      +media($desktop)
-        float: none
-  a
-    text-decoration: none
-  .info
-    padding: 0.4em
-    h3, h4
-      font-family: $standard_font
-      font-style: normal
-      font-size: 0.6em
-      color: $text_color
-      +media($tablet)
-        font-size: 1em
-        line-height: 1.2em
-      +media($desktop)
-        font-size: 0.8em
-    h3
-      font-weight: $bold_weight
-      margin-bottom: 0.8em
-    h4
-      font-weight: $normal_weight
-.contributor
   background-color: $container_color
   border-bottom: 0.2em solid $border_color
   margin-bottom: 2em
@@ -296,6 +177,8 @@
     +span-columns(4)
     +omega(3n)
   padding: 1em
+  a
+    color: $text_color
   .image
     +span-columns(1)
     img
@@ -304,7 +187,7 @@
     +span-columns(5)
     float: left
     h4
-      margin-bottom: 1em
+      margin-bottom: 0.4em
 .gateways
   +span-columns(6)
   padding: 0
