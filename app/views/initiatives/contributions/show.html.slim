@@ -6,11 +6,11 @@
     = "Apoio para #{@initiative.name}"
 article
   h2
-    - if policy(@contribution).update?
+    - if policy(@contribution).update? && @contribution.created_at > 2.days.ago
       == "Muito obrigado pelo seu apoio para #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}!"
     - else
       == "Apoio para #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
-  .contributor
+  .contribution
     .image
       - if @contribution.hide_name? && !policy(@contribution).update?
         = image_tag('user.svg')
@@ -24,8 +24,7 @@ article
           = @contribution.user.display_name
       - unless @contribution.hide_value? && !policy(@contribution).update?
         h5= "R$ #{@contribution.display_value},00"
-      - if @contribution.gateway_state == 'sandbox'
-        em Apoio realizado <strong>em ambiente de testes</strong> no #{@contribution.gateway.name}
+      em Apoio realizado dia #{l @contribution.created_at, format: :short}, #{'<strong>em ambiente de testes</strong> '.html_safe if @contribution.gateway_state == 'sandbox'}no #{@contribution.gateway.name}
       - if policy(@contribution).update?
         .options id=dom_id(@contribution) data-url=initiative_contribution_path(@contribution.initiative.id, @contribution.id)
           .field
@@ -37,4 +36,13 @@ article
   - if policy(@contribution).update?
     .gateway_data class=(@contribution.active? ? 'success' : ('failure' if @contribution.suspended?))
       h4= "Seu apoio está #{@contribution.human_state_name.downcase}"
-      = render "/#{@contribution.gateway.module_name.underscore}/contributions/gateway_data"
+      ul
+        li Seu código de assinatura é <strong>#{@contribution.gateway_identifier}</strong>
+        li Seu pagamento ainda será processado pelo <a href=#{@contribution.gateway.url} target='_blank'>#{@contribution.gateway.name}</a>.
+        li Se você quiser suspender seu apoio, basta acessar o menu <a href='/my_contributions'>Unlocks apoiados</a> a qualquer momento.
+        li Sua próxima cobrança será realizada em #{@contribution.next_invoice_date}.
+      .links
+        - if @contribution.can_activate?
+          = link_to "Ativar", "#{@contribution.gateway.path}/#{@contribution.id}/activate", method: :put, class: "button"
+        - if @contribution.can_suspend?
+          = link_to "Suspender", "#{@contribution.gateway.path}/#{@contribution.id}/suspend", method: :put, class: "button suspend"

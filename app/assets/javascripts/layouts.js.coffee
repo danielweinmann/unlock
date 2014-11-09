@@ -14,3 +14,15 @@ $(document).ready ->
   $(window).on "click", ->
     $('#flash').slideUp('slow')
     $('.open').parent().find("nav").hide()
+  $('.accordion h4').on "click", (event) ->
+    event.preventDefault()
+    event.stopPropagation()
+    accordion = $(@).parent().parent()
+    item = $(@).parent()
+    wasSelected = item.hasClass('expanded')
+    accordion.children('li').removeClass 'expanded'
+    item.addClass('expanded') unless wasSelected
+  $('.money').maskMoney
+    thousands: ''
+    decimal: ''
+    precision: 0

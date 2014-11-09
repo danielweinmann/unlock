@@ -1,12 +1,7 @@
 - content_for :title do
   = "Configurações do #{@gateway.name}"
-= form_for @gateway, url: initiative_gateway_path(@initiative.id, @gateway), method: :put do |form|
-  - if @gateway.errors.any?
-    #error_explanation.warning
-      h3 = "#{pluralize(@gateway.errors.count, "erro impediu", "erros impediram")} que as configurações fossem salvas:"
-      ul
-        - @gateway.errors.full_messages.each do |msg|
-          li= msg
+= form_for @gateway, url: initiative_gateway_path(@initiative.id, @gateway), method: :put, html: { autocomplete: 'off' } do |form|
+  = render partial: 'error_explanation', locals: { resource: @gateway }
   = form.label :title
   = form.text_field :title, class: "has_em"
   em Título do meio de pagamento que irá aparecer na página de apoio. Deixe em branco para usar o padrão '#{@gateway.name}'.

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   inherit_resources
   actions :none
-  custom_actions member: %i[my_contributions my_initiatives]
+  custom_actions resource: %i[my_contributions my_initiatives]
   respond_to :html
 
   after_action :verify_policy_scoped, only: %i[]

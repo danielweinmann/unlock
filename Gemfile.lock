@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/danielweinmann/paypal-recurring.git
+  revision: b04b9fbdd5bd5122879d08671fdf3bbbfc3211af
+  branch: master
+  specs:
+    paypal-recurring (1.1.1)
+
+GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
   revision: ef4b73623bfe0131ab27bcac92a6ba30f40bd124
   branch: master
@@ -233,14 +240,16 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    unlock_gateway (0.0.5)
+    unlock_gateway (0.1.0)
       rails (~> 4.1.6)
-    unlock_moip (0.0.5)
+    unlock_moip (0.1.0)
       moip-assinaturas (= 0.4.2)
       rails (~> 4.1.6)
-      unlock_gateway (= 0.0.5)
-    validates_cpf_cnpj (0.2.0)
-      activemodel (>= 3.0.0)
+      unlock_gateway (= 0.1.0)
+    unlock_paypal (0.1.0)
+      paypal-recurring
+      rails (~> 4.1.6)
+      unlock_gateway (= 0.1.0)
     valuable (0.9.8)
     warden (1.2.3)
       rack (>= 1.0)
@@ -273,6 +282,7 @@ DEPENDENCIES
   normalize-rails
   paperclip (~> 4.1.1)
   paperclip-meta
+  paypal-recurring (= 1.1.1)!
   pg
   pickadate-rails
   pundit
@@ -291,5 +301,5 @@ DEPENDENCIES
   uglifier
   underscore-rails
   unicorn
-  unlock_moip (= 0.0.5)
-  validates_cpf_cnpj
+  unlock_moip (= 0.1.0)
+  unlock_paypal (= 0.1.0)

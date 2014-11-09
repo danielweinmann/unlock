@@ -1,0 +1,6 @@
+- if resource.errors.any?
+  #error_explanation.warning
+    h3 = "#{pluralize(resource.errors.count, "erro impediu", "erros impediram")} que este registro fosse salvo:"
+    ul
+      - resource.errors.full_messages.each do |msg|
+        li= msg

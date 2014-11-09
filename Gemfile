@@ -8,7 +8,6 @@ gem 'rails', '4.1.6'
 gem 'inherited_resources'
 gem 'pg'
 gem 'state_machine'
-gem 'validates_cpf_cnpj'
 gem 'paperclip', '~> 4.1.1'
 gem 'paperclip-meta'
 gem 'schema_plus'
@@ -49,8 +48,13 @@ gem 'RedCloth'
 gem 'aws-sdk'
 gem 'rack-timeout'
 
+# Payment gateways
+gem 'paypal-recurring', '1.1.1', github: 'danielweinmann/paypal-recurring', branch: 'master'
+gem 'unlock_moip', '0.1.0'
+gem 'unlock_paypal', '0.1.0'
+# gem 'unlock_gateway', path: '../unlock_gateway'
 # gem 'unlock_moip', path: '../unlock_moip'
-gem 'unlock_moip', '0.0.5'
+# gem 'unlock_paypal', path: '../unlock_paypal'
 
 group :test, :development do
   gem 'rspec-rails'

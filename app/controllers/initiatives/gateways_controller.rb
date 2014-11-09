@@ -2,7 +2,7 @@ class Initiatives::GatewaysController < StateController
 
   inherit_resources
   actions :all, except: [:index, :show, :destroy]
-  custom_actions member: %i[use_sandbox use_production revert_to_draft]
+  custom_actions resource: %i[use_sandbox use_production revert_to_draft]
   belongs_to :initiative, parent_class: Initiative
   respond_to :html
 
@@ -12,15 +12,14 @@ class Initiatives::GatewaysController < StateController
     new! do
       authorize resource
       module_names = @initiative.gateways.map(&:module_name)
-      @gateways = Gateway.available_gateways.delete_if do |gateway|
-        module_names.include?(gateway.module_name)
-      end
+      @gateways = @initiative.available_gateways
     end
   end
 
   def create
     @initiative = Initiative.find(params[:initiative_id])
     @gateway = @initiative.gateways.new(gateway_params)
+    @gateways = @initiative.available_gateways
     authorize @gateway
     create!(notice: "Meio de pagamento adicionado com sucesso!") { @initiative }
   end

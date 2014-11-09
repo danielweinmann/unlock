@@ -9,7 +9,6 @@ class Contribution < ActiveRecord::Base
 
   validates_presence_of :user, :initiative, :gateway, :value
   validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 5 }, allow_blank: true
-  validate :presence_of_user_and_initiative_attributes
 
   accepts_nested_attributes_for :user
   
@@ -48,18 +47,4 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  def presence_of_user_and_initiative_attributes
-    return unless self.user.present? && self.initiative.present?
-    %w(full_name document phone_area_code phone_number birthdate address_street address_number address_district address_city address_state address_zipcode).each do |attribute|
-      unless self.user.attributes[attribute].present?
-        self.errors.add("user.#{attribute}", "não pode ficar em branco")
-      end
-    end
-    %w(permalink).each do |attribute|
-      unless self.initiative.attributes[attribute].present?
-        self.errors.add("initiative.#{attribute}", "não pode ficar em branco")
-      end
-    end
-  end
-  
 end
