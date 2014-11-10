@@ -1,6 +1,6 @@
 - suppress_headline_and_article!
 - content_for :title do
-  - if policy(@contribution).update?
+  - if policy(@contribution).update? && @contribution.created_at > 2.days.ago
     = "Muito obrigado pelo seu apoio para #{@initiative.name}!"
   - else
     = "Apoio para #{@initiative.name}"
