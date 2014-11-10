@@ -43,8 +43,7 @@ gem 'high_voltage'
 gem 'maskmoney-rails'
 
 # Other
-gem 'auto_html', '= 1.5.1'
-gem 'RedCloth'
+gem 'unlock_auto_html'
 gem 'aws-sdk'
 gem 'rack-timeout'
 

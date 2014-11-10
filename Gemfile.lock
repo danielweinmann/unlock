@@ -242,6 +242,10 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unlock_auto_html (0.0.1)
+      RedCloth
+      auto_html (= 1.5.1)
+      rails (~> 4.1.6)
     unlock_gateway (0.1.0)
       rails (~> 4.1.6)
     unlock_moip (0.1.0)
@@ -260,9 +264,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth
   active_decorator
-  auto_html (= 1.5.1)
   autosize-rails
   aws-sdk
   brhelper
@@ -304,5 +306,6 @@ DEPENDENCIES
   uglifier
   underscore-rails
   unicorn
+  unlock_auto_html
   unlock_moip (= 0.1.0)
   unlock_paypal (= 0.1.0)
