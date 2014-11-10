@@ -58,6 +58,7 @@ gem 'unlock_paypal', '0.1.0'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem "shoulda-matchers"
   gem 'letter_opener'
   gem 'spring'
 end
