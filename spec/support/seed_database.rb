@@ -1,13 +1,13 @@
 RSpec.configure do |config|
   def get_user(name)
     @users ||= {}
-    @users[name] ||= User.create!(name: name.humanize, email: "#{name}@bar.com", password: 'test123', password_confirmation: 'test123')
+    @users[name] ||= User.create_with(email: "#{name}@bar.com", password: 'test123', password_confirmation: 'test123').find_or_create_by!(name: name.humanize)
     @users[name].reload
   end
 
   def get_initiative(permalink, user)
     @initiatives ||= {}
-    @initiatives[permalink] ||= Initiative.create!(permalink: permalink, name: permalink.humanize, user: user)
+    @initiatives[permalink] ||= Initiative.create_with(name: permalink.humanize, user: user).find_or_create_by!(permalink: permalink)
     @initiatives[permalink].reload
   end
 
