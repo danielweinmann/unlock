@@ -18,8 +18,10 @@ article
         = @contribution.user.display_image
     .info
       h4 
-        - if @contribution.hide_name? && !policy(@contribution).update?
+        - if @contribution.hide_name? && !policy(@initiative).update? && !policy(@contribution).update?
           = "Apoiador anônimo"
+        - elsif policy(@initiative).update?
+          = mail_to @contribution.user.email, @contribution.user.display_name
         - else
           = @contribution.user.display_name
       - unless @contribution.hide_value? && !policy(@contribution).update?
