@@ -28,11 +28,12 @@ class Gateway < ActiveRecord::Base
 
   end
 
-  class_attribute :available_gateways
-  self.available_gateways = []
-
   def self.register name
-    self.available_gateways << self.new(module_name: name)
+    Rails.application.config.available_gateways << self.new(module_name: name)
+  end
+
+  def self.available_gateways
+    Rails.application.config.available_gateways
   end
 
   def available_settings
