@@ -242,6 +242,10 @@
       margin: 0
 .editable
   cursor: pointer
+  form
+    margin: 0
+    #{$all-text-inputs}, textarea
+      margin-bottom: 0.5em
   &::before
     font-family: "icomoon"
     content: "\e003"
@@ -251,7 +255,7 @@
     &::before
       content: none
     &::after
-      content: "Salvar"
+      content: "OK"
       +unlock_button
       font-size: 1em
   &[data-formtype=checkbox]
