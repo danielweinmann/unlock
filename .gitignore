@@ -1,3 +1,6 @@
+./unlock.sublime-workspace
+./unlock.sublime-project
+
 .gems
 .bundle
 db/*.sqlite3
