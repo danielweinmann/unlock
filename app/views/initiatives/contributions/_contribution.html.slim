@@ -1,8 +1,16 @@
 li.contribution
   = link_to initiative_contribution_path(contribution.initiative.id, contribution) do
-    .image= image_tag(contribution.initiative.image) if contribution.initiative.image.present?
+    .image
+      - if contribution.hide_name?
+        = image_tag('user.svg')
+      - else
+        = contribution.user.display_image
     .info
-      h4= truncate contribution.initiative.name, length: 40
+      h4 
+        - if contribution.hide_name?
+          = "Apoiador anônimo"
+        - else
+          = truncate contribution.user.display_name, length: 40
       - unless contribution.hide_value? && !policy(contribution.initiative).update?
         h5= "R$ #{contribution.display_value},00"
       em Há #{time_ago_in_words(contribution.created_at)}

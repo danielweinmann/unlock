@@ -4,6 +4,6 @@
 article
   h2== "Apoiadores de #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
   - if @contributions.exists?
-    ul.contributions= render partial: 'contributions/contribution', collection: @contributions
+    ul.contributions= render @contributions
   - else
     em Este unlock ainda não recebeu nenhum apoio
