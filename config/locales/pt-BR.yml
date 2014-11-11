@@ -1,6 +1,7 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 pt-BR:
+  empty: 'Nenhum registro encontrado.'
+  to: 'para'
+  contribute: 'Apoiar'
   activerecord:
     state_machines:
       contribution:
@@ -9,12 +10,19 @@ pt-BR:
             pending: Pendente
             active: Ativo
             suspended: Suspenso
+          events:
+            activate: Ativar
+            suspend: Suspender
       gateway:
         state:
           states:
             draft: Rascunho
             sandbox: Em ambiente de testes
             production: Em produção
+          events:
+            use_sandbox: Usar ambiente de testes
+            use_production: Usar ambiente de produção
+            revert_to_draft: Voltar a rascunho
     models:
       initiative: Unlock
       user: Usuário
@@ -28,7 +36,7 @@ pt-BR:
         current_password: Senha atual
         remember_me: Lembre-se de mim
         full_name: Nome completo
-        document: CPF
+        document: Documento
         phone_area_code: DDD
         phone_number: Telefone
         birthdate: Data de nascimento
@@ -45,6 +53,7 @@ pt-BR:
         state: Status
         hide_name: Não quero divulgar meu nome
         hide_value: Não quero divulgar o valor do meu apoio
+        hide_name?: 'Apoiador anônimo'
       initiative:
         image: Imagem
         name: Título
@@ -55,6 +64,7 @@ pt-BR:
         initiative: Unlock
         title: Título
         ordering: Ordem
+        settings: Configurações
   flash:
     actions:
       create:
@@ -66,3 +76,20 @@ pt-BR:
         notice: '%{resource_name} excluído com sucesso.'
         alert: '%{resource_name} não pôde ser excluído.'
     not_authorized: 'Você não possui as permissões necessárias para realizar esta ação.'
+  initiatives:
+    contributions:
+      base_form:
+        value: Com quanto você quer apoiar por mês?
+        info: 'Assinatura mensal cobrada pelo meio de pagamentos %{link}. Você pode suspender <a href="/my_contributions">a qualquer momento</a>.'
+      sandbox_warning:
+        title: 'Atenção! Este unlock encontra-se em modo de testes (Sandbox) no %{gateway}.'
+        items:
+          first: 'Nenhum apoio realizado neste modo será concretizado.'
+          second: 'Você pode testar livremente, sem medo de ser cobrado.'
+      show:
+        thank_you: 'Muito obrigado pelo seu apoio para %{initiative}!'
+        summary: 'Apoio realizado dia %{created_at}, %{sandbox}no %{gateway}'
+        gateway_identifier: 'Seu código de assinatura é <strong>%{gateway_identifier}</strong>'
+        payments: 'Seus pagamentos mensais serão processados pelo %{link}.'
+        suspend: 'Se você quiser suspender seu apoio, basta acessar o menu <a href="/my_contributions">Unlocks apoiados</a> a qualquer momento.'
+        next_invoice: 'Sua próxima cobrança será realizada em %{date}.'

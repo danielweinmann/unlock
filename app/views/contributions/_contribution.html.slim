@@ -4,5 +4,5 @@ li.contribution
     .info
       h4= truncate contribution.initiative.name, length: 40
       - unless contribution.hide_value? && !policy(contribution.initiative).update?
-        h5= "R$ #{contribution.display_value},00"
-      em Há #{time_ago_in_words(contribution.created_at)}
+        h5= contribution.display_value
+      em #{time_ago_in_words(contribution.created_at)}

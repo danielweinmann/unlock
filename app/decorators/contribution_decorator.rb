@@ -1,7 +1,7 @@
 module ContributionDecorator
 
   def display_value
-    self.value.to_i
+    number_to_currency self.value
   end
 
   def next_invoice_date

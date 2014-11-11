@@ -1,15 +1,15 @@
 - suppress_headline_and_article!
 - content_for :title do
   - if policy(@contribution).update? && @contribution.created_at > 2.days.ago
-    = "Muito obrigado pelo seu apoio para #{@initiative.name}!"
+    = t('.thank_you', initiative: @initiative.name)
   - else
-    = "Apoio para #{@initiative.name}"
+    = "#{Contribution.model_name.human} #{t('to')} #{@initiative.name}"
 article
   h2
     - if policy(@contribution).update? && @contribution.created_at > 2.days.ago
-      == "Muito obrigado pelo seu apoio para #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}!"
+      == t('.thank_you', initiative: link_to(@initiative.name, initiative_by_permalink_path(@initiative)))
     - else
-      == "Apoio para #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
+      == "#{Contribution.model_name.human} #{t('to')} #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
   .contribution
     .image
       - if @contribution.hide_name? && !policy(@contribution).update?
@@ -19,14 +19,14 @@ article
     .info
       h4 
         - if @contribution.hide_name? && !policy(@initiative).update? && !policy(@contribution).update?
-          = "Apoiador anônimo"
+          = Contribution.human_attribute_name(:hide_name?)
         - elsif policy(@initiative).update?
           = mail_to @contribution.user.email, @contribution.user.display_name
         - else
           = @contribution.user.display_name
       - unless @contribution.hide_value? && !policy(@contribution).update?
-        h5= "R$ #{@contribution.display_value},00"
-      em Apoio realizado dia #{l @contribution.created_at, format: :short}, #{'<strong>em ambiente de testes</strong> '.html_safe if @contribution.gateway_state == 'sandbox'}no #{@contribution.gateway.name}
+        h5= @contribution.display_value
+      em== t('.summary', created_at: l(@contribution.created_at, format: :short), sandbox: ("<strong>#{t('activerecord.state_machines.gateway.state.states.sandbox').downcase}</strong> " if @contribution.gateway_state == 'sandbox'), gateway: @contribution.gateway.name)
       - if policy(@contribution).update?
         .options id=dom_id(@contribution) data-url=initiative_contribution_path(@contribution.initiative.id, @contribution.id)
           .field
@@ -37,14 +37,14 @@ article
             = label_tag :"hide_value_#{@contribution.id}", Contribution.human_attribute_name(:hide_value)
   - if policy(@contribution).update?
     .gateway_data class=(@contribution.active? ? 'success' : ('failure' if @contribution.suspended?))
-      h4= "Seu apoio está #{@contribution.human_state_name.downcase}"
+      h4= "#{@contribution.class.model_name.human} #{@contribution.human_state_name.downcase}"
       ul
-        li Seu código de assinatura é <strong>#{@contribution.gateway_identifier}</strong>
-        li Seu pagamento ainda será processado pelo <a href=#{@contribution.gateway.url} target='_blank'>#{@contribution.gateway.name}</a>.
-        li Se você quiser suspender seu apoio, basta acessar o menu <a href='/my_contributions'>Unlocks apoiados</a> a qualquer momento.
-        li Sua próxima cobrança será realizada em #{@contribution.next_invoice_date}.
+        li== t('.gateway_identifier', gateway_identifier: @contribution.gateway_identifier)
+        li== t('.payments', link: link_to(@contribution.gateway.name, @contribution.gateway.url, target: :_blank))
+        li== t('.suspend')
+        li== t('.next_invoice', date: @contribution.next_invoice_date)
       .links
         - if @contribution.can_activate?
-          = link_to "Ativar", "#{@contribution.gateway.path}/#{@contribution.id}/activate", method: :put, class: "button"
+          = link_to t('activerecord.state_machines.contribution.state.events.activate'), "#{@contribution.gateway.path}/#{@contribution.id}/activate", method: :put, class: "button"
         - if @contribution.can_suspend?
-          = link_to "Suspender", "#{@contribution.gateway.path}/#{@contribution.id}/suspend", method: :put, class: "button suspend"
+          = link_to t('activerecord.state_machines.contribution.state.events.suspend'), "#{@contribution.gateway.path}/#{@contribution.id}/suspend", method: :put, class: "button suspend"

@@ -1,8 +1,8 @@
 - suppress_headline_and_article!
 - content_for :title do
-  = "Apoiar #{@initiative.name}"
+  = "#{t('contribute')} #{@initiative.name}"
 article
-  h2== "Apoiar #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
+  h2== "#{t('contribute')} #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
   = render partial: 'error_explanation', locals: { resource: @contribution }
   - if(first_gateway = @gateways.first) && @gateways.size == 1
     = render partial: "/#{first_gateway.module_name.underscore}/contributions/form", locals: { gateway: first_gateway }

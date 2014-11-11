@@ -3,10 +3,10 @@ li.gateway
   .info
     h4= gateway.name
     em= gateway.human_state_name
-    = link_to "Configurações", edit_initiative_gateway_path(@initiative.id, gateway), class: 'button'
+    = link_to Gateway.human_attribute_name(:settings), edit_initiative_gateway_path(@initiative.id, gateway), class: 'button'
     - if gateway.can_use_sandbox?
-      = link_to "Usar ambiente de testes", use_sandbox_initiative_gateway_path(@initiative.id, gateway), method: :put, class: 'button'
+      = link_to t('activerecord.state_machines.gateway.state.events.use_sandbox'), use_sandbox_initiative_gateway_path(@initiative.id, gateway), method: :put, class: 'button'
     - if gateway.can_use_production?
-      = link_to "Usar ambiente de produção", use_production_initiative_gateway_path(@initiative.id, gateway), method: :put, class: 'button'
+      = link_to t('activerecord.state_machines.gateway.state.events.use_production'), use_production_initiative_gateway_path(@initiative.id, gateway), method: :put, class: 'button'
     - if gateway.can_revert_to_draft?
-      = link_to "Voltar a rascunho", revert_to_draft_initiative_gateway_path(@initiative.id, gateway), method: :put, class: 'button'
+      = link_to t('activerecord.state_machines.gateway.state.events.revert_to_draft'), revert_to_draft_initiative_gateway_path(@initiative.id, gateway), method: :put, class: 'button'
