@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   # This will send the current_user to the view and instantiate UserDecorator for it
   before_action :current_user
 
+  before_filter :set_locale
+
   force_ssl if: :in_production?
 
   responders :flash, :location
@@ -59,6 +61,16 @@ class ApplicationController < ActionController::Base
     policy_name = exception.policy.class.to_s.underscore
     flash[:alert] = t('flash.not_authorized')
     redirect_to(request.referrer || root_path)
+  end
+
+  def set_locale
+    if params[:locale]
+      I18n.locale = params[:locale]
+      current_user.try(:update, {locale: params[:locale]})
+    elsif request.method == "GET"
+      new_locale = current_user.try(:locale) || I18n.default_locale
+      redirect_to url_for(params.merge(locale: new_locale, only_path: true))
+    end
   end
 
 end

@@ -12,7 +12,7 @@ class InitiativesController < StateController
 
   def index
     @initiatives = policy_scope(Initiative).home_page
-    return redirect_to :root unless request.path == '/'
+    return redirect_to :root unless request.path == "/#{params[:locale]}"
     respond_with @initiatives
   end
 
@@ -20,7 +20,7 @@ class InitiativesController < StateController
     @initiative = Initiative.find_by_permalink(params[:id])
     @initiative = Initiative.find_by_id!(params[:id]) unless @initiative
     authorize @initiative
-    unless request.path.match(/\A\/#{@initiative.to_param}(\.\w+)?\z/)
+    unless request.path.match(/\A\/#{params[:locale]}\/#{@initiative.to_param}(\.\w+)?\z/)
       format = request.format.symbol
       return redirect_to initiative_by_permalink_path("#{@initiative.to_param}#{".#{format}" unless format == :html}")
     end

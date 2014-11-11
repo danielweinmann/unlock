@@ -48,6 +48,7 @@ gem 'maskmoney-rails'
 gem 'unlock_auto_html'
 gem 'aws-sdk'
 gem 'rack-timeout'
+gem 'routing-filter', '~> 0.4.0.pre'
 
 # Payment gateways
 gem 'paypal-recurring', '1.1.1', github: 'danielweinmann/paypal-recurring', branch: 'master'

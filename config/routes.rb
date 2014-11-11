@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  filter :locale
+  
   get '/sitemap' => "initiatives#sitemap", :as => :sitemap
   
   resources :initiatives, except: [:create, :edit] do

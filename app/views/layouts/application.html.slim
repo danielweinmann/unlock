@@ -50,7 +50,7 @@ html
           .logo= link_to :root do
             h1= image_tag 'logo.png', alt: "Unlock", title: "Unlock"
         - if current_user
-          .menu
+          .menu.user
             a.open href="#"
               = truncate current_user.name, length: 18
               span ▾
@@ -64,6 +64,15 @@ html
           nav.sign_in
             = link_to t('devise.shared.links.sign_up'), new_user_registration_path
             = link_to t('devise.shared.links.sign_in'), new_user_session_path
+        - if request.method == "GET"
+          .menu.locales
+            a.open href="#"
+              = I18n.locale
+              span ▾
+            nav
+              - I18n.available_locales.select{ |locale| locale != I18n.locale }.map(&:to_s).sort.each do |locale|
+                = link_to params.merge(locale: locale) do
+                  = locale
       = yield :pre_header
     - if content_for?(:header)
       #header_wrapper

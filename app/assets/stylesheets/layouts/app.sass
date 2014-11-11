@@ -26,12 +26,10 @@
       img
         width: 2.2em
         vertical-align: middle
-    .sign_in, .menu
+    .sign_in, .user, .locales
       padding: 1em 0
       font-size: 0.8em
       width: 16%
-      float: right
-      text-align: right
       display: none
       color: $text_color
       a
@@ -43,6 +41,11 @@
           color: $link_color
       +media($desktop)
         display: block
+    .sign_in, .user
+      float: right
+      text-align: right
+    .locales
+      float: right
 #header_wrapper
   header
     text-align: center

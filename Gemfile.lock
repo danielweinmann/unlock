@@ -203,6 +203,8 @@ GEM
     rest_in_place (2.5.0)
       rails (>= 3.1)
     rinku (1.5.1)
+    routing-filter (0.4.0.pre)
+      actionpack
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -306,6 +308,7 @@ DEPENDENCIES
   rails_12factor
   responders
   rest_in_place
+  routing-filter (~> 0.4.0.pre)
   rspec-rails
   sass-rails
   schema_plus
