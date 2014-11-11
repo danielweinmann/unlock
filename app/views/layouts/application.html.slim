@@ -64,15 +64,14 @@ html
           nav.sign_in
             = link_to t('devise.shared.links.sign_up'), new_user_registration_path
             = link_to t('devise.shared.links.sign_in'), new_user_session_path
-        - if request.method == "GET"
-          .menu.locales
-            a.open href="#"
-              = I18n.locale
-              span ▾
-            nav
-              - I18n.available_locales.select{ |locale| locale != I18n.locale }.map(&:to_s).sort.each do |locale|
-                = link_to params.merge(locale: locale) do
-                  = locale
+          / .menu.locales
+          /   a.open href="#"
+          /     = I18n.locale
+          /     span ▾
+          /   nav
+          /     - I18n.available_locales.select{ |locale| locale != I18n.locale }.map(&:to_s).sort.each do |locale|
+          /       = link_to params.merge(locale: locale) do
+          /         = locale
       = yield :pre_header
     - if content_for?(:header)
       #header_wrapper
@@ -114,3 +113,8 @@ html
               = image_tag 'logo_footer.png', alt: "Unlock", title: "Unlock"
           h5== t('.love')
           h5== t('.by')
+        - if request.method == "GET"
+          = flag_list 32 do
+            - I18n.available_locales.map(&:to_s).sort.each do |locale|
+              = link_to params.merge(locale: locale) do
+                = flag(locale_country(locale), :title => t("languages.#{locale}"))

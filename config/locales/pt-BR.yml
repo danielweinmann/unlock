@@ -11,6 +11,9 @@ pt-BR:
   about: 'Sobre'
   help: 'Contato e ajuda'
   terms: 'Termos de uso'
+  languages:
+    pt-BR: 'Português Brasileiro'
+    es-MX: 'Español Mexicano'
   activerecord:
     state_machines:
       contribution:

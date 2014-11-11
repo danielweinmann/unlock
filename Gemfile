@@ -22,6 +22,9 @@ gem 'pundit'
 gem 'devise-i18n'
 gem 'devise-i18n-views', github: 'danielweinmann/devise-i18n-views'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
+gem 'routing-filter', '~> 0.4.0.pre'
+gem 'world-flags'
+gem 'countries_and_languages', :require => 'countries_and_languages/rails'
 
 # Views and assets
 gem 'neat'
@@ -48,7 +51,6 @@ gem 'maskmoney-rails'
 gem 'unlock_auto_html'
 gem 'aws-sdk'
 gem 'rack-timeout'
-gem 'routing-filter', '~> 0.4.0.pre'
 
 # Payment gateways
 gem 'paypal-recurring', '1.1.1', github: 'danielweinmann/paypal-recurring', branch: 'master'

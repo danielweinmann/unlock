@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :namespace, :add_headline_and_article!, :suppress_headline_and_article!, :add_headline_and_article?, :add_logo!, :suppress_logo!, :add_logo?
+  helper_method :namespace, :add_headline_and_article!, :suppress_headline_and_article!, :add_headline_and_article?, :add_logo!, :suppress_logo!, :add_logo?, :locale_country
 
   after_action :verify_authorized, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
@@ -71,6 +71,11 @@ class ApplicationController < ActionController::Base
       new_locale = current_user.try(:locale) || I18n.default_locale
       redirect_to url_for(params.merge(locale: new_locale, only_path: true))
     end
+  end
+
+  def locale_country(locale = nil)
+    country = (locale || I18n.locale).to_s.split('-')
+    country.size > 1 ? country[1].downcase : country[0]
   end
 
 end

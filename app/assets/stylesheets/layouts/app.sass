@@ -61,7 +61,7 @@
   >section
     +span-columns(6)
 #footer_wrapper
-  padding: 4em 0
+  padding: 4em 0 2em 0
   background: $footer_color
   footer
     +outer-container
@@ -103,3 +103,12 @@
       h5
         +span-columns(2)
         +omega(3n)
+    .flags
+      +span-columns(6) 
+      margin-top: 2em
+      text-align: center
+      a
+        display: inline-block
+        margin-right: 0.5em
+        &:last-child
+          margin: 0

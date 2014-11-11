@@ -9,3 +9,5 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( icomoon-free/icomoon.eot )
 Rails.application.config.assets.precompile += %w( icomoon-free/icomoon.woff )
 Rails.application.config.assets.precompile += %w( icomoon-free/icomoon.ttf )
+Rails.application.config.assets.precompile += %w( flags/flags32.png )
+Rails.application.config.assets.precompile += %w( flags/flags32_semi.png )

@@ -104,6 +104,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    countries_and_languages (0.2.0)
+      i18n_data
     devise (3.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -116,6 +118,7 @@ GEM
     execjs (2.2.1)
     fb-channel-file (0.0.2)
       rails (>= 3.0)
+    hashie (3.3.1)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     high_voltage (2.2.1)
@@ -124,6 +127,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.11)
+    i18n_data (0.6.0)
     icomoon-rails (0.1.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -272,6 +276,9 @@ GEM
     valuable (0.9.8)
     warden (1.2.3)
       rack (>= 1.0)
+    world-flags (0.6.5)
+      hashie (>= 1.2)
+      i18n (>= 0.6)
 
 PLATFORMS
   ruby
@@ -282,6 +289,7 @@ DEPENDENCIES
   aws-sdk
   brhelper
   coffee-rails
+  countries_and_languages
   devise
   devise-i18n
   devise-i18n-views!
@@ -324,3 +332,4 @@ DEPENDENCIES
   unlock_gateway!
   unlock_moip!
   unlock_paypal!
+  world-flags
