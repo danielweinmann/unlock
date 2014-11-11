@@ -10,6 +10,7 @@ RSpec.describe Initiative, type: :model do
   describe "validations" do
 
     it{ is_expected.to validate_presence_of :user }
+    it{ is_expected.to validate_presence_of :currency }
     it{ is_expected.to validate_uniqueness_of :permalink }
     it{ is_expected.to allow_value('foo', nil).for(:permalink) }
     it{ is_expected.to_not allow_value('9').for(:permalink) }

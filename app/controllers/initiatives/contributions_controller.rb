@@ -29,7 +29,7 @@ class Initiatives::ContributionsController < ApplicationController
   def update
     authorize @contribution
     @contribution.update(contribution_params)
-    respond_with @contribution
+    respond_with @contribution, location: -> { initiative_path(@initiative.id) }
   end
 
   def show

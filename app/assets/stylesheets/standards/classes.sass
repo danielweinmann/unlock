@@ -223,6 +223,7 @@
       margin-bottom: 1em
     em
       margin-bottom: 1em
+      display: block
     .button, [type=submit]
       display: block
       padding: 0.7em 1.2em
@@ -344,3 +345,13 @@
         display: block
       h4:before
         content: '▾ '
+.action
+  +span-columns(6)
+  text-align: center
+  .button
+    font-size: 1em
+    padding: 0.5em 1.2em
+  .careful
+    background: $careful_color
+    &:hover
+      background: $careful_hover_color

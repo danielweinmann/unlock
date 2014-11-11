@@ -1,11 +1,16 @@
 class Initiatives::GatewaysController < StateController
 
   before_action :set_initiative
-  before_action :set_gateway, except: %i[new create]
+  before_action :set_gateway, except: %i[index new create]
 
   respond_to :html
 
-  after_action :verify_policy_scoped, only: %i[]
+  after_action :verify_authorized, except: %i[index]
+  after_action :verify_policy_scoped, only: %i[index]
+
+  def index
+    @gateways = policy_scope(Gateway).where(initiative: @initiative)
+  end
 
   def new
     @gateway = @initiative.gateways.new
@@ -20,7 +25,7 @@ class Initiatives::GatewaysController < StateController
     @gateways = @initiative.available_gateways
     authorize @gateway
     @gateway.save
-    respond_with @gateway, location: -> { @initiative }
+    respond_with @gateway, location: -> { initiative_gateways_path(@initiative.id) }
   end
 
   def edit
@@ -30,7 +35,7 @@ class Initiatives::GatewaysController < StateController
   def update
     authorize @gateway
     @gateway.update(gateway_params)
-    respond_with @gateway, location: -> { @initiative }
+    respond_with @gateway, location: -> { initiative_gateways_path(@initiative.id) }
   end
 
   def use_production
@@ -60,7 +65,7 @@ class Initiatives::GatewaysController < StateController
   end
 
   def transition_state(transition)
-    super(@gateway, transition, @initiative)
+    super(@gateway, transition, initiative_gateways_path(@initiative.id))
   end
 
 end

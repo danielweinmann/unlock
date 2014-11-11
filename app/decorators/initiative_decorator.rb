@@ -1,5 +1,9 @@
 module InitiativeDecorator
 
+  def display_currency
+    Money::Currency.new(self.currency).html_entity
+  end
+
   def total_value
     @total_value ||= self.contributions.visible.sum(:value).to_i
   end

@@ -1,5 +1,9 @@
 class GatewayPolicy < ApplicationPolicy
 
+  def index?
+    update?
+  end
+
   def use_sandbox?
     update?
   end

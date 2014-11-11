@@ -1,7 +1,7 @@
 module ContributionDecorator
 
   def display_value
-    number_to_currency self.value
+    @display_value ||= humanized_money_with_symbol Money.new(self.value * 100, self.initiative.currency), no_cents_if_whole: false
   end
 
   def next_invoice_date

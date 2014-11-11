@@ -1,6 +1,6 @@
 class InitiativesController < StateController
   
-  before_action :set_initiative, only: %i[update destroy publish revert_to_draft]
+  before_action :set_initiative, only: %i[edit update destroy publish revert_to_draft]
 
   respond_to :html, except: [:sitemap]
   respond_to :xml, only: [:sitemap]
@@ -39,6 +39,10 @@ class InitiativesController < StateController
       flash[:alert] = t('flash.actions.create.alert', resource_name: resource_name)
       redirect_to :root
     end
+  end
+
+  def edit
+    authorize @initiative
   end
 
   def update

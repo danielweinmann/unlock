@@ -2,6 +2,7 @@ pt-BR:
   empty: 'Nenhum %{model} encontrado.'
   to: 'para'
   contribute: 'Apoiar'
+  destroy: 'Excluir'
   add: 'Adicionar'
   confirm: 'Você está certo disso?'
   logout: 'Sair'
@@ -16,6 +17,11 @@ pt-BR:
     es-MX: 'Español Mexicano'
   activerecord:
     state_machines:
+      initiative:
+        state:
+          events:
+            publish: Publicar
+            revert_to_draft: Voltar a rascunho
       contribution:
         state:
           states:
@@ -106,18 +112,9 @@ pt-BR:
       text:
         h2: 'Liberte potencial'
         h3: 'Financie e sustente o que você quer que exista'
-    show:
+    edit:
       textile: 'Você pode usar <a href="http://txstyle.org/" target="_blank">Textile</a>.'
       permalink: 'Para habilitar apoios, é necessário escolher um permalink. Ele definirá seu endereço, como em http://unlock.fund/<strong>meupermalink</strong>.'
-      publish:
-        title: 'Quer publicar este Unlock?'
-        link: 'Sim, quero publicar este Unlock'
-      revert_to_draft:
-        title: 'Quer voltar este Unlock para rascunho?'
-        link: 'Sim, quero voltar para rascunho'
-      delete:
-        title: 'Quer excluir este Unlock?'
-        link: 'Sim, quero excluir este Unlock'
     contributions:
       new:
         submit: 'Realizar pagamento com o %{gateway}'

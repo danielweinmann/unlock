@@ -21,7 +21,7 @@
 - content_for :post_header do
   section.status
     h2
-      span.currency= "R$ "
+      span.currency= @initiative.display_currency
       span.number= @initiative.total_value
       div= Initiative.human_attribute_name(:total_value).downcase
     h2
@@ -44,45 +44,11 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
           = t('contribute')
   - if policy(@initiative).update?
     section.edit
-      h2= t('helpers.submit.update', model: nil)
-      .field#image
-        = form_for(@initiative, url: initiative_path(@initiative.id)) do |form|
-          = form.label :image
-          = form.file_field :image
-      .field
-        = label_tag :name, Initiative.human_attribute_name(:name)
-        .editable data-attribute="name"= @initiative.name
-      .field
-        = label_tag :first_text, Initiative.human_attribute_name(:first_text)
-        .editable data-attribute="first_text" data-formtype="textarea" data-placeholder= t('helpers.submit.update', model: nil)
-          = @initiative.first_text
-        em== t('.textile')
-      .field
-        = label_tag :second_text, Initiative.human_attribute_name(:second_text)
-        .editable data-attribute="second_text" data-formtype="textarea" data-placeholder= t('helpers.submit.update', model: nil)
-          = @initiative.second_text
-        em== t('.textile')
-      .field
-        = label_tag :permalink, Initiative.human_attribute_name(:permalink)
-        .editable data-attribute="permalink" data-placeholder== t('helpers.submit.update', model: nil)
-          = @initiative.permalink
-        em== t('.permalink')
-      h2= Gateway.model_name.human.pluralize
-      - if @initiative.gateways.exists?
-        ul.gateways= render @initiative.gateways.order(:ordering)
-      - else
-        em.gateways= t('empty', model: Gateway.model_name.human.downcase)
-      .action
-        = link_to "#{t('add')} #{Gateway.model_name.human.downcase}", new_initiative_gateway_path(@initiative.id), class: 'button'
+      .action= link_to t('devise.registrations.edit.title', resource: nil), edit_initiative_path(@initiative.id), class: 'button'
+      .action= link_to Gateway.model_name.human.pluralize, initiative_gateways_path(@initiative.id), class: 'button'
       - if @initiative.can_publish?
-        h2= t('.publish.title')
-        .action
-          = link_to t('.publish.link'), publish_initiative_path(@initiative.id), method: :put, class: 'button'
+        .action= link_to t('activerecord.state_machines.initiative.state.events.publish'), publish_initiative_path(@initiative.id), method: :put, data: { confirm: t('confirm') }, class: 'button'
       - if @initiative.can_revert_to_draft?
-        h2= t('.revert_to_draft.title')
-        .action
-          = link_to t('.revert_to_draft.link'), revert_to_draft_initiative_path(@initiative.id), method: :put, class: 'button'
+        .action= link_to t('activerecord.state_machines.initiative.state.events.revert_to_draft'), revert_to_draft_initiative_path(@initiative.id), method: :put, data: { confirm: t('confirm') }, class: 'button'
       - if policy(@initiative).destroy?
-        h2= t('.delete.title')
-        .action
-          = link_to t('.delete.link'), initiative_path(@initiative.id), method: :delete, data: { confirm: t('confirm') }, class: "button delete"
+        .action= link_to t('destroy'), initiative_path(@initiative.id), method: :delete, data: { confirm: t('confirm') }, class: "button careful"

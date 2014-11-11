@@ -72,27 +72,20 @@ body[data-action="show"][data-controller="initiatives"][data-namespace="null"]
       +media($desktop)
         width: 70%
     .edit
-      label
-        margin-top: 1em
-        font-size: 0.9em
-        font-weight: $bold_weight
-      em
-        display: block
-        line-height: 1.5em
-      form
-        margin: 0
-      .editable
-        background: $container_color
-        padding: 0.5em
-      .action
+      text-align: center
+    .action
+      margin-bottom: 1em
+      .button
         +span-columns(6)
-        text-align: center
-        margin-top: 0.5em
+      &:last-child
         margin-bottom: 3em
-        .button
-          font-size: 1.2em
-          padding: 0.5em 1.2em
-        .delete
-          background: $careful_color
-          &:hover
-            background: $careful_hover_color
+      +media($desktop)
+        width: auto
+        float: none
+        +omega
+        display: inline-block
+        margin-right: 1em
+        margin-bottom: 0
+        &:last-child
+          margin-bottom: 0
+          margin-right: 0

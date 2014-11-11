@@ -3,7 +3,7 @@ article.initiative
     .image= image_tag(initiative.image.url(:medium)) if initiative.image.present?
     .status
       h5
-        span.currency= "R$ "
+        span.currency= initiative.display_currency
         span.number= initiative.total_value
         div= Initiative.human_attribute_name(:total_value).downcase
       h5

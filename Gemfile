@@ -24,6 +24,7 @@ gem 'devise-i18n-views', github: 'danielweinmann/devise-i18n-views'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 gem 'routing-filter', '~> 0.4.0.pre'
 gem 'world-flags'
+gem 'money-rails'
 
 # Views and assets
 gem 'neat'
