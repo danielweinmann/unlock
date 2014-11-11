@@ -1,7 +1,7 @@
 module InitiativeDecorator
 
   def display_currency
-    Money::Currency.new(self.currency).html_entity
+    @display_currency ||= Money::Currency.new(self.currency).symbol
   end
 
   def total_value

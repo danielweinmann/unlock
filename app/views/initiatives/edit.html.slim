@@ -1,5 +1,5 @@
 - content_for :title do
-  = "#{t('helpers.submit.update', model: nil)} #{@initiative.name}"
+  = "#{t('devise.registrations.edit.title', resource: nil)} #{@initiative.name}"
 = form_for @initiative, url: initiative_path(@initiative.id) do |form|
   = render partial: 'error_explanation', locals: { resource: @initiative }
   = form.label :image
@@ -14,4 +14,7 @@
   = form.label :permalink
   = form.text_field :permalink, class: 'has_em'
   em== t('.permalink')
+  = form.label :currency
+  = form.select :currency, Money::Currency.table.keys.map{ |key| ["#{Money::Currency.table[key][:name]} (#{Money::Currency.table[key][:symbol]})", key.to_s.upcase] }.sort, {}, { class: "has_em" }
+  em== t('.currency')
   .submit= form.submit t('helpers.submit.submit', model: nil)

@@ -10,7 +10,7 @@ class InitiativePolicy < ApplicationPolicy
 
   def permitted_attributes
     if create?
-      [:name, :first_text, :second_text, :image, :permalink]
+      [:name, :first_text, :second_text, :image, :permalink, :currency]
     else
       []
     end

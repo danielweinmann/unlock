@@ -76,6 +76,7 @@ pt-BR:
         permalink: Permalink
         total_value: Arrecadados por mês
         total_contributions: pessoa apoia
+        currency: Moeda
       gateway:
         initiative: Unlock
         title: Título
@@ -115,6 +116,7 @@ pt-BR:
     edit:
       textile: 'Você pode usar <a href="http://txstyle.org/" target="_blank">Textile</a>.'
       permalink: 'Para habilitar apoios, é necessário escolher um permalink. Ele definirá seu endereço, como em http://unlock.fund/<strong>meupermalink</strong>.'
+      currency: '<strong>Atenção</strong>: esta é a moeda que será utilizada nos meios de pagamento.'
     contributions:
       new:
         submit: 'Realizar pagamento com o %{gateway}'
