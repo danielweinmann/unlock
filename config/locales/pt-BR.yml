@@ -1,6 +1,7 @@
 pt-BR:
   empty: 'Nenhum %{model} encontrado.'
   to: 'para'
+  of: 'de'
   contribute: 'Apoiar'
   destroy: 'Excluir'
   add: 'Adicionar'

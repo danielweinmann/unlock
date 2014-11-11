@@ -1,20 +1,23 @@
+- suppress_headline_and_article!
 - content_for :title do
   = "#{t('devise.registrations.edit.title', resource: nil)} #{@initiative.name}"
-= form_for @initiative, url: initiative_path(@initiative.id) do |form|
-  = render partial: 'error_explanation', locals: { resource: @initiative }
-  = form.label :image
-  = form.file_field :image
-  = form.label :name
-  = form.text_field :name
-  = form.label :first_text
-  = form.text_area :first_text, class: 'has_em'
-  em== t('.textile')
-  = form.text_area :second_text, class: 'has_em'
-  em== t('.textile')
-  = form.label :permalink
-  = form.text_field :permalink, class: 'has_em'
-  em== t('.permalink')
-  = form.label :currency
-  = form.select :currency, Money::Currency.table.keys.map{ |key| ["#{Money::Currency.table[key][:name]} (#{Money::Currency.table[key][:symbol]})", key.to_s.upcase] }.sort, {}, { class: "has_em" }
-  em== t('.currency')
-  .submit= form.submit t('helpers.submit.submit', model: nil)
+article
+  h2== "#{t('devise.registrations.edit.title', resource: nil)} #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
+  = form_for @initiative, url: initiative_path(@initiative.id) do |form|
+    = render partial: 'error_explanation', locals: { resource: @initiative }
+    = form.label :image
+    = form.file_field :image
+    = form.label :name
+    = form.text_field :name
+    = form.label :first_text
+    = form.text_area :first_text, class: 'has_em'
+    em== t('.textile')
+    = form.text_area :second_text, class: 'has_em'
+    em== t('.textile')
+    = form.label :permalink
+    = form.text_field :permalink, class: 'has_em'
+    em== t('.permalink')
+    = form.label :currency
+    = form.select :currency, Money::Currency.table.keys.map{ |key| ["#{Money::Currency.table[key][:name]} (#{Money::Currency.table[key][:symbol]})", key.to_s.upcase] }.sort, {}, { class: "has_em" }
+    em== t('.currency')
+    .submit= form.submit t('helpers.submit.submit', model: nil)
