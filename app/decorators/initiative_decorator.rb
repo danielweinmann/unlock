@@ -3,7 +3,7 @@ module InitiativeDecorator
   def display_currency(display_name = false)
     @display_currency ||= Money::Currency.new(self.currency)
     if display_name
-      "#{@display_currency.name} - #{@display_currency.symbol}"
+      "#{@display_currency.symbol} - #{@display_currency.iso_code}"
     else
       @display_currency.symbol
     end
