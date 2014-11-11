@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
   before_validation :extract_name_from_email
   before_validation :extract_digits_from_attributes
 
+  def set_locale(new_locale)
+    if self.locale != new_locale
+      self.update locale: new_locale
+    end
+  end
+
   private
   def extract_name_from_email
     self.name = self.email.match(/(.+)@/)[1] unless self.name.present?

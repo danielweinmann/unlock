@@ -17,12 +17,6 @@ class UsersController < ApplicationController
     respond_with @user
   end
 
-  def set_locale(new_locale)
-    if self.locale != new_locale
-      self.update locale: new_locale
-    end
-  end
-
   private
 
   def set_user
