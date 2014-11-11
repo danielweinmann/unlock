@@ -82,8 +82,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    countries_and_languages (0.2.0)
-      i18n_data
     devise (3.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -105,7 +103,6 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.11)
-    i18n_data (0.6.0)
     icomoon-rails (0.1.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -277,7 +274,6 @@ DEPENDENCIES
   aws-sdk
   brhelper
   coffee-rails
-  countries_and_languages
   devise
   devise-i18n
   devise-i18n-views!
