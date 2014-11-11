@@ -113,7 +113,7 @@ html
               = image_tag 'logo_footer.png', alt: "Unlock", title: "Unlock"
           h5== t('.love')
           h5== t('.by')
-        - if request.method == "GET"
+        - if request.method == "GET" && I18n.available_locales.size > 1
           = flag_list 32 do
             - I18n.available_locales.map(&:to_s).sort.each do |locale|
               = link_to params.merge(locale: locale) do

@@ -21,7 +21,7 @@ module Unlock
     # config.i18n.default_locale = :de
 
     config.i18n.default_locale = :"pt-BR"
-    config.i18n.available_locales = [:"pt-BR", :"es-MX"]
+    config.i18n.available_locales = [:"pt-BR"]
     config.i18n.fallbacks = true
 
     config.available_gateways = []
