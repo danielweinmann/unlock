@@ -5,7 +5,9 @@
 # locales as you wish. All of these examples are active by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'apoia', 'apoiam'
+  inflect.irregular 'aporta', 'aportan'
   inflect.irregular 'meio de pagamento', 'meios de pagamento'
+  inflect.irregular 'medio de pago', 'medios de pago'
 end
 
 # These inflection rules are supported but not enabled by default:

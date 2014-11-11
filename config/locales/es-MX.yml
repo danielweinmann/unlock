@@ -1,2 +1,137 @@
 es-MX:
+  empty: 'Ninguno %{model} encontrado.'
   to: 'para'
+  contribute: 'Aportar'
+  add: 'Añadir'
+  confirm: 'Estás seguro?'
+  logout: 'Salir'
+  profile: 'Perfil'
+  my_contributions: 'Unlocks aportados'
+  my_initiatives: 'Unlocks creados'
+  about: 'Sobre'
+  help: 'Contacto y ayuda'
+  terms: 'Términos de uso'
+  activerecord:
+    state_machines:
+      contribution:
+        state:
+          states:
+            pending: Pendiente
+            active: Activo
+            suspended: Suspendido
+          events:
+            activate: Activar
+            suspend: Suspender
+      gateway:
+        state:
+          states:
+            draft: Borrador
+            sandbox: En ambiente de pruebas
+            production: En producción
+          events:
+            use_sandbox: Usar ambiente de pruebas
+            use_production: Usar ambiente de producción
+            revert_to_draft: Volver a borrador
+    models:
+      initiative: Unlock
+      user: Usuario
+      contribution: Aporte
+      gateway: Medio de pago
+    attributes:
+      user:
+        name: Nombre
+        full_name: Nombre completo
+        document: Documento
+        phone_area_code: Código de area
+        phone_number: Teléfono
+        birthdate: Fecha de nacimiento
+        address_street: Dirección
+        address_number: Número
+        address_complement: Apartamento
+        address_district: Barrio
+        address_city: Ciudad
+        address_state: Entidad federativa
+        address_zipcode: Código postal
+        image: Foto
+      contribution:
+        value: R$/mes
+        state: Status
+        hide_name: No quiero divulgar mi nombre
+        hide_value: No quiero divulgar o valor do meu apoio
+        hide_name?: 'Aportador anónimo'
+      initiative:
+        image: Imagen
+        name: Título
+        first_text: Descripción corta
+        second_text: Descripción larga
+        permalink: Permalink
+        total_value: Aportados por mes
+        total_contributions: persona aporta
+      gateway:
+        initiative: Unlock
+        title: Título
+        ordering: Orden
+        settings: Configuraciones
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} creado con éxito.'
+        alert: '%{resource_name} no pudo ser creado.'
+      update:
+        notice: '%{resource_name} actualizado con éxito.'
+      destroy:
+        notice: '%{resource_name} excluido con exito.'
+        alert: '%{resource_name} no pudo ser excluido.'
+    not_authorized: 'No posees las permisiones necesarias para realizar esta acción.'
+  layouts:
+    application:
+      love: 'Hecho con amor y <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> en 2014 ♥'
+      by: 'Por <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-creador de <a href="http://catarse.me" target="_blank">Catarse</a> y de <a href="http://engage.is" target="_blank">Engage</a>, y <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-creador de <a href="http://nos.vc" target="_blank">Nós.vc</a> y de <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
+  initiatives:
+    index:
+      title: 'Financiamiento colectivo recurrente, sin tasa y sin curaduría'
+      h2: 'Crea tu financiamiento colectivo recurrente'
+      h3: 'Comparte valor y recebe todos los meses'
+      description: 'Financiamento coletivo recurrente. Sin tasa y sin curaduría. Financia y mantén lo que quieres que exista.'
+      keywords: 'plataforma financiamiento colectivo recurrente sin tasa medio pago curaduría autonomía total financia mantén quieres exista'
+      no_fee:
+        h2: 'Sin tasa'
+        h3: 'Apenas del medio de pago'
+      not_curated:
+        h2: 'Sin curaduría'
+        h3: 'Total autonomía'
+      text:
+        h2: 'Liberta potencial'
+        h3: 'Financia y mantén lo que quieres que exista'
+    show:
+      textile: 'Puedes usar <a href="http://txstyle.org/" target="_blank">Textile</a>.'
+      permalink: 'Para habilitar aportes, es necesario elegir un permalink. Él definirá seu dirección, como en http://unlock.fund/<strong>mipermalink</strong>.'
+      publish:
+        title: 'Quieres publicar este Unlock?'
+        link: 'Sí, quiero publicar este Unlock'
+      revert_to_draft:
+        title: 'Quieres volver este Unlock a borrador?'
+        link: 'Sí, quiero volver a borrador'
+      delete:
+        title: 'Quieres excluir este Unlock?'
+        link: 'Sí, quiero excluir este Unlock'
+    contributions:
+      base_form:
+        value: Con cuanto quieres aportar por mes?
+        info: 'Suscripción mensual cobrada por el medio de pagos %{link}. Puedes suspender <a href="/my_contributions">a qualquier momento</a>.'
+      sandbox_warning:
+        title: 'Atención! Este unlock se encuentra en ambiente de pruebas (Sandbox) en %{gateway}.'
+        items:
+          first: 'Ningún aporte realizado en este ambiente será concretado.'
+          second: 'Puedes probar libremente, sin miedo a ser cobrado.'
+      show:
+        thank_you: 'Muchas gracias por tu aporte para %{initiative}!'
+        summary: 'Aporte realizado día %{created_at}, %{sandbox}en %{gateway}'
+        gateway_identifier: 'Tu código de suscripción es <strong>%{gateway_identifier}</strong>'
+        payments: 'Tus pagos mensuales serán procesados por %{link}.'
+        suspend: 'Si quieres suspender tu aporte, basta acceder al menú <a href="/my_contributions">Unlocks aportados</a> a qualquier momento.'
+        next_invoice: 'Tu próximo pago será realizado en %{date}.'
+    gateways:
+      edit:
+        title: "Título del medio de pago que va a aparecer en la página de aporte. Deja en blanco para usar el estándar '%{gateway}'."
+        ordering: 'Los medios de pago de tu Unlock van a aparecer en orden en la página de aporte, de acuerdo al número que llenes aquí.'
