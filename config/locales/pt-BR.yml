@@ -57,7 +57,7 @@ pt-BR:
         address_zipcode: CEP
         image: Foto
       contribution:
-        value: R$/mês
+        value: Valor mensal
         state: Status
         hide_name: Não quero divulgar meu nome
         hide_value: Não quero divulgar o valor do meu apoio
@@ -119,6 +119,8 @@ pt-BR:
         title: 'Quer excluir este Unlock?'
         link: 'Sim, quero excluir este Unlock'
     contributions:
+      new:
+        submit: 'Realizar pagamento com o %{gateway}'
       base_form:
         value: Com quanto você quer apoiar por mês?
         info: 'Assinatura mensal cobrada pelo meio de pagamentos %{link}. Você pode suspender <a href="/my_contributions">a qualquer momento</a>.'

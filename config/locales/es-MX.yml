@@ -54,10 +54,10 @@ es-MX:
         address_zipcode: Código postal
         image: Foto
       contribution:
-        value: R$/mes
+        value: Valor mensual
         state: Status
         hide_name: No quiero divulgar mi nombre
-        hide_value: No quiero divulgar o valor do meu apoio
+        hide_value: No quiero divulgar el valor de mi aporte
         hide_name?: 'Aportador anónimo'
       initiative:
         image: Imagen
@@ -116,6 +116,8 @@ es-MX:
         title: 'Quieres excluir este Unlock?'
         link: 'Sí, quiero excluir este Unlock'
     contributions:
+      new:
+        submit: 'Realizar pago con %{gateway}'
       base_form:
         value: Con cuanto quieres aportar por mes?
         info: 'Suscripción mensual cobrada por el medio de pagos %{link}. Puedes suspender <a href="/my_contributions">a qualquier momento</a>.'

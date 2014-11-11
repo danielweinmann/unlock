@@ -45,6 +45,6 @@ article
         li== t('.next_invoice', date: @contribution.next_invoice_date)
       .links
         - if @contribution.can_activate?
-          = link_to t('activerecord.state_machines.contribution.state.events.activate'), "#{@contribution.gateway.path}/#{@contribution.id}/activate", method: :put, class: "button"
+          = link_to t('activerecord.state_machines.contribution.state.events.activate'), "/#{I18n.locale}#{@contribution.gateway.path}/#{@contribution.id}/activate", method: :put, class: "button"
         - if @contribution.can_suspend?
-          = link_to t('activerecord.state_machines.contribution.state.events.suspend'), "#{@contribution.gateway.path}/#{@contribution.id}/suspend", method: :put, class: "button suspend"
+          = link_to t('activerecord.state_machines.contribution.state.events.suspend'), "/#{I18n.locale}#{@contribution.gateway.path}/#{@contribution.id}/suspend", method: :put, class: "button suspend"
