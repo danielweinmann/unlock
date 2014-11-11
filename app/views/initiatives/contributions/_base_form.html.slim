@@ -2,6 +2,6 @@
 = form.hidden_field :initiative_id
 = form.hidden_field :gateway_id, value: gateway.id
 h3= t('.value')
-= form.label :value
+= form.label :value, "#{Contribution.human_attribute_name(:value)} (#{gateway.initiative.display_currency(true)})"
 = form.text_field :value, class: "has_em money"
 em== t('.info', link: link_to(gateway.name, gateway.url, target: :_blank))

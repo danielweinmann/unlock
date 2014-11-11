@@ -1,7 +1,12 @@
 module InitiativeDecorator
 
-  def display_currency
-    @display_currency ||= Money::Currency.new(self.currency).symbol
+  def display_currency(display_name = false)
+    @display_currency ||= Money::Currency.new(self.currency)
+    if display_name
+      "#{@display_currency.name} - #{@display_currency.symbol}"
+    else
+      @display_currency.symbol
+    end
   end
 
   def total_value
