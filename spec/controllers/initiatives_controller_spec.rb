@@ -13,7 +13,7 @@ RSpec.describe InitiativesController, type: :controller do
       get :index
     end
 
-    it{ is_expected.to redirect_to root_path }
+    it{ is_expected.to redirect_to initiatives_path }
   end
 
   describe "GET show" do
@@ -21,7 +21,7 @@ RSpec.describe InitiativesController, type: :controller do
       get :show, id: unlock_initiative.permalink
     end
 
-    it{ is_expected.to redirect_to initiative_by_permalink_path(unlock_initiative) }
+    it{ is_expected.to redirect_to initiative_path(unlock_initiative) }
   end
 
   describe "GET new" do
