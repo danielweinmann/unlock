@@ -5,12 +5,14 @@ ruby '2.0.0'
 gem 'rails', '4.1.6'
 
 # Database and model related
-gem 'inherited_resources'
 gem 'pg'
 gem 'state_machine'
 gem 'paperclip', '~> 4.1.1'
 gem 'paperclip-meta'
 gem 'schema_plus'
+
+# Controller related
+gem 'responders'
 
 # Authentication and authorization
 gem 'devise'
@@ -18,7 +20,7 @@ gem 'pundit'
 
 # I18n
 gem 'devise-i18n'
-gem 'devise-i18n-views'
+gem 'devise-i18n-views', github: 'danielweinmann/devise-i18n-views'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 
 # Views and assets
@@ -49,11 +51,11 @@ gem 'rack-timeout'
 
 # Payment gateways
 gem 'paypal-recurring', '1.1.1', github: 'danielweinmann/paypal-recurring', branch: 'master'
-gem 'unlock_moip', '0.1.0'
-gem 'unlock_paypal', '0.1.0'
-# gem 'unlock_gateway', path: '../unlock_gateway'
-# gem 'unlock_moip', path: '../unlock_moip'
-# gem 'unlock_paypal', path: '../unlock_paypal'
+# gem 'unlock_moip', '0.1.0'
+# gem 'unlock_paypal', '0.1.0'
+gem 'unlock_gateway', path: '../unlock_gateway'
+gem 'unlock_moip', path: '../unlock_moip'
+gem 'unlock_paypal', path: '../unlock_paypal'
 
 group :test, :development do
   gem 'rspec-rails'

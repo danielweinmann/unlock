@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module InitiativeDecorator
 
   def total_value

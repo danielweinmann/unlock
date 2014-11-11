@@ -1,36 +1,36 @@
 class Initiatives::GatewaysController < StateController
 
-  inherit_resources
-  actions :all, except: [:index, :show, :destroy]
-  custom_actions resource: %i[use_sandbox use_production revert_to_draft]
-  belongs_to :initiative, parent_class: Initiative
+  before_action :set_initiative
+  before_action :set_gateway, except: %i[new create]
+
   respond_to :html
 
   after_action :verify_policy_scoped, only: %i[]
 
   def new
-    new! do
-      authorize resource
-      module_names = @initiative.gateways.map(&:module_name)
-      @gateways = @initiative.available_gateways
-    end
+    @gateway = @initiative.gateways.new
+    authorize @gateway
+    module_names = @initiative.gateways.map(&:module_name)
+    @gateways = @initiative.available_gateways
+    respond_with @gateway
   end
 
   def create
-    @initiative = Initiative.find(params[:initiative_id])
     @gateway = @initiative.gateways.new(gateway_params)
     @gateways = @initiative.available_gateways
     authorize @gateway
-    create!(notice: "Meio de pagamento adicionado com sucesso!") { @initiative }
+    @gateway.save
+    respond_with @gateway, location: -> { @initiative }
   end
 
   def edit
-    edit! { authorize resource }
+    authorize @gateway
   end
 
   def update
-    authorize resource
-    update!(notice: "Configurações atualizadas com sucesso!") { @initiative }
+    authorize @gateway
+    @gateway.update(gateway_params)
+    respond_with @gateway, location: -> { @initiative }
   end
 
   def use_production
@@ -47,8 +47,12 @@ class Initiatives::GatewaysController < StateController
 
   private
 
-  def permitted_params
-    params.permit(gateway: policy(@gateway || Gateway.new).permitted_attributes)
+  def set_initiative
+    @initiative = Initiative.find(params[:initiative_id])
+  end
+
+  def set_gateway
+    @gateway = @initiative.gateways.find(params[:id])
   end
 
   def gateway_params
@@ -56,7 +60,7 @@ class Initiatives::GatewaysController < StateController
   end
 
   def transition_state(transition)
-    super(transition, resource.initiative)
+    super(@gateway, transition, @initiative)
   end
 
 end

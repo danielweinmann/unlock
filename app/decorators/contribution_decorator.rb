@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module ContributionDecorator
 
   def display_value

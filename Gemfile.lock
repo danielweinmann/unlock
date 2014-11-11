@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/danielweinmann/devise-i18n-views.git
+  revision: a27a65509ab99d8f093eaf4214220db2c2316ba8
+  specs:
+    devise-i18n-views (0.3.2)
+
+GIT
   remote: git://github.com/danielweinmann/paypal-recurring.git
   revision: b04b9fbdd5bd5122879d08671fdf3bbbfc3211af
   branch: master
@@ -13,6 +19,28 @@ GIT
     rails-i18n (4.0.3)
       i18n (~> 0.6)
       railties (~> 4.0)
+
+PATH
+  remote: ../unlock_gateway
+  specs:
+    unlock_gateway (0.1.0)
+      rails (~> 4.1.6)
+
+PATH
+  remote: ../unlock_moip
+  specs:
+    unlock_moip (0.1.0)
+      moip-assinaturas (= 0.4.2)
+      rails (~> 4.1.6)
+      unlock_gateway (= 0.1.0)
+
+PATH
+  remote: ../unlock_paypal
+  specs:
+    unlock_paypal (0.1.0)
+      paypal-recurring
+      rails (~> 4.1.6)
+      unlock_gateway (= 0.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -83,15 +111,11 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-i18n (0.11.1)
-    devise-i18n-views (0.3.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
     fb-channel-file (0.0.2)
       rails (>= 3.0)
-    has_scope (0.6.0.rc)
-      actionpack (>= 3.2, < 5)
-      activesupport (>= 3.2, < 5)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     high_voltage (2.2.1)
@@ -103,9 +127,6 @@ GEM
     icomoon-rails (0.1.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
-    inherited_resources (1.5.0)
-      has_scope (~> 0.6.0.rc)
-      responders (~> 1.0)
     jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -246,16 +267,6 @@ GEM
       RedCloth
       auto_html (= 1.5.1)
       rails (~> 4.1.6)
-    unlock_gateway (0.1.0)
-      rails (~> 4.1.6)
-    unlock_moip (0.1.0)
-      moip-assinaturas (= 0.4.2)
-      rails (~> 4.1.6)
-      unlock_gateway (= 0.1.0)
-    unlock_paypal (0.1.0)
-      paypal-recurring
-      rails (~> 4.1.6)
-      unlock_gateway (= 0.1.0)
     valuable (0.9.8)
     warden (1.2.3)
       rack (>= 1.0)
@@ -271,12 +282,11 @@ DEPENDENCIES
   coffee-rails
   devise
   devise-i18n
-  devise-i18n-views
+  devise-i18n-views!
   fb-channel-file
   heroku-deflater (>= 0.4.1)
   high_voltage
   icomoon-rails
-  inherited_resources
   jbuilder
   jquery-rails
   letter_opener
@@ -294,6 +304,7 @@ DEPENDENCIES
   rails (= 4.1.6)
   rails-i18n!
   rails_12factor
+  responders
   rest_in_place
   rspec-rails
   sass-rails
@@ -307,5 +318,6 @@ DEPENDENCIES
   underscore-rails
   unicorn
   unlock_auto_html
-  unlock_moip (= 0.1.0)
-  unlock_paypal (= 0.1.0)
+  unlock_gateway!
+  unlock_moip!
+  unlock_paypal!

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module UserDecorator
 
   def display_name

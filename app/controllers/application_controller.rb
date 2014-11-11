@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   force_ssl if: :in_production?
 
+  responders :flash, :location
+
   def in_production?
     Rails.env.production?
   end
@@ -55,7 +57,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
-    flash[:error] = I18n.t "pundit.#{policy_name}.#{exception.query}", default: 'Você não possui as permissões necessárias para realizar esta ação.'
+    flash[:alert] = t('flash.not_authorized')
     redirect_to(request.referrer || root_path)
   end
 

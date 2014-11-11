@@ -55,16 +55,14 @@ pt-BR:
         initiative: Unlock
         title: Título
         ordering: Ordem
-  time:
-    formats:
-      medium: ! '%a, %-d/%-m, %k:%M'
-      medium_short: ! '%-d/%-m, %k:%M'
-      time: ! '%H:%M'
-      week: ! '%A'
-  devise:
-    passwords:
-      edit:
-        change_my_password: Alterar minha senha
-        change_your_password: Alterar sua senha
-        confirm_new_password: Confirme sua nova senha
-        new_password: Nova senha
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} criado com sucesso.'
+        alert: '%{resource_name} não pôde ser criado.'
+      update:
+        notice: '%{resource_name} atualizado com sucesso.'
+      destroy:
+        notice: '%{resource_name} excluído com sucesso.'
+        alert: '%{resource_name} não pôde ser excluído.'
+    not_authorized: 'Você não possui as permissões necessárias para realizar esta ação.'

@@ -1,10 +1,7 @@
-#coding: utf-8
-
 class InitiativesController < StateController
   
-  inherit_resources
-  actions :all, except: [:create, :edit]
-  custom_actions collection: %i[sitemap]
+  before_action :set_initiative, only: %i[update destroy publish revert_to_draft]
+
   respond_to :html, except: [:sitemap]
   respond_to :xml, only: [:sitemap]
   respond_to :json, only: [:update, :show]
@@ -15,64 +12,68 @@ class InitiativesController < StateController
 
   def index
     @initiatives = policy_scope(Initiative).home_page
-    index!
+    return redirect_to :root unless request.path == '/'
+    respond_with @initiatives
   end
 
   def show
     @initiative = Initiative.find_by_permalink(params[:id])
-    @initiative = Initiative.find_by_id(params[:id]) unless @initiative
-    authorize @initiative if @initiative
-    show! do |format|
-      format.html do
-        return redirect_to initiative_by_permalink_path(params[:id]) unless request.path == "/#{params[:id]}"
-      end
+    @initiative = Initiative.find_by_id!(params[:id]) unless @initiative
+    authorize @initiative
+    unless request.path.match(/\A\/#{@initiative.to_param}(\.\w+)?\z/)
+      format = request.format.symbol
+      return redirect_to initiative_by_permalink_path("#{@initiative.to_param}#{".#{format}" unless format == :html}")
     end
+    respond_with @initiative
   end
 
   def new
     @initiative = Initiative.new
     authorize @initiative
     @initiative.user = current_user
+    resource_name = @initiative.class.model_name.human
     if @initiative.save
-      flash[:success] = "Unlock criado com sucesso! Agora, é só editar :D"
+      flash[:notice] = t('flash.actions.create.notice', resource_name: resource_name)
       redirect_to initiative_by_permalink_path(@initiative)
     else
-      flash[:failure] = "Ooops. Ocorreu um erro ao criar seu Unlock."
+      flash[:alert] = t('flash.actions.create.alert', resource_name: resource_name)
       redirect_to :root
     end
   end
 
   def update
-    authorize resource
-    update!(notice: "Unlock atualizado com sucesso :D")
+    authorize @initiative
+    @initiative.update(initiative_params)
+    respond_with @initiative
   end
 
   def destroy
-    authorize resource
-    destroy!(notice: "Unlock excluído com sucesso :D") { root_path }
+    authorize @initiative
+    @initiative.destroy
+    respond_with @initiative
   end
 
   def sitemap
     @initiatives = policy_scope(Initiative).home_page
-    sitemap!
+    respond_with @initiatives
   end
 
   def publish
-    transition_state(:publish)
+    transition_state(@initiative, :publish)
   end
 
   def revert_to_draft
-    transition_state(:revert_to_draft)
+    transition_state(@initiative, :revert_to_draft)
   end
 
   private
 
-  def permitted_params
-    params.permit(initiative: policy(@initiative || Initiative.new).permitted_attributes)
-  end
-
   def initiative_params
     params.require(:initiative).permit(*policy(@initiative || Initiative.new).permitted_attributes)
+  end
+
+  def set_initiative
+    @initiative = Initiative.find(params[:id])
   end
 
 end

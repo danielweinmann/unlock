@@ -2,16 +2,16 @@ class StateController < ApplicationController
 
   private
 
-  def transition_state(transition, redirect_path = nil)
+  def transition_state(resource, transition, redirect_path = nil)
     authorize resource
-    model = resource.class.model_name.human.downcase
+    resource_name = resource.class.model_name.human
     if resource.send("can_#{transition}?")
       resource.send("#{transition}!")
-      flash[:success] = "Status do #{model} alterado com sucesso!"
+      flash[:notice] = t('flash.actions.update.notice', resource_name: resource_name)
     else
-      flash[:failure] = "Ooops. Não foi possível alterar o status do #{model}."
+      flash[:alert] = t('flash.actions.update.alert', resource_name: resource_name)
     end
-    redirect_to redirect_path || resource
+    redirect_to (redirect_path || resource)
   end
 
 end

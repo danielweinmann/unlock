@@ -1,5 +1,3 @@
-#coding: utf-8
-
 class Contribution < ActiveRecord::Base
   MINIMUM_VALUE = 5
   

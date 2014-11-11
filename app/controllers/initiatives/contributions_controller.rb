@@ -1,8 +1,8 @@
 class Initiatives::ContributionsController < ApplicationController
 
-  inherit_resources
-  actions :all, except: [:edit, :create, :destroy]
-  belongs_to :initiative, parent_class: Initiative
+  before_action :set_initiative
+  before_action :set_contribution, only: %i[update show]
+
   respond_to :html, except: [:update]
   respond_to :json, only: [:index, :update, :show]
 
@@ -11,36 +11,45 @@ class Initiatives::ContributionsController < ApplicationController
   before_action :authenticate_user!, only: %i[new]
 
   def index
-    @initiative = Initiative.find(params[:initiative_id])
-    @contributions = policy_scope(Contribution).where(initiative: parent).visible
+    @contributions = policy_scope(Contribution).where(initiative: @initiative).visible
     # This will instantiate UserDecorator for the users
     @users = @contributions.map &:user
+    respond_with @contributions
   end
   
   def new    
-    new! do
-      @gateways = @initiative.gateways.without_state(:draft).order(:ordering)
-      @contribution.gateway = @gateways.first
-      @contribution.user = current_user
-      authorize @contribution
-    end
+    @contribution = @initiative.contributions.new
+    @gateways = @initiative.gateways.without_state(:draft).order(:ordering)
+    @contribution.gateway = @gateways.first
+    @contribution.user = current_user
+    authorize @contribution
+    respond_with @contribution
   end
   
   def update
-    authorize resource
-    update!
+    authorize @contribution
+    @contribution.update(contribution_params)
+    respond_with @contribution
   end
 
   def show
-    authorize resource
+    authorize @contribution
     @user = @contribution.user
-    show!
+    respond_with @contribution
   end
 
   private
 
-  def permitted_params
-    params.permit(contribution: policy(@contribution || Contribution.new).permitted_attributes)
+  def set_initiative
+    @initiative = Initiative.find(params[:initiative_id])
+  end
+
+  def set_contribution
+    @contribution = @initiative.contributions.find(params[:id])
+  end
+
+  def contribution_params
+    params.require(:contribution).permit(*policy(@contribution || Contribution.new).permitted_attributes)
   end
 
 end

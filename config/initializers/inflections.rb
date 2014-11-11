@@ -4,7 +4,6 @@
 # are locale specific, and you may define rules for as many different
 # locales as you wish. All of these examples are active by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'contribuição', 'contribuições'
   inflect.irregular 'apoia', 'apoiam'
 end
 

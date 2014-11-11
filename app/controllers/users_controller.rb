@@ -1,23 +1,26 @@
-#coding: utf-8
-
 class UsersController < ApplicationController
   
-  inherit_resources
-  actions :none
-  custom_actions resource: %i[my_contributions my_initiatives]
+  before_action :set_user
+
   respond_to :html
 
   after_action :verify_policy_scoped, only: %i[]
-  before_action :authenticate_user!, only: %i[my_contributions my_initiatives]
+  before_action :authenticate_user!
   
   def my_contributions
-    params[:id] = current_user.id
-    authorize resource
+    authorize @user
+    respond_with @user
   end
 
   def my_initiatives
-    params[:id] = current_user.id
-    authorize resource
+    authorize @user
+    respond_with @user
+  end
+
+  private
+
+  def set_user
+    @user = current_user
   end
 
 end

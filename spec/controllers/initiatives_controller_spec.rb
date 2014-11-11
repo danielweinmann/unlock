@@ -13,7 +13,7 @@ RSpec.describe InitiativesController, type: :controller do
       get :index
     end
 
-    it{ is_expected.to be_successful }
+    it{ is_expected.to redirect_to root_path }
   end
 
   describe "GET show" do

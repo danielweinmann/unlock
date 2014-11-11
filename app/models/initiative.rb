@@ -1,5 +1,3 @@
-#coding: utf-8
-
 class Initiative < ActiveRecord::Base
   
   belongs_to :user
