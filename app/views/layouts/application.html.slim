@@ -55,15 +55,15 @@ html
               = truncate current_user.name, length: 18
               span ▾
             nav
-              = link_to "Unlocks apoiados", my_contributions_path
-              = link_to "Unlocks criados", my_initiatives_path
-              = link_to "Perfil", edit_user_registration_path
+              = link_to t('my_contributions'), my_contributions_path
+              = link_to t('my_initiatives'), my_initiatives_path
+              = link_to t('profile'), edit_user_registration_path
               hr
-              = link_to "Sair", destroy_user_session_path, method: :delete
+              = link_to t('logout'), destroy_user_session_path, method: :delete
         - else
           nav.sign_in
-            = link_to "Cadastre-se", new_user_registration_path
-            = link_to "Login", new_user_session_path
+            = link_to t('devise.shared.links.sign_up'), new_user_registration_path
+            = link_to t('devise.shared.links.sign_in'), new_user_session_path
       = yield :pre_header
     - if content_for?(:header)
       #header_wrapper
@@ -85,39 +85,23 @@ html
         section.user
           nav
             - if current_user
-                = link_to "Unlocks apoiados", my_contributions_path
-                = link_to "Unlocks criados", my_initiatives_path
-                = link_to "Perfil", edit_user_registration_path
-                = link_to "Sair", destroy_user_session_path, method: :delete
+              = link_to t('my_contributions'), my_contributions_path
+              = link_to t('my_initiatives'), my_initiatives_path
+              = link_to t('profile'), edit_user_registration_path
+              = link_to t('logout'), destroy_user_session_path, method: :delete
             - elsif namespace != "devise"
-                = link_to "Cadastre-se", new_user_registration_path
-                = link_to "Login", new_user_session_path
+              = link_to t('devise.shared.links.sign_up'), new_user_registration_path
+              = link_to t('devise.shared.links.sign_in'), new_user_session_path
         section.links
           h5
-            a href='https://unlock.fund/unlock' target='_blank' Sobre
+            a href='https://unlock.fund/unlock' target='_blank'= t('about')
           h5
-            a href='https://www.facebook.com/groups/unlock.fund/' target='_blank' Contato e ajuda
+            a href='https://www.facebook.com/groups/unlock.fund/' target='_blank'= t('help')
           h5
-            a href='https://unlock.fund/pages/terms' target='_blank' Termos de uso
+            a href='https://unlock.fund/pages/terms' target='_blank'= t('terms')
         section.credits
           h4
             = link_to :root do
               = image_tag 'logo_footer.png', alt: "Unlock", title: "Unlock"
-          h5
-            = "Feito com amor e "
-            = link_to 'Open Source', 'https://github.com/danielweinmann/unlock', target: :_blank
-            = " em 2014 ♥"
-          h5
-            = "Por "
-            = link_to 'Daniel Weinmann', 'http://fb.com/danielweinmann', target: :_blank
-            = ", co-criador do "
-            = link_to 'Catarse', 'http://catarse.me', target: :_blank
-            = " e da "
-            = link_to 'Engage', 'http://engage.is', target: :_blank
-            = ", e "
-            = link_to 'Daniel Larusso', 'http://larusso.com.br', target: :_blank
-            = ", co-criador do "
-            = link_to 'Nós.vc', 'http://nos.vc', target: :_blank
-            = " e do "
-            = link_to 'Estaleiro Liberdade', 'http://estaleiroliberdade.com.br', target: :_blank
-            = "."
+          h5== t('.love')
+          h5== t('.by')

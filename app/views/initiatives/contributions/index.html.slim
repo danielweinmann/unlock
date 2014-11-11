@@ -6,4 +6,4 @@ article
   - if @contributions.exists?
     ul.contributions= render @contributions
   - else
-    em= t('empty')
+    em= t('empty', model: Contribution.model_name.human.downcase)

@@ -1,7 +1,7 @@
 - content_for :title do
-  = "Adicionar meio de pagamento"
+  = "#{t('add')} #{Gateway.model_name.human.downcase}"
 = render partial: 'error_explanation', locals: { resource: @gateway }
 - if @gateways.empty?
-  em Você já adicionou todos os meios de pagamento disponíveis no Unlock.
+  em= t('empty', model: Gateway.model_name.human.downcase)
 - else
   ul.gateways= render @gateways

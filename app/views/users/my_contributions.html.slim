@@ -1,6 +1,6 @@
 - content_for :title do
-  = "Unlocks apoiados"
+  = t('my_contributions')
 - if @user.contributions.not_pending.exists?
   ul.contributions= render @user.contributions.not_pending
 - else
-  em Você ainda não realizou nenhum apoio
+  em= t('empty', model: Contribution.model_name.human.downcase)

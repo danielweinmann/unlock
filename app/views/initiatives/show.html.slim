@@ -23,25 +23,28 @@
     h2
       span.currency= "R$ "
       span.number= @initiative.total_value
-      div= "arrecadados por mês"
+      div= Initiative.human_attribute_name(:total_value).downcase
     h2
       span.number= @initiative.total_contributions
       div
-        = "pessoa".pluralize(@initiative.total_contributions)
+        - words = Initiative.human_attribute_name(:total_contributions).downcase.split(' ')
+        = words[0].pluralize(@initiative.total_contributions)
         = " "
-        = link_to "apoia".pluralize(@initiative.total_contributions), initiative_contributions_path(@initiative.id)
+        = link_to words[1].pluralize(@initiative.total_contributions), initiative_contributions_path(@initiative.id)
 article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
   - if @initiative.can_contribute?
     section.contribute
-      a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
+      a.button href=new_initiative_contribution_path(@initiative.id)
+        = t('contribute')
   - if @initiative.second_text.present?
     section.second_text= @initiative.second_text_html
     - if @initiative.second_text.length > 400 && @initiative.can_contribute?
       section.contribute
-        a.button href=new_initiative_contribution_path(@initiative.id) Apoiar
+        a.button href=new_initiative_contribution_path(@initiative.id)
+          = t('contribute')
   - if policy(@initiative).update?
     section.edit
-      h2 Editar
+      h2= t('helpers.submit.update', model: nil)
       .field#image
         = form_for(@initiative, url: initiative_path(@initiative.id)) do |form|
           = form.label :image
@@ -51,35 +54,35 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
         .editable data-attribute="name"= @initiative.name
       .field
         = label_tag :first_text, Initiative.human_attribute_name(:first_text)
-        .editable data-attribute="first_text" data-formtype="textarea" data-placeholder="Clique para editar"= @initiative.first_text
-        em Você pode usar #{ link_to 'Textile', 'http://txstyle.org/', target: :_blank }.
+        .editable data-attribute="first_text" data-formtype="textarea" data-placeholder= t('helpers.submit.update', model: nil)
+          = @initiative.first_text
+        em== t('.textile')
       .field
         = label_tag :second_text, Initiative.human_attribute_name(:second_text)
-        .editable data-attribute="second_text" data-formtype="textarea" data-placeholder="Clique para editar"= @initiative.second_text
-        em Você pode usar #{ link_to 'Textile', 'http://txstyle.org/', target: :_blank }.
+        .editable data-attribute="second_text" data-formtype="textarea" data-placeholder= t('helpers.submit.update', model: nil)
+          = @initiative.second_text
+        em== t('.textile')
       .field
         = label_tag :permalink, Initiative.human_attribute_name(:permalink)
-        .editable data-attribute="permalink" data-placeholder="Clique para editar"= @initiative.permalink
-        em
-          | Para habilitar apoios, é necessário escolher um permalink. Ele definirá seu endereço, como em http://unlock.fund/
-          strong meupermalink
-          | .
-      h2 Meios de pagamento
+        .editable data-attribute="permalink" data-placeholder== t('helpers.submit.update', model: nil)
+          = @initiative.permalink
+        em== t('.permalink')
+      h2= Gateway.model_name.human.pluralize
       - if @initiative.gateways.exists?
         ul.gateways= render @initiative.gateways.order(:ordering)
       - else
-        em.gateways Você ainda não configurou nenhum meio de pagamento.
+        em.gateways= t('empty', model: Gateway.model_name.human.downcase)
       .action
-        = link_to "Adicionar meio de pagamento", new_initiative_gateway_path(@initiative.id), class: 'button'
+        = link_to "#{t('add')} #{Gateway.model_name.human.downcase}", new_initiative_gateway_path(@initiative.id), class: 'button'
       - if @initiative.can_publish?
-        h2 Quer publicar este Unlock?
+        h2= t('.publish.title')
         .action
-          = link_to "Sim, quero publicar este Unlock", publish_initiative_path(@initiative.id), method: :put, class: 'button'
+          = link_to t('.publish.link'), publish_initiative_path(@initiative.id), method: :put, class: 'button'
       - if @initiative.can_revert_to_draft?
-        h2 Quer voltar este Unlock para rascunho?
+        h2= t('.revert_to_draft.title')
         .action
-          = link_to "Sim, quero voltar para rascunho", revert_to_draft_initiative_path(@initiative.id), method: :put, class: 'button'
+          = link_to t('.revert_to_draft.link'), revert_to_draft_initiative_path(@initiative.id), method: :put, class: 'button'
       - if policy(@initiative).destroy?
-        h2 Quer excluir este Unlock?
+        h2= t('.delete.title')
         .action
-          = link_to 'Sim, quero excluir este Unlock', initiative_path(@initiative.id), method: :delete, data: { confirm: 'Você está certo disso?' }, class: "button delete"
+          = link_to t('.delete.link'), initiative_path(@initiative.id), method: :delete, data: { confirm: t('confirm') }, class: "button delete"

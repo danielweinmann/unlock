@@ -1,7 +1,16 @@
 pt-BR:
-  empty: 'Nenhum registro encontrado.'
+  empty: 'Nenhum %{model} encontrado.'
   to: 'para'
   contribute: 'Apoiar'
+  add: 'Adicionar'
+  confirm: 'Você está certo disso?'
+  logout: 'Sair'
+  profile: 'Perfil'
+  my_contributions: 'Unlocks apoiados'
+  my_initiatives: 'Unlocks criados'
+  about: 'Sobre'
+  help: 'Contato e ajuda'
+  terms: 'Termos de uso'
   activerecord:
     state_machines:
       contribution:
@@ -60,6 +69,8 @@ pt-BR:
         first_text: Descrição curta
         second_text: Descrição longa
         permalink: Permalink
+        total_value: Arrecadados por mês
+        total_contributions: pessoa apoia
       gateway:
         initiative: Unlock
         title: Título
@@ -76,7 +87,38 @@ pt-BR:
         notice: '%{resource_name} excluído com sucesso.'
         alert: '%{resource_name} não pôde ser excluído.'
     not_authorized: 'Você não possui as permissões necessárias para realizar esta ação.'
+  layouts:
+    application:
+      love: 'Feito com amor e <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> em 2014 ♥'
+      by: 'Por <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-criador do <a href="http://catarse.me" target="_blank">Catarse</a> e da <a href="http://engage.is" target="_blank">Engage</a>, e <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-criador do <a href="http://nos.vc" target="_blank">Nós.vc</a> e do <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
   initiatives:
+    index:
+      title: 'Financiamento coletivo recorrente, sem taxa e sem curadoria'
+      h2: 'Crie seu financiamento coletivo recorrente'
+      h3: 'Compartilhe valor e receba todo mês'
+      description: 'Financiamento coletivo recorrente. Sem taxa e sem curadoria. Financie e sustente o que você quer que exista.'
+      keywords: 'plataforma financiamento coletivo recorrente sem taxa meio pagamento curadoria autonomia total financie sustente quer exista'
+      no_fee:
+        h2: 'Sem taxa'
+        h3: 'Só do meio de pagamento'
+      not_curated:
+        h2: 'Sem curadoria'
+        h3: 'Autonomia total'
+      text:
+        h2: 'Liberte potencial'
+        h3: 'Financie e sustente o que você quer que exista'
+    show:
+      textile: 'Você pode usar <a href="http://txstyle.org/" target="_blank">Textile</a>.'
+      permalink: 'Para habilitar apoios, é necessário escolher um permalink. Ele definirá seu endereço, como em http://unlock.fund/<strong>meupermalink</strong>.'
+      publish:
+        title: 'Quer publicar este Unlock?'
+        link: 'Sim, quero publicar este Unlock'
+      revert_to_draft:
+        title: 'Quer voltar este Unlock para rascunho?'
+        link: 'Sim, quero voltar para rascunho'
+      delete:
+        title: 'Quer excluir este Unlock?'
+        link: 'Sim, quero excluir este Unlock'
     contributions:
       base_form:
         value: Com quanto você quer apoiar por mês?
@@ -93,3 +135,7 @@ pt-BR:
         payments: 'Seus pagamentos mensais serão processados pelo %{link}.'
         suspend: 'Se você quiser suspender seu apoio, basta acessar o menu <a href="/my_contributions">Unlocks apoiados</a> a qualquer momento.'
         next_invoice: 'Sua próxima cobrança será realizada em %{date}.'
+    gateways:
+      edit:
+        title: "Título do meio de pagamento que irá aparecer na página de apoio. Deixe em branco para usar o padrão '%{gateway}'."
+        ordering: 'Os meios de pagamento de seu Unlock irão aparecer em ordem na página de apoio, de acordo com o número que você preencher aqui.'

@@ -5,4 +5,4 @@ li.gateway
     h5= gateway.description
     = form_for @gateway, url: initiative_gateways_path(@initiative.id), method: :post do |form|
       = form.hidden_field :module_name, value: gateway.module_name
-      = form.submit "Adicionar"
+      = form.submit t('add')

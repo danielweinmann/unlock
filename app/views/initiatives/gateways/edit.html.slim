@@ -1,16 +1,16 @@
 - content_for :title do
-  = "Configurações do #{@gateway.name}"
+  = "#{@gateway.name} · #{Gateway.human_attribute_name(:settings)}"
 = form_for @gateway, url: initiative_gateway_path(@initiative.id, @gateway), method: :put, html: { autocomplete: 'off' } do |form|
   = render partial: 'error_explanation', locals: { resource: @gateway }
   = form.label :title
   = form.text_field :title, class: "has_em"
-  em Título do meio de pagamento que irá aparecer na página de apoio. Deixe em branco para usar o padrão '#{@gateway.name}'.
+  em= t('.title', gateway: @gateway.name)
   = form.label :ordering
   = form.text_field :ordering, class: "has_em"
-  em Os meios de pagamento de seu Unlock irão aparecer em ordem na página de apoio, de acordo com o número que você preencher aqui.
+  em= t('.ordering')
   = form.fields_for :settings do |settings|
     - @gateway.available_settings.each do |setting|
       = settings.label setting.key, setting.title
       = settings.text_field setting.key, value: (@gateway.settings[setting.key.to_s] if @gateway.settings), class: "has_em"
       em== setting.description
-  .submit= form.submit "Salvar"
+  .submit= form.submit t('helpers.submit.submit', model: nil)

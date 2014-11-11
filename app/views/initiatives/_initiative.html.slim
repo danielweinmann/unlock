@@ -5,12 +5,13 @@ article.initiative
       h5
         span.currency= "R$ "
         span.number= initiative.total_value
-        div= "arrecadados por mês"
+        div= Initiative.human_attribute_name(:total_value).downcase
       h5
         span.number= initiative.total_contributions
         div
-          = "pessoa".pluralize(initiative.total_contributions)
-          = " apoia".pluralize(initiative.total_contributions)
+          - words = Initiative.human_attribute_name(:total_contributions).downcase.split(' ')
+          = words[0].pluralize(initiative.total_contributions)
+          = " #{words[1]}".pluralize(initiative.total_contributions)
     .info
       h3= truncate initiative.name, length: 48
       h4= truncate strip_tags(initiative.first_text_html), length: 140

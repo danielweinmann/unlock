@@ -1,36 +1,36 @@
 - suppress_headline_and_article!
 - suppress_logo!
 - content_for :title do
-  = "Financiamento coletivo recorrente, sem taxa e sem curadoria"
+  = t('.title')
 - content_for :url do
   = root_url
 - content_for :header do
   = link_to :root do
     h1= image_tag 'logo.png', alt: "Unlock", title: "Unlock"
-  h2 Crie seu financiamento coletivo recorrente
-  h3 Compartilhe valor e receba todo mês
-  section.new= link_to 'Criar', new_initiative_path, class: 'button'
+  h2= t('.h2')
+  h3= t('.h3')
+  section.new= link_to t('helpers.submit.create', model: nil), new_initiative_path, class: 'button'
 - content_for :post_header do
   ul
     li
       = image_tag "no_fee.png"
-      h2 Sem taxa
-      h3 Só do meio de pagamento
+      h2= t('.no_fee.h2')
+      h3= t('.no_fee.h3')
     li
       = image_tag "not_curated.png"
-      h2 Sem curadoria
-      h3 Autonomia total
+      h2= t('.not_curated.h2')
+      h3= t('.not_curated.h3')
 - content_for :meta_tags do
-  meta name="description" content="Financiamento coletivo recorrente. Sem taxa e sem curadoria. Financie e sustente o que você quer que exista."
-  meta name="keywords" content="unlock plataforma financiamento coletivo recorrente sem taxa meio pagamento curadoria autonomia total financie sustente quer exista"
-  meta property="og:title" content="Financie e sustente o que você quer que exista · Unlock"
+  meta name="description" content=t('.description')
+  meta name="keywords" content="unlock #{t('.keywords')}"
+  meta property="og:title" content="#{t('.title')} · Unlock"
   meta property="og:type" content="website"
   meta property="og:url" content=(root_url)
   meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
-  meta property="og:description" content="Financiamento coletivo recorrente. Sem taxa e sem curadoria. Financie e sustente o que você quer que exista."
-  meta name="author" content="Larusso e Weinmann"
+  meta property="og:description" content=t('.description')
+  meta name="author" content="Larusso + Weinmann"
 section.text
-  h2 Liberte potencial
-  h3 Financie e sustente o que você quer que exista
+  h2= t('.text.h2')
+  h3= t('.text.h3')
 - if @initiatives.exists?
   section.initiatives= render @initiatives
