@@ -1,8 +1,8 @@
 - suppress_headline_and_article!
 - content_for :title do
-  = "#{Gateway.model_name.human.pluralize} #{t('of')} #{@initiative.name}"
+  = "#{Gateway.model_name.human.pluralize} · #{@initiative.name}"
 article
-  h2== "#{Gateway.model_name.human.pluralize} #{t('of')} #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
+  h2== "#{Gateway.model_name.human.pluralize} · #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
   - if @initiative.gateways.exists?
     ul.gateways= render partial: 'gateways/gateway', collection: @initiative.gateways.order(:ordering)
   - else

@@ -4,7 +4,6 @@
 es:
   empty: 'Ninguno %{model} encontrado.'
   to: 'para'
-  of: 'de'
   contribute: 'Aportar'
   destroy: 'Excluir'
   add: 'Añadir'

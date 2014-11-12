@@ -1,3 +1,4 @@
+# TODO fix "nil?":{} attribute that is being mysteriously added
 json.id contribution.id
 json.user do |json|
   if contribution.hide_name?

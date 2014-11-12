@@ -6,6 +6,7 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'apoia', 'apoiam'
   inflect.irregular 'aporta', 'aportan'
+  inflect.irregular 'contribute', 'contribute'
   inflect.irregular 'meio de pagamento', 'meios de pagamento'
   inflect.irregular 'medio de pago', 'medios de pago'
 end

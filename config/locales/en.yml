@@ -1,2 +1,140 @@
+# These are the default english translations
+# US specific translations must be done in en-US locale
+# Great Britain specific translations must be done in en-GB locale
+# And so on...
 en:
+  empty: 'No %{model} found.'
   to: 'to'
+  contribute: 'Contribute'
+  destroy: 'Delete'
+  add: 'Add'
+  confirm: 'Are you sure?'
+  logout: 'Logout'
+  profile: 'Profile'
+  my_contributions: 'Contributed unlocks'
+  my_initiatives: 'Created unlocks'
+  about: 'About'
+  help: 'Contact and help'
+  terms: 'Terms of use'
+  activerecord:
+    state_machines:
+      initiative:
+        state:
+          events:
+            publish: Publish
+            revert_to_draft: Revert to draft
+      contribution:
+        state:
+          states:
+            pending: Pending
+            active: Active
+            suspended: Suspended
+          events:
+            activate: Activate
+            suspend: Suspend
+      gateway:
+        state:
+          states:
+            draft: Draft
+            sandbox: In test environment
+            production: In production
+          events:
+            use_sandbox: Use test environment
+            use_production: Use production environment
+            revert_to_draft: Revert to draft
+    models:
+      user: User
+      contribution: Contribution
+      gateway: Payment gateway
+    attributes:
+      user:
+        name: Name
+        full_name: Full name
+        document: Document
+        phone_area_code: Phone area code
+        phone_number: Phone number
+        birthdate: Birthdate
+        address_street: Address
+        address_number: Number
+        address_complement: Apartment
+        address_district: District
+        address_city: City
+        address_state: State
+        address_zipcode: ZIP code
+        image: Photo
+      contribution:
+        value: Monthly value
+        state: Status
+        hide_name: I don't want to share my name
+        hide_value: I don't want to share the value of my contribution
+        hide_name?: 'Anonymous contributor'
+      initiative:
+        image: Image
+        name: Title
+        first_text: Short description
+        second_text: Long description
+        permalink: Permalink
+        total_value: Contributed every month
+        total_contributions: person contribute
+        currency: Currency
+      gateway:
+        title: Title
+        ordering: Order
+        settings: Configurations
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} created successfully.'
+        alert: "%{resource_name} could't be created."
+      update:
+        notice: '%{resource_name} updated successfully.'
+      destroy:
+        notice: '%{resource_name} deleted successfully.'
+        alert: "%{resource_name} could't be deleted."
+    not_authorized: "You don't have the necessary permitions to perform this action."
+  layouts:
+    application:
+      love: 'Made with love and <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> in 2014 ♥'
+      by: 'By <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-creator of <a href="http://catarse.me" target="_blank">Catarse</a> and <a href="http://engage.is" target="_blank">Engage</a>, and <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-creator of <a href="http://nos.vc" target="_blank">Nós.vc</a> and <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
+  initiatives:
+    index:
+      title: 'Recurring crowdfunding, uncurated and with no fee'
+      h2: 'Create your recurring crowdfunding'
+      h3: 'Share value and receive every month'
+      description: 'Recurring crowdfunding. Uncurated and with no fee. Finance and maintain what you want to exist.'
+      keywords: 'platform crowdfunding recurring no fee payment gateway uncurated not curated total autonomy finance maintain want exist'
+      no_fee:
+        h2: 'No fee'
+        h3: "Only from payment gateway"
+      not_curated:
+        h2: 'Uncurated'
+        h3: 'Total autonomy'
+      text:
+        h2: 'Unlock potential'
+        h3: 'Finance and maintain what you want to exist'
+    edit:
+      textile: 'You can use <a href="http://txstyle.org/" target="_blank">Textile</a>.'
+      permalink: 'To enable contributions, you need to choose a permalink. It will define your address, as in http://unlock.fund/<strong>mypermalink</strong>.'
+      currency: '<strong>Attention</strong>: this is the currency that will be used by the payment gateways.'
+    contributions:
+      new:
+        submit: 'Pay with %{gateway}'
+      base_form:
+        value: With how much do you want to contribute every month?
+        info: 'Monthly subscription charged by the payment gateway %{link}. You can suspend it <a href="/my_contributions">anytime</a>.'
+      sandbox_warning:
+        title: 'Attention! This unlock is in test environment (Sandbox) at %{gateway}.'
+        items:
+          first: 'No contribution made in this environment will be completed.'
+          second: 'You can test freely, with no fear of being charged.'
+      show:
+        thank_you: 'Thank you for your contribution to %{initiative}!'
+        summary: 'Contribution made at %{created_at}, %{sandbox}with %{gateway}'
+        gateway_identifier: 'Your subscription code is <strong>%{gateway_identifier}</strong>'
+        payments: 'Your monthly payments will be processed by %{link}.'
+        suspend: 'If you want to suspend your contribution, just acces the menu <a href="/my_contributions">Contributed unlocks</a> at anytime.'
+        next_invoice: 'Your next payment will be made at %{date}.'
+    gateways:
+      edit:
+        title: "Title of the payment gateway that will be shown in your contribution page. Leave it blank to use the default '%{gateway}'."
+        ordering: 'The payment gateways of your unlock will be shown in order in your contribution page, according to the number you fill in here.'

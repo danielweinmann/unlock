@@ -1,8 +1,11 @@
 all:
   languages:
-    pt-BR: 'Português Brasileiro'
-    es-MX: 'Español Mexicano'
+    en-GB: 'Great Britain English'
     en-US: 'United States English'
+    es-MX: 'Español Mexicano'
+    es-CO: 'Español Colombiano'
+    pt-BR: 'Português Brasileiro'
+    pt-PT: 'Português de Portugal'
   activerecord:
     models:
       initiative: Unlock
