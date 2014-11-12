@@ -1,0 +1,5 @@
+all:
+  languages:
+    pt-BR: 'Português Brasileiro'
+    es-MX: 'Español Mexicano'
+    en-US: 'United States English'

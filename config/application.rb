@@ -16,13 +16,24 @@ module Unlock
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Brasilia'
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = 'pt-BR'
 
-    config.i18n.default_locale = :"pt-BR"
-    config.i18n.available_locales = [:"pt-BR", :"es-MX"]
-    config.i18n.fallbacks = true
+    # Available locales MUST include the country. Locales without country must be used only for fallbacks.
+    config.i18n.available_locales = ['pt-BR', 'es-MX', 'en-US']
+
+    config.i18n.fallbacks = {
+      # Spanish fallbacks
+      'es-MX' => 'es-419',
+      'es-419' => 'es',
+      # Portuguese fallbacks
+      'pt-BR' => 'pt',
+      #English fallbacks
+      'en-US' => 'en',
+      # All other default locales should fallback to 'all', which is a locale file for things that don't change between locales
+      'pt' => 'all',
+      'es' => 'all',
+      'en' => 'all'
+    }
 
     config.available_gateways = []
 

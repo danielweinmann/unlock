@@ -1,4 +1,8 @@
-pt-BR:
+# These are the default portuguese translations
+# Brazil specific translations must be done in pt-BR locale
+# Portugal/Iberia specific translations must be done in pt-PT locale
+# And so on...
+pt:
   empty: 'Nenhum %{model} encontrado.'
   to: 'para'
   of: 'de'
@@ -13,9 +17,6 @@ pt-BR:
   about: 'Sobre'
   help: 'Contato e ajuda'
   terms: 'Termos de uso'
-  languages:
-    pt-BR: 'Português Brasileiro'
-    es-MX: 'Español Mexicano'
   activerecord:
     state_machines:
       initiative:
