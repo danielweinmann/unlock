@@ -43,7 +43,6 @@ es:
             use_production: Usar ambiente de producción
             revert_to_draft: Volver a borrador
     models:
-      initiative: Unlock
       user: Usuario
       contribution: Aporte
       gateway: Medio de pago
@@ -79,7 +78,6 @@ es:
         total_contributions: persona aporta
         currency: Moneda
       gateway:
-        initiative: Unlock
         title: Título
         ordering: Orden
         settings: Configuraciones

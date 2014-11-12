@@ -116,5 +116,6 @@ html
         - if request.method == "GET" && I18n.available_locales.size > 1
           = flag_list 32 do
             - I18n.available_locales.map(&:to_s).sort.each do |locale|
-              = link_to params.merge(locale: locale) do
-                = flag(locale_country(locale), :title => t("languages.#{locale}"))
+              - if locale_country(locale)
+                = link_to params.merge(locale: locale) do
+                  = flag(locale_country(locale), :title => t("languages.#{locale}"))

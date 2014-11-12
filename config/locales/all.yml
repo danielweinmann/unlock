@@ -3,3 +3,9 @@ all:
     pt-BR: 'Português Brasileiro'
     es-MX: 'Español Mexicano'
     en-US: 'United States English'
+  activerecord:
+    models:
+      initiative: Unlock
+    attributes:
+      gateway:
+        initiative: Unlock

@@ -65,6 +65,8 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if params[:locale]
+      # Enforces locale with country
+      raise I18n::InvalidLocale, params[:locale].to_sym unless locale_country(params[:locale])
       I18n.locale = params[:locale]
       current_user.try(:set_locale, params[:locale])
     elsif request.method == "GET"
@@ -74,6 +76,7 @@ class ApplicationController < ActionController::Base
   end
 
   def locale_country(locale = nil)
+    return unless locale.match /-/
     country = (locale || I18n.locale).to_s.split('-')
     country.size > 1 ? country[1].downcase : country[0]
   end

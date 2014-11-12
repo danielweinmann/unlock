@@ -18,17 +18,17 @@ module Unlock
 
     config.i18n.default_locale = 'pt-BR'
 
-    # Available locales MUST include the country. Locales without country must be used only for fallbacks.
-    config.i18n.available_locales = ['pt-BR', 'es-MX', 'en-US']
+    # Locales shown to the user will be only the ones with country. The others are just used for fallbacks
+    config.i18n.available_locales = ['pt-BR', 'es-MX', 'en-US', 'en']
 
     config.i18n.fallbacks = {
+      #English fallbacks
+      'en-US' => 'en',
       # Spanish fallbacks
       'es-MX' => 'es-419',
       'es-419' => 'es',
-      # Portuguese fallbacks
+      # Portuguese fallbacks (default_locale fallback must come second to last!)
       'pt-BR' => 'pt',
-      #English fallbacks
-      'en-US' => 'en',
       # All other default locales should fallback to 'all', which is a locale file for things that don't change between locales
       'pt' => 'all',
       'es' => 'all',

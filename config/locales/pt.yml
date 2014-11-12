@@ -44,7 +44,6 @@ pt:
             use_production: Usar ambiente de produção
             revert_to_draft: Voltar a rascunho
     models:
-      initiative: Unlock
       user: Usuário
       contribution: Apoio
       gateway: Meio de pagamento
@@ -80,7 +79,6 @@ pt:
         total_contributions: pessoa apoia
         currency: Moeda
       gateway:
-        initiative: Unlock
         title: Título
         ordering: Ordem
         settings: Configurações
