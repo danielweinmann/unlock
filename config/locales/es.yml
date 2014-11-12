@@ -2,7 +2,7 @@
 # Latin america specific translations must be done in es-419 locale
 # Spain/Iberia specific translations must be done in es-ES locale
 es:
-  empty: 'Ninguno %{model} encontrado.'
+  empty: 'Ningún %{model} encontrado.'
   to: 'para'
   contribute: 'Aportar'
   destroy: 'Excluir'
