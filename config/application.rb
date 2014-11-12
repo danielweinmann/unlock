@@ -27,9 +27,7 @@ module Unlock
       # Spanish locales
       'es-MX', 'es-CO', 
       # English locales
-      'en-US',
-      # 'all' locale. A fallback for things that don't change between locales
-      'all'
+      'en-US'
     ]
 
     config.i18n.fallbacks = {
@@ -40,13 +38,9 @@ module Unlock
       'es-MX' => 'es-419',
       'es-CO' => 'es-419',
       'es-419' => 'es',
-      # Portuguese fallbacks (default_locale fallback must come second to last!)
+      # Portuguese fallbacks (default_locale fallback must come last!)
       'pt-PT' => 'pt',
-      'pt-BR' => 'pt',
-      # All other default locales should fallback to 'all', which is a locale file for things that don't change between locales
-      'pt' => 'all',
-      'es' => 'all',
-      'en' => 'all'
+      'pt-BR' => 'pt'
     }
 
     config.available_gateways = []

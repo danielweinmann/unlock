@@ -1,5 +1,0 @@
-all:
-  activerecord:
-    models:
-    attributes:
-      gateway:
