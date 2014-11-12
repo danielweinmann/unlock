@@ -16,6 +16,13 @@ pt:
   about: 'Sobre'
   help: 'Contato e ajuda'
   terms: 'Termos de uso'
+  languages:
+    en-GB: 'Great Britain English'
+    en-US: 'United States English'
+    es-MX: 'Español Mexicano'
+    es-CO: 'Español Colombiano'
+    pt-BR: 'Português Brasileiro'
+    pt-PT: 'Português de Portugal'
   activerecord:
     state_machines:
       initiative:
@@ -43,6 +50,7 @@ pt:
             use_production: Usar ambiente de produção
             revert_to_draft: Voltar a rascunho
     models:
+      initiative: Unlock
       user: Usuário
       contribution: Apoio
       gateway: Meio de pagamento
@@ -78,6 +86,7 @@ pt:
         total_contributions: pessoa apoia
         currency: Moeda
       gateway:
+        initiative: Unlock
         title: Título
         ordering: Ordem
         settings: Configurações
