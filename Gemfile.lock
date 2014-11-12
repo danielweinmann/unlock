@@ -1,15 +1,15 @@
 GIT
-  remote: git://github.com/danielweinmann/devise-i18n-views.git
-  revision: a27a65509ab99d8f093eaf4214220db2c2316ba8
-  specs:
-    devise-i18n-views (0.3.2)
-
-GIT
   remote: git://github.com/danielweinmann/paypal-recurring.git
   revision: b04b9fbdd5bd5122879d08671fdf3bbbfc3211af
   branch: master
   specs:
     paypal-recurring (1.1.1)
+
+GIT
+  remote: git://github.com/mcasimir/devise-i18n-views.git
+  revision: f00547dede8f1d4b7d87416d921d6ad0f88ec77c
+  specs:
+    devise-i18n-views (0.3.2)
 
 GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
