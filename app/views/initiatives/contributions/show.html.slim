@@ -12,7 +12,7 @@ article
       == "#{Contribution.model_name.human} #{t('to')} #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
   .contribution
     .image
-      - if @contribution.hide_name? && !policy(@contribution).update?
+      - if @contribution.hide_name? && !policy(@initiative).update? && !policy(@contribution).update?
         = image_tag('user.svg')
       - else
         = @contribution.user.display_image
@@ -24,7 +24,7 @@ article
           = mail_to @contribution.user.email, @contribution.user.display_name
         - else
           = @contribution.user.display_name
-      - unless @contribution.hide_value? && !policy(@contribution).update?
+      - unless @contribution.hide_value? && !policy(@initiative).update? && !policy(@contribution).update?
         h5= @contribution.display_value
       em== t('.summary', created_at: l(@contribution.created_at, format: :short), sandbox: ("<strong>#{t('activerecord.state_machines.gateway.state.states.sandbox').downcase}</strong> " if @contribution.gateway_state == 'sandbox'), gateway: @contribution.gateway.name)
       - if policy(@contribution).update?
