@@ -1,6 +1,6 @@
 class InitiativesController < StateController
   
-  before_action :set_initiative, only: %i[edit update destroy publish revert_to_draft]
+  before_action :set_initiative, except: %i[index new sitemap]
 
   respond_to :html, except: [:sitemap]
   respond_to :xml, only: [:sitemap]
@@ -17,8 +17,6 @@ class InitiativesController < StateController
   end
 
   def show
-    @initiative = Initiative.find_by_permalink(params[:id])
-    @initiative = Initiative.find_by_id!(params[:id]) unless @initiative
     authorize @initiative
     unless request.path.match(/\A\/#{params[:locale]}\/#{@initiative.to_param}(\.\w+)?\z/)
       format = request.format.symbol
@@ -77,7 +75,14 @@ class InitiativesController < StateController
   end
 
   def set_initiative
-    @initiative = Initiative.find(params[:id])
+    @initiative ||= Initiative.find_by_permalink(params[:id])
+    @initiative ||= Initiative.find(params[:id])
+  end
+
+  def allow_default_locales?
+    return false unless params[:id]
+    set_initiative
+    policy(@initiative).update?
   end
 
 end

@@ -19,7 +19,7 @@ class Initiatives::ContributionsController < ApplicationController
   
   def new    
     @contribution = @initiative.contributions.new
-    @gateways = @initiative.gateways.without_state(:draft).order(:ordering)
+    @gateways = @initiative.gateways.without_state(:draft).ordered
     @contribution.gateway = @gateways.first
     @contribution.user = current_user
     authorize @contribution

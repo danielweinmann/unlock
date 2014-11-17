@@ -99,6 +99,8 @@ GEM
       rack (>= 1.4.5)
     high_voltage (2.2.1)
     hike (1.2.3)
+    hstore_translate (1.0.0)
+      activerecord (>= 3.1.0)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -289,6 +291,7 @@ DEPENDENCIES
   fb-channel-file
   heroku-deflater (>= 0.4.1)
   high_voltage
+  hstore_translate
   icomoon-rails
   jbuilder
   jquery-rails

@@ -4,7 +4,7 @@
 article
   h2== "#{Gateway.model_name.human.pluralize} · #{link_to @initiative.name, initiative_by_permalink_path(@initiative)}"
   - if @initiative.gateways.exists?
-    ul.gateways= render partial: 'gateways/gateway', collection: @initiative.gateways.order(:ordering)
+    ul.gateways= render partial: 'gateways/gateway', collection: @initiative.gateways.ordered
   - else
     em.gateways= t('empty', model: Gateway.model_name.human.downcase)
   .action= link_to "#{t('add')} #{Gateway.model_name.human.downcase}", new_initiative_gateway_path(@initiative.id), class: 'button'

@@ -1,5 +1,7 @@
 class Gateway < ActiveRecord::Base
 
+  translates :title, :ordering
+
   belongs_to :initiative
   validates :module_name, uniqueness: { scope: :initiative_id }
   validates_presence_of :initiative, :module_name
@@ -26,6 +28,10 @@ class Gateway < ActiveRecord::Base
       transition [:sandbox, :production] => :draft
     end
 
+  end
+
+  def self.ordered
+    order("ordering_translations -> '#{I18n.locale}'")
   end
 
   def self.register name

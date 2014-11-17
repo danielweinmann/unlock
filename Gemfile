@@ -10,6 +10,7 @@ gem 'state_machine'
 gem 'paperclip', '~> 4.1.1'
 gem 'paperclip-meta'
 gem 'schema_plus'
+gem 'hstore_translate'
 
 # Controller related
 gem 'responders'

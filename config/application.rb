@@ -21,7 +21,7 @@ module Unlock
     # Locales shown to the user will be only the ones with country. The others are just used for fallbacks
     config.i18n.available_locales = [
       # Default locales
-      'pt', 'es', 'en',
+      'pt', 'es', 'en', 'es-419',
       # Portuguese locales 
       'pt-BR',
       # Spanish locales

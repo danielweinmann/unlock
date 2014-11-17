@@ -4,6 +4,8 @@ class Initiative < ActiveRecord::Base
   has_many :contributions
   has_many :gateways
 
+  translates :name, :first_text, :second_text
+
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 

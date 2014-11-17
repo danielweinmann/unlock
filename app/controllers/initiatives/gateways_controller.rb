@@ -68,4 +68,9 @@ class Initiatives::GatewaysController < StateController
     super(@gateway, transition, initiative_gateways_path(@initiative.id))
   end
 
+  def allow_default_locales?
+    set_initiative
+    policy(@initiative).update?
+  end
+
 end
