@@ -8,7 +8,7 @@ article
     = form.label :image
     = form.file_field :image
     = form.label :name
-    = form.text_field :name
+    = form.text_field :name, value: @initiative.name
     = form.label :first_text
     = form.text_area :first_text, class: 'has_em'
     em== t('.textile')
