@@ -1,6 +1,6 @@
 - suppress_headline_and_article!
 - content_for :title do
-  = @initiative.name
+  == strip_tags(@initiative.name)
 - content_for :meta_tags do
   meta name="description" content=strip_tags(@initiative.first_text_html)
   meta name="keywords" content=strip_tags(@initiative.first_text_html)
