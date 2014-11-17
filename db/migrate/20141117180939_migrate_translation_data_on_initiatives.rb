@@ -1,6 +1,6 @@
 class MigrateTranslationDataOnInitiatives < ActiveRecord::Migration
   def up
-    execute("UPDATE initiatives SET name_translations = ('pt => \"' || name || '\"')::hstore, first_text_translations = ('pt => \"' || first_text || '\"')::hstore, second_text_translations = ('pt => \"' || second_text || '\"')::hstore")
+    execute("UPDATE initiatives SET name_translations = ('pt => \"' || REPLACE(name, '\"', '\"') || '\"')::hstore, first_text_translations = ('pt => \"' || REPLACE(first_text, '\"', '\"') || '\"')::hstore, second_text_translations = ('pt => \"' || REPLACE(second_text, '\"', '\"') || '\"')::hstore")
     remove_column :initiatives, :name
     remove_column :initiatives, :first_text
     remove_column :initiatives, :second_text
