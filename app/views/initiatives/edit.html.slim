@@ -7,11 +7,17 @@ article
     = render partial: 'error_explanation', locals: { resource: @initiative }
     = form.label :image
     = form.file_field :image
+    = flag_list 32 do
+        = flag(locale_country(I18n.locale, true), :title => t("languages.#{I18n.locale}"))
     = form.label :name
     = form.text_field :name, value: @initiative.name
+    = flag_list 32 do
+        = flag(locale_country(I18n.locale, true), :title => t("languages.#{I18n.locale}"))
     = form.label :first_text
     = form.text_area :first_text, value: @initiative.first_text, class: 'has_em'
     em== t('.textile')
+    = flag_list 32 do
+        = flag(locale_country(I18n.locale, true), :title => t("languages.#{I18n.locale}"))
     = form.label :second_text
     = form.text_area :second_text, value: @initiative.second_text, class: 'has_em'
     em== t('.textile')

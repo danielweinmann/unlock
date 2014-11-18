@@ -2,9 +2,13 @@
   = "#{@gateway.name} · #{Gateway.human_attribute_name(:settings)}"
 = form_for @gateway, url: initiative_gateway_path(@initiative.id, @gateway), method: :put, html: { autocomplete: 'off' } do |form|
   = render partial: 'error_explanation', locals: { resource: @gateway }
+  = flag_list 32 do
+      = flag(locale_country(I18n.locale, true), :title => t("languages.#{I18n.locale}"))
   = form.label :title
   = form.text_field :title, value: @gateway.title, class: "has_em"
   em= t('.title', gateway: @gateway.name)
+  = flag_list 32 do
+      = flag(locale_country(I18n.locale, true), :title => t("languages.#{I18n.locale}"))
   = form.label :ordering
   = form.text_field :ordering, value: @gateway.ordering, class: "has_em"
   em= t('.ordering')

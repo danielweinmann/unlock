@@ -17,6 +17,9 @@ pt:
   help: 'Contato e ajuda'
   terms: 'Termos de uso'
   languages:
+    pt: 'Português'
+    es: 'Español'
+    en: 'English'
     en-GB: 'Great Britain English'
     en-US: 'United States English'
     es-MX: 'Español Mexicano'

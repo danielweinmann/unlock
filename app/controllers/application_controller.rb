@@ -78,7 +78,8 @@ class ApplicationController < ActionController::Base
   def locale_country(locale, allow_default_locales = false)
     country = locale.to_s.split('-')
     if allow_default_locales
-      country.size > 1 ? country[1] : country[0]
+      country = ["en", "GB"] if country == ["en"]
+      country.size > 1 ? country[1].downcase : country[0]
     else
       return unless country && country.size > 1 && country[1] != '419'
       country[1].downcase
