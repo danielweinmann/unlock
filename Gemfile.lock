@@ -259,16 +259,16 @@ GEM
       RedCloth
       auto_html (= 1.5.1)
       rails (~> 4.1.6)
-    unlock_gateway (0.2.0)
+    unlock_gateway (0.2.1)
       rails (~> 4.1.6)
-    unlock_moip (0.2.0)
+    unlock_moip (0.2.1)
       moip-assinaturas (= 0.4.2)
       rails (~> 4.1.6)
-      unlock_gateway (= 0.2.0)
-    unlock_paypal (0.5.0)
+      unlock_gateway (= 0.2.1)
+    unlock_paypal (0.5.1)
       paypal-recurring
       rails (~> 4.1.6)
-      unlock_gateway (= 0.2.0)
+      unlock_gateway (= 0.2.1)
     valuable (0.9.8)
     warden (1.2.3)
       rack (>= 1.0)
@@ -326,6 +326,6 @@ DEPENDENCIES
   underscore-rails
   unicorn
   unlock_auto_html
-  unlock_moip (= 0.2.0)
-  unlock_paypal (= 0.5.0)
+  unlock_moip (= 0.2.1)
+  unlock_paypal (= 0.5.1)
   world-flags

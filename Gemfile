@@ -55,8 +55,8 @@ gem 'rack-timeout'
 
 # Payment gateways
 gem 'paypal-recurring', '1.1.1', github: 'danielweinmann/paypal-recurring', branch: 'master'
-gem 'unlock_moip', '0.2.0'
-gem 'unlock_paypal', '0.5.0'
+gem 'unlock_moip', '0.2.1'
+gem 'unlock_paypal', '0.5.1'
 # gem 'unlock_gateway', path: '../unlock_gateway'
 # gem 'unlock_moip', path: '../unlock_moip'
 # gem 'unlock_paypal', path: '../unlock_paypal'
