@@ -30,6 +30,7 @@ class Initiatives::GatewaysController < StateController
 
   def edit
     authorize @gateway
+    @gateway.disable_fallback
   end
 
   def update

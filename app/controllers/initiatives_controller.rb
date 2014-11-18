@@ -41,6 +41,7 @@ class InitiativesController < StateController
 
   def edit
     authorize @initiative
+    @initiative.disable_fallback
   end
 
   def update
