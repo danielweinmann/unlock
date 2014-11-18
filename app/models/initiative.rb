@@ -40,7 +40,7 @@ class Initiative < ActiveRecord::Base
   unlock_auto_html_for :first_text, :second_text
 
   def to_param
-    (self.permalink && self.permalink.parameterize) || "#{self.id}-#{self.name.parameterize}"
+    (self.permalink && self.permalink.parameterize) || (self.name && "#{self.id}-#{self.name.parameterize}") || self.id
   end
 
   def can_contribute?
