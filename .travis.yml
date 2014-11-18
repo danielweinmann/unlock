@@ -1,0 +1,21 @@
+rvm:
+  - 2.1.3
+
+before_install:
+  - "gem install bundler -v '= 1.5.1'"
+
+before_script:
+  - "cp config/database.sample.yml config/database.yml"
+  - "psql -c 'create role bootstrap SUPERUSER LOGIN;' postgres"
+  - "psql -c 'create database bootstrap_test;' -U bootstrap postgres"
+  - "bundle exec rake db:migrate"
+
+env:
+  - DISPLAY=:99.0
+
+script:
+  - "bundle exec rspec spec"
+
+branches:
+  only:
+    - master
