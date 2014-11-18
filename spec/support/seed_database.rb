@@ -45,17 +45,13 @@ RSpec.configure do |config|
     get_initiative('unlock', the_creator_user)
   end
 
-  %w(pending active suspended).each do |state|
-    define_method("#{state}_contribution") do
-      get_contribution(state)
-    end
-  end
+  def pending_contribution()    get_contribution('pending')   end
+  def active_contribution()     get_contribution('active')    end
+  def suspended_contribution()  get_contribution('suspended') end
 
-  %w(draft sandbox production).each do |state|
-    define_method("#{state}_gateway") do
-      get_gateway(state)
-    end
-  end
+  def draft_gateway()       get_gateway('draft')      end
+  def sandbox_gateway()     get_gateway('sandbox')    end
+  def production_gateway()  get_gateway('production') end
 
   config.before(:all) do
     # Insert all data needed for tests
