@@ -6,6 +6,16 @@ RSpec.describe User, type: :model do
     it{ is_expected.to have_many :contributions }
   end
 
+  describe "#set_locale" do
+    before do
+      visitor_user.set_locale :pt
+    end
+
+    it "should change user locale" do
+      expect(visitor_user.locale).to eq 'pt'
+    end
+  end
+
   describe "#valid?" do
     let(:user_name){ nil }
     let(:user) do
