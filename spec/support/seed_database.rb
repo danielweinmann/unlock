@@ -1,7 +1,7 @@
 RSpec.configure do |config|
   def get_user(name)
     @users ||= {}
-    @users[name] ||= User.create_with(email: "#{name}@bar.com", password: 'test123', password_confirmation: 'test123').find_or_create_by!(name: name.humanize)
+    @users[name] ||= User.create_with(email: "#{name}@bar.com", password: 'test123', password_confirmation: 'test123', locale: 'en').find_or_create_by!(name: name.humanize)
     @users[name].reload
   end
 
