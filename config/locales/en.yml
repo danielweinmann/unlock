@@ -6,6 +6,7 @@ en:
   empty: 'No %{model} found.'
   to: 'to'
   contribute: 'Contribute'
+  contribute_to: 'Contribute to'
   destroy: 'Delete'
   add: 'Add'
   confirm: 'Are you sure?'

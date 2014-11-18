@@ -5,6 +5,7 @@ es:
   empty: 'Ningún %{model} encontrado.'
   to: 'para'
   contribute: 'Aportar'
+  contribute_to: 'Aportar para'
   destroy: 'Excluir'
   add: 'Añadir'
   confirm: 'Estás seguro?'

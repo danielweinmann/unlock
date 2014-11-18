@@ -6,6 +6,7 @@ pt:
   empty: 'Nenhum %{model} encontrado.'
   to: 'para'
   contribute: 'Apoiar'
+  contribute_to: 'Apoiar'
   destroy: 'Excluir'
   add: 'Adicionar'
   confirm: 'Você está certo disso?'
