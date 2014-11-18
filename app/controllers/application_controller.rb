@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from I18n::InvalidLocale, with: :user_not_authorized
 
   # This will send the current_user to the view and instantiate UserDecorator for it
   before_action :current_user
@@ -58,7 +59,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized(exception)
-    policy_name = exception.policy.class.to_s.underscore
     flash[:alert] = t('flash.not_authorized')
     redirect_to(request.referrer || root_path)
   end
