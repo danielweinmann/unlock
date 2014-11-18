@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     member do
       put :publish
       put :revert_to_draft
+      put :update_states_from_gateways
     end
     collection do
       get :sitemap

@@ -345,13 +345,28 @@
         display: block
       h4:before
         content: '▾ '
-.action
-  +span-columns(6)
+.actions
   text-align: center
-  .button
-    font-size: 1em
-    padding: 0.5em 1.2em
+.action
+  margin-bottom: 1em
+  +span-columns(6)
   .careful
     background: $careful_color
     &:hover
       background: $careful_hover_color
+  .button
+    +span-columns(6)
+    font-size: 1em
+    padding: 0.5em 1.2em
+  &:last-child
+    margin-bottom: 3em
+  +media($desktop)
+    width: auto
+    float: none
+    +omega
+    display: inline-block
+    margin-right: 1em
+    margin-bottom: 0
+    &:last-child
+      margin-bottom: 0
+      margin-right: 0

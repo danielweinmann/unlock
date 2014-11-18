@@ -43,7 +43,7 @@ article id=dom_id(@initiative) data-url=initiative_path(@initiative.id)
         a.button href=new_initiative_contribution_path(@initiative.id)
           = t('contribute')
   - if policy(@initiative).update?
-    section.edit
+    section.actions
       .action= link_to t('devise.registrations.edit.title', resource: nil), edit_initiative_path(@initiative.id), class: 'button'
       .action= link_to Gateway.model_name.human.pluralize, initiative_gateways_path(@initiative.id), class: 'button'
       - if @initiative.can_publish?

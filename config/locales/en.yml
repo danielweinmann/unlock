@@ -16,6 +16,7 @@ en:
   about: 'About'
   help: 'Contact and help'
   terms: 'Terms of use'
+  update_states_from_gateways: "Update total value with the payment gateways"
   activerecord:
     state_machines:
       initiative:

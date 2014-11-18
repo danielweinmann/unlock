@@ -16,6 +16,7 @@ pt:
   about: 'Sobre'
   help: 'Contato e ajuda'
   terms: 'Termos de uso'
+  update_states_from_gateways: "Atualizar arrecadação com os meios de pagamento"
   languages:
     pt: 'Português'
     es: 'Español'

@@ -69,6 +69,13 @@ class InitiativesController < StateController
     transition_state(@initiative, :revert_to_draft)
   end
 
+  def update_states_from_gateways
+    authorize @initiative
+    @initiative.update_states_from_gateways!
+    flash[:notice] = t('flash.actions.update.notice', resource_name: @initiative.class.model_name.human)
+    respond_with @initiative
+  end
+
   private
 
   def initiative_params

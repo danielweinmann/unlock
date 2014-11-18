@@ -15,6 +15,7 @@ es:
   about: 'Sobre'
   help: 'Contacto y ayuda'
   terms: 'Términos de uso'
+  update_states_from_gateways: "Actualizar recaudación con los medios de pago"
   activerecord:
     state_machines:
       initiative:
