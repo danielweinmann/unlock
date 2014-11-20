@@ -1,14 +1,4 @@
 RSpec.configure do |config|
-  module TestGateway
-    module Models
-      module Gateway
-      end
-
-      module Contribution
-      end
-    end
-  end
-
   def get_user(name)
     @users ||= {}
     @users[name] ||= User.create!(email: "#{name}@bar.com", password: 'test123', password_confirmation: 'test123', locale: 'en', name: name.humanize)
@@ -23,13 +13,13 @@ RSpec.configure do |config|
 
   def get_contribution(state)
     @contributions ||= {}
-    @contributions[state] ||= Contribution.create!(user: visitor_user, initiative: unlock_initiative, value: 10, state: state, gateway: production_gateway)
+    @contributions[state] ||= Contribution.create!(user: visitor_user, initiative: unlock_initiative, value: 10, state: state, gateway_state: 'production', gateway: production_gateway)
     @contributions[state].reload
   end
 
   def get_gateway(state)
     @gateways ||= {}
-    @gateways[state] ||= Gateway.create!(initiative: unlock_initiative, module_name: 'TestGateway', state: state)
+    @gateways[state] ||= Gateway.create!(initiative: unlock_initiative, module_name: "#{state.capitalize}Gateway", state: state)
     @gateways[state].reload
   end
 
@@ -58,6 +48,12 @@ RSpec.configure do |config|
     the_creator_user
     visitor_user
     unlock_initiative
+    pending_contribution
+    active_contribution
+    suspended_contribution
+    draft_gateway
+    sandbox_gateway
+    production_gateway
   end
 
   config.after(:all) do
