@@ -15,6 +15,16 @@ RSpec.describe Contribution, type: :model do
     it{ is_expected.to validate_numericality_of(:value).only_integer.is_greater_than_or_equal_to(Contribution::MINIMUM_VALUE) }
   end
 
+  describe ".visible" do
+    subject{ Contribution.visible }
+    it{ is_expected.to eq [active_contribution] }
+  end
+
+  describe ".not_pending" do
+    subject{ Contribution.not_pending }
+    it{ is_expected.to match_array [active_contribution, suspended_contribution] }
+  end
+
   # State machine specs
   describe "#pending?" do
     subject{ contribution.pending? }
@@ -55,6 +65,45 @@ RSpec.describe Contribution, type: :model do
     context "when contribution is not suspended" do
       let(:contribution){ pending_contribution }
       it{ is_expected.to eq false }
+    end
+  end
+
+  # State machine transitions
+  describe "#activate" do
+    subject{ contribution.activate }
+
+    context "when contribution is suspended" do
+      let(:contribution){ suspended_contribution }
+      it{ is_expected.to eq true }
+    end
+
+    context "when contribution is pending" do
+      let(:contribution){ pending_contribution }
+      it{ is_expected.to eq true }
+    end
+
+    context "when contribution is active" do
+      let(:contribution){ active_contribution }
+      it{ is_expected.to eq false }
+    end
+  end
+
+  describe "#suspend" do
+    subject{ contribution.suspend }
+
+    context "when contribution is suspended" do
+      let(:contribution){ suspended_contribution }
+      it{ is_expected.to eq false }
+    end
+
+    context "when contribution is pending" do
+      let(:contribution){ pending_contribution }
+      it{ is_expected.to eq false }
+    end
+
+    context "when contribution is active" do
+      let(:contribution){ active_contribution }
+      it{ is_expected.to eq true }
     end
   end
 end
