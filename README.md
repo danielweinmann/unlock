@@ -24,6 +24,8 @@ Simple and quick:
         cp config/database.sample.yml config/database.yml
         rake db:setup
 
+Alternatively you can run it locally through [Vagrant](https://www.vagrantup.com/): just run `vagrant up` to create your virtual machine with Unlock installed. Access your virtual machine with `vagrant ssh`, move to the project directory `cd /vagrant` and go to _step 3_ of the installing instructions.
+
 ## Payment gateways
 
 Every initiative on Unlock can add and configure multiple payment gateways, which are separated gems that follows the [UnlockGateway](https://github.com/danielweinmann/unlock_gateway) pattern.
