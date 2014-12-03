@@ -27,7 +27,7 @@ module Unlock
       # Spanish locales
       'es-MX', 'es-CO', 
       # English locales
-      'en-US'
+      'en-US', 'en-GB'
     ]
 
     config.i18n.fallbacks = {
