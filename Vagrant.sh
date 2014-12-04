@@ -26,6 +26,46 @@ if [ $? -ne 0 ]; then
   gem install bundler -N
 fi
 
-sudo -u postgres createuser --superuser vagrant || true
+if [ $(sudo -u postgres psql -tc "SELECT count(*) FROM pg_user WHERE usename='vagrant'") == 0 ]; then
+  sudo -u postgres psql -c "CREATE ROLE vagrant WITH PASSWORD 'vagrant' LOGIN SUPERUSER"
+fi
 
-cd /vagrant && bundle install
+if [ $(sudo -u postgres psql -tc "SELECT count(*) FROM pg_database WHERE datname='unlock_development'") == 0 ]; then
+  sudo -u postgres createdb -O vagrant unlock_development
+fi
+
+if [ $(sudo -u postgres psql -tc "SELECT count(*) FROM pg_database WHERE datname='unlock_test'") == 0 ]; then
+  sudo -u postgres createdb -O vagrant unlock_test
+fi
+
+if [ $(sudo -u postgres psql -tc "SELECT count(*) FROM pg_database WHERE datname='unlock_production'") == 0 ]; then
+  sudo -u postgres createdb -O vagrant unlock_production
+fi
+
+pushd /vagrant
+  bundle install
+  cat <<EOF > config/database.yml
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  username: vagrant
+  password: vagrant
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: unlock_development
+
+test:
+  <<: *default
+  database: unlock_test
+
+production:
+  <<: *default
+  database: unlock_production
+EOF
+  rake db:migrate
+  rake db:setup
+popd
