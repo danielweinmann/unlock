@@ -3,28 +3,36 @@
 Unlock people's pontential through recurring crowdfunding.
 
 ## Installing
-Before installing make sure you have the necessary software installed in your computer:
 
-  * Ruby 2.0+
-  * PostgreSQL 9.3+ (with the postgresql contrib modules)
-  
-Simple and quick:
+Before installing, make sure you have recent versions of [Git](http://www.git-scm.com/),
+[Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) 
+installed on your development machine.
 
-  1. Just clone the repo and get in the directory:
+Then, simply clone the repository:
 
-		git clone git@github.com:danielweinmann/unlock.git
-		cd unlock
-    
-  2. Install the gems (you might need to adjust the ruby version in the Gemfile):
-  
-  		bundle
-  		
-  3. Create the database configuration file, create the database and run the migrations:
+```
+git clone git@github.com:danielwinmann/unlock.git
+```
 
-        cp config/database.sample.yml config/database.yml
-        rake db:setup
+And create a Vagrant machine from the root of the project:
 
-Alternatively you can run it locally through [Vagrant](https://www.vagrantup.com/): just run `vagrant up` to create your virtual machine with Unlock installed. Access your virtual machine with `vagrant ssh`, move to the project directory `cd /vagrant` and go to _step 3_ of the installing instructions.
+```
+cd unlock
+vagrant up
+```
+
+This will download and install all the required dependencies, and set up the database for you.
+To make sure everything worked well, try running the tests:
+
+```
+vagrant ssh -c 'cd /vagrant && rake'
+```
+
+And then running the application:
+
+```
+vagrant ssh -c 'cd /vagrant && rails server'
+```
 
 ## Payment gateways
 
@@ -47,6 +55,5 @@ Just create a gem that follows the [UnlockGateway](https://github.com/danielwein
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
 
 This project rocks and uses MIT-LICENSE.
