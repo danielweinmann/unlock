@@ -4,6 +4,45 @@ Unlock people's pontential through recurring crowdfunding.
 
 ## Installing
 
+There are two ways to install and run Unlock for development:
+
+### Locally
+
+First, make sure your system has the following dependencies:
+
+* Ruby 2.0+
+* PostgreSQL 9.3+ (you'll need the postgresql contrib modules as well)
+
+Then, simply clone the repository:
+
+```
+git clone git@github.com:danielweinmann/unlock.git
+```
+
+And install all the gem dependencies:
+```
+cd unlock
+bundle install
+```
+
+Copy `config/database.sample.yml` into `config/database.yml`, adjusting any options to
+your database configuration. To create the schema and run the migrations:
+
+```
+rake db:migrate
+rake db:setup
+```
+
+At this point, you should have a green build:
+
+```
+rake
+```
+
+...and you're ready to go! :)
+
+### Using Vagrant
+
 Before installing, make sure you have recent versions of [Git](http://www.git-scm.com/),
 [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) 
 installed on your development machine.
@@ -22,7 +61,7 @@ vagrant up
 ```
 
 This will download and install all the required dependencies, and set up the database for you.
-To make sure everything worked well, try running the tests:
+To make sure everything worked well,  try running the tests:
 
 ```
 vagrant ssh -c 'cd /vagrant && rake'
