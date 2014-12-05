@@ -17,7 +17,7 @@ en:
   about: 'About'
   help: 'Contact and help'
   terms: 'Terms of use'
-  update_states_from_gateways: "Update total value with the payment gateways"
+  update_states_from_gateways: "Update total value from the payment gateways"
   activerecord:
     state_machines:
       initiative:
@@ -87,27 +87,27 @@ en:
     actions:
       create:
         notice: '%{resource_name} created successfully.'
-        alert: "%{resource_name} could't be created."
+        alert: "%{resource_name} couldn't be created."
       update:
         notice: '%{resource_name} updated successfully.'
       destroy:
         notice: '%{resource_name} deleted successfully.'
-        alert: "%{resource_name} could't be deleted."
-    not_authorized: "You don't have the necessary permitions to perform this action."
+        alert: "%{resource_name} couldn't be deleted."
+    not_authorized: "You don't have the necessary permissions to perform this action."
   layouts:
     application:
       love: 'Made with love and <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> in 2014 ♥'
       by: 'By <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-creator of <a href="http://catarse.me" target="_blank">Catarse</a> and <a href="http://engage.is" target="_blank">Engage</a>, and <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-creator of <a href="http://nos.vc" target="_blank">Nós.vc</a> and <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
   initiatives:
     index:
-      title: 'Recurring crowdfunding, uncurated and with no fee'
+      title: 'Recurring crowdfunding, uncurated and with no fees'
       h2: 'Create your recurring crowdfunding'
       h3: 'Share value and receive every month'
-      description: 'Recurring crowdfunding. Uncurated and with no fee. Finance and maintain what you want to exist.'
+      description: 'Recurring crowdfunding. Uncurated and with no fees. Finance and maintain what you want to exist.'
       keywords: 'platform crowdfunding recurring no fee payment gateway uncurated not curated total autonomy finance maintain want exist'
       no_fee:
-        h2: 'No fee'
-        h3: "Only from payment gateway"
+        h2: 'No fees'
+        h3: "Only from the payment gateway"
       not_curated:
         h2: 'Uncurated'
         h3: 'Total autonomy'
@@ -131,10 +131,10 @@ en:
           second: 'You can test freely, with no fear of being charged.'
       show:
         thank_you: 'Thank you for your contribution to %{initiative}!'
-        summary: 'Contribution made at %{created_at}, %{sandbox}with %{gateway}'
+        summary: 'Contribution made at %{created_at}, %{sandbox} with %{gateway}'
         gateway_identifier: 'Your subscription code is <strong>%{gateway_identifier}</strong>'
         payments: 'Your monthly payments will be processed by %{link}.'
-        suspend: 'If you want to suspend your contribution, just acces the menu <a href="/my_contributions">Contributed unlocks</a> at anytime.'
+        suspend: 'If you want to suspend your contribution, go to <a href="/my_contributions">Contributed unlocks</a> at anytime.'
         next_invoice: 'Your next payment will be made at %{date}.'
     gateways:
       edit:
