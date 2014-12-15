@@ -1,0 +1,9 @@
+# These are Great Britain specific translations
+# Default English translations must be done in the en locale
+
+en-GB:
+  activerecord:
+    attributes:
+      user:
+        address_state: County
+        address_zipcode: Postal Code
