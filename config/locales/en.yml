@@ -96,7 +96,7 @@ en:
     not_authorized: "You don't have the necessary permissions to execute this action."
   layouts:
     application:
-      love: 'Made <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> and with love in 2014 ♥'
+      love: 'Made with love and <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> in 2014 ♥'
       by: 'By <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-creator of <a href="http://catarse.me" target="_blank">Catarse</a> and <a href="http://engage.is" target="_blank">Engage</a>, and <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-creator of <a href="http://nos.vc" target="_blank">Nós.vc</a> and <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
   initiatives:
     index:
