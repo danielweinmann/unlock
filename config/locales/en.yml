@@ -12,12 +12,12 @@ en:
   confirm: 'Are you sure?'
   logout: 'Logout'
   profile: 'Profile'
-  my_contributions: 'Contributed unlocks'
-  my_initiatives: 'Created unlocks'
+  my_contributions: 'Unlocks I contributed to'
+  my_initiatives: 'Unlocks I created'
   about: 'About'
   help: 'Contact and help'
   terms: 'Terms of use'
-  update_states_from_gateways: "Update total value from the payment gateways"
+  update_states_from_gateways: "Update contribution amount in the payment gateways"
   activerecord:
     state_machines:
       initiative:
@@ -93,7 +93,7 @@ en:
       destroy:
         notice: '%{resource_name} deleted successfully.'
         alert: "%{resource_name} couldn't be deleted."
-    not_authorized: "You don't have the necessary permissions to perform this action."
+    not_authorized: "You don't have the necessary permissions to execute this action."
   layouts:
     application:
       love: 'Made with love and <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> in 2014 ♥'
@@ -122,7 +122,7 @@ en:
       new:
         submit: 'Pay with %{gateway}'
       base_form:
-        value: With how much do you want to contribute every month?
+        value: How much would you like to contribute monthly?
         info: 'Monthly subscription charged by the payment gateway %{link}. You can suspend it <a href="/my_contributions">anytime</a>.'
       sandbox_warning:
         title: 'Attention! This unlock is in test environment (Sandbox) at %{gateway}.'
@@ -134,9 +134,9 @@ en:
         summary: 'Contribution made at %{created_at}, %{sandbox} with %{gateway}'
         gateway_identifier: 'Your subscription code is <strong>%{gateway_identifier}</strong>'
         payments: 'Your monthly payments will be processed by %{link}.'
-        suspend: 'If you want to suspend your contribution, go to <a href="/my_contributions">Contributed unlocks</a> at anytime.'
-        next_invoice: 'Your next payment will be made at %{date}.'
+        suspend: 'If you want to suspend your contribution, just go to <a href="/my_contributions">Unlocks I contributed to</a> at anytime.'
+        next_invoice: 'Your next payment is due to %{date}.'
     gateways:
       edit:
         title: "Title of the payment gateway that will be shown in your contribution page. Leave it blank to use the default '%{gateway}'."
-        ordering: 'The payment gateways of your unlock will be shown in order in your contribution page, according to the number you fill in here.'
+        ordering: 'The payment gateways of your unlock will appear at your contribution page ordered according to the numbers you set here.'
