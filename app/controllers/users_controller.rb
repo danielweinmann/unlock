@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   
   def my_contributions
     authorize @user
+    @contributions = @user.contributions.not_pending
+    @active = @contributions.with_state(:active)
+    @suspended = @contributions.with_state(:suspended)
     respond_with @user
   end
 

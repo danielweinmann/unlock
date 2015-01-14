@@ -1,6 +1,14 @@
 - content_for :title do
   = t('my_contributions')
-- if @user.contributions.not_pending.exists?
-  ul.contributions= render @user.contributions.not_pending
-- else
-  em= t('empty', model: Contribution.model_name.human.downcase)
+section.active
+  h3= t('activerecord.state_machines.contribution.state.states.active').pluralize
+  - if @active.exists?
+    ul.contributions= render @active
+  - else
+    em= t('empty', model: Contribution.model_name.human.downcase)
+section.suspended
+  h3= t('activerecord.state_machines.contribution.state.states.suspended').pluralize
+  - if @suspended.exists?
+    ul.contributions= render @suspended
+  - else
+    em= t('empty', model: Contribution.model_name.human.downcase)
