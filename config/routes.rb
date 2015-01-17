@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :sitemap
-      get '/:scope' => 'initiatives#index', as: :scoped
+      get '/:scope' => 'initiatives#index', as: :scoped, constraints: { scope: /most_funded|more_contributions|recently_updated/ }
     end
   end
 
