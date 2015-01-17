@@ -22,10 +22,11 @@ Rails.application.routes.draw do
     end
     collection do
       get :sitemap
+      get '/:scope' => 'initiatives#index', as: :scoped
     end
   end
 
-  root "initiatives#index"
+  root "initiatives#home"
 
   get "/my_contributions" => "users#my_contributions", as: :my_contributions
   get "/my_initiatives" => "users#my_initiatives", as: :my_initiatives

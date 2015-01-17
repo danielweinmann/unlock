@@ -1,0 +1,49 @@
+- suppress_headline_and_article!
+- suppress_logo!
+- content_for :title do
+  = t('.title')
+- content_for :url do
+  = root_url
+- content_for :header do
+  = link_to :root do
+    h1= image_tag 'logo.png', alt: "Unlock", title: "Unlock"
+  h2= t('.h2')
+  h3= t('.h3')
+  section.new= link_to t('helpers.submit.create', model: nil), new_initiative_path, class: 'button'
+- content_for :post_header do
+  ul
+    li
+      = image_tag "no_fee.png"
+      h2= t('.no_fee.h2')
+      h3= t('.no_fee.h3')
+    li
+      = image_tag "not_curated.png"
+      h2= t('.not_curated.h2')
+      h3= t('.not_curated.h3')
+- content_for :meta_tags do
+  meta name="description" content=t('.description')
+  meta name="keywords" content="unlock #{t('.keywords')}"
+  meta property="og:title" content="#{t('.title')} · Unlock"
+  meta property="og:type" content="website"
+  meta property="og:url" content=(root_url)
+  meta property="og:image" content=="#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}"
+  meta property="og:description" content=t('.description')
+  meta name="author" content="Larusso + Weinmann"
+section.text
+  h2= t('.text.h2')
+  h3= t('.text.h3')
+- if @most_funded.exists?
+  .section_title
+    h4= t('.most_funded')
+    = link_to t('view_all'), scoped_initiatives_path(:most_funded)
+  section.most_funded= render @most_funded
+- if @more_contributions.exists?
+  .section_title
+    h4= t('.more_contributions')
+    = link_to t('view_all'), scoped_initiatives_path(:more_contributions)
+  section.more_contributions= render @more_contributions
+- if @recently_updated.exists?
+  .section_title
+    h4= t('.recently_updated')
+    = link_to t('view_all'), scoped_initiatives_path(:recently_updated)
+  section.recently_updated= render @recently_updated

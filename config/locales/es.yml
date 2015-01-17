@@ -9,6 +9,7 @@ es:
   destroy: 'Excluir'
   add: 'Añadir'
   confirm: 'Estás seguro?'
+  view_all: 'Ver todos'
   logout: 'Salir'
   profile: 'Perfil'
   my_contributions: 'Unlocks aportados'
@@ -98,7 +99,7 @@ es:
       love: 'Hecho con amor y <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> en 2014 ♥'
       by: 'Por <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-creador de <a href="http://catarse.me" target="_blank">Catarse</a> y de <a href="http://engage.is" target="_blank">Engage</a>, y <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-creador de <a href="http://nos.vc" target="_blank">Nós.vc</a> y de <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
   initiatives:
-    index:
+    home:
       title: 'Financiamiento colectivo recurrente, sin tasa y sin curaduría'
       h2: 'Crea tu financiamiento colectivo recurrente'
       h3: 'Comparte valor y recibe todos los meses'
@@ -113,6 +114,15 @@ es:
       text:
         h2: 'Libera potencial'
         h3: 'Financia y mantén lo que quieres que exista'
+      most_funded: 'Mayores recaudaciones'
+      more_contributions: 'Más aportes'
+      recently_updated: 'Actualizados recientemente'
+    index:
+      title: 'Explorar unlocks'
+      scoped:
+        most_funded: 'Unlocks con mayores recaudaciones'
+        more_contributions: 'Unlocks con más aportes'
+        recently_updated: 'Unlocks actualizados recientemente'
     edit:
       textile: 'Puedes usar <a href="http://txstyle.org/" target="_blank">Textile</a>.'
       permalink: 'Para habilitar aportes, es necesario elegir un permalink. Él definirá seu dirección, como en http://unlock.fund/<strong>mipermalink</strong>.'
