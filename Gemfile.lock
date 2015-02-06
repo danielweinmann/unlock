@@ -263,7 +263,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    unlock_auto_html (0.0.1)
+    unlock_auto_html (0.0.2)
       RedCloth
       auto_html (= 1.5.1)
       rails (~> 4.1.6)
@@ -335,7 +335,7 @@ DEPENDENCIES
   uglifier
   underscore-rails
   unicorn
-  unlock_auto_html
+  unlock_auto_html (= 0.0.2)
   unlock_moip (= 0.2.1)
   unlock_paypal (= 0.5.2)
   world-flags

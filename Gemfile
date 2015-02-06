@@ -50,7 +50,8 @@ gem 'high_voltage'
 gem 'maskmoney-rails'
 
 # Other
-gem 'unlock_auto_html'
+gem 'unlock_auto_html', '0.0.2'
+# gem 'unlock_auto_html', path: '../unlock_auto_html'
 gem 'aws-sdk'
 gem 'rack-timeout'
 
