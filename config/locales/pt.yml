@@ -91,6 +91,7 @@ pt:
         total_value: Arrecadados por mês
         total_contributions: pessoa apoia
         currency: Moeda
+        minimum_value: Valor mínimo de apoio
       gateway:
         initiative: Unlock
         title: Título

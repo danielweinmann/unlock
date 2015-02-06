@@ -80,6 +80,7 @@ en:
         total_value: Contributed every month
         total_contributions: person contribute
         currency: Currency
+        minimum_value: Minimum value for contributions
       gateway:
         title: Title
         ordering: Order

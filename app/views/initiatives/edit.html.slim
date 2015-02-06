@@ -27,4 +27,6 @@ article
     = form.label :currency
     = form.select :currency, Money::Currency.table.keys.map{ |key| ["#{Money::Currency.table[key][:name]} (#{Money::Currency.table[key][:symbol]})", key.to_s.upcase] }.sort, {}, { class: "has_em" }
     em== t('.currency')
+    = form.label :minimum_value
+    = form.text_field :minimum_value, class: 'money'
     .submit= form.submit t('helpers.submit.submit', model: nil)

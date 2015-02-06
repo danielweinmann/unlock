@@ -79,6 +79,7 @@ es:
         total_value: Aportados por mes
         total_contributions: persona aporta
         currency: Moneda
+        minimum_value: Valor mínimo de aporte
       gateway:
         title: Título
         ordering: Orden

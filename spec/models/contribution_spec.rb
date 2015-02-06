@@ -8,11 +8,12 @@ RSpec.describe Contribution, type: :model do
   end
 
   describe "validations" do
+    subject{ pending_contribution }
     it{ is_expected.to validate_presence_of :user }
     it{ is_expected.to validate_presence_of :initiative }
     it{ is_expected.to validate_presence_of :gateway }
     it{ is_expected.to validate_presence_of :value }
-    it{ is_expected.to validate_numericality_of(:value).only_integer.is_greater_than_or_equal_to(Contribution::MINIMUM_VALUE) }
+    it{ is_expected.to validate_numericality_of(:value).only_integer.is_greater_than_or_equal_to(unlock_initiative.minimum_value) }
   end
 
   describe ".visible" do
