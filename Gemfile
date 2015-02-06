@@ -14,6 +14,7 @@ gem 'hstore_translate'
 
 # Controller related
 gem 'responders'
+gem 'has_scope'
 
 # Authentication and authorization
 gem 'devise'
@@ -66,6 +67,7 @@ group :test, :development do
   gem "shoulda-matchers"
   gem 'letter_opener'
   gem 'spring'
+  gem 'better_errors'
 end
 
 group :production do

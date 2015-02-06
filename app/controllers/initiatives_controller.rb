@@ -6,13 +6,25 @@ class InitiativesController < StateController
   respond_to :xml, only: [:sitemap]
   respond_to :json, only: [:update, :show]
 
-  after_action :verify_authorized, except: %i[index sitemap]
-  after_action :verify_policy_scoped, only: %i[index sitemap]
+  after_action :verify_authorized, except: %i[home index sitemap]
+  after_action :verify_policy_scoped, only: %i[home index sitemap]
   before_action :authenticate_user!, only: %i[new]
 
+  has_scope :most_funded, type: :boolean
+  has_scope :more_contributions, type: :boolean
+  has_scope :recently_updated, type: :boolean
+  before_action :set_scope, only: %i[index]
+
+  def home
+    @initiatives = policy_scope(Initiative).with_state(:published)
+    @most_funded = @initiatives.most_funded.limit(3)
+    @more_contributions = @initiatives.more_contributions.not_in(@most_funded).limit(3)
+    @recently_updated = @initiatives.recently_updated.not_in(@most_funded, @more_contributions).limit(3)
+    respond_with @initiatives
+  end
+
   def index
-    @initiatives = policy_scope(Initiative).home_page
-    return redirect_to :root unless request.path == "/#{params[:locale]}"
+    @initiatives = apply_scopes(policy_scope(Initiative).with_state(:published))
     respond_with @initiatives
   end
 
@@ -85,6 +97,11 @@ class InitiativesController < StateController
   def set_initiative
     @initiative ||= Initiative.find_by_permalink(params[:id])
     @initiative ||= Initiative.find(params[:id])
+  end
+
+  def set_scope
+    return unless params[:scope]
+    params[params[:scope].to_sym] = true
   end
 
   def allow_default_locales?

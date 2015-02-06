@@ -10,6 +10,7 @@ en:
   destroy: 'Delete'
   add: 'Add'
   confirm: 'Are you sure?'
+  view_all: 'View all'
   logout: 'Logout'
   profile: 'Profile'
   my_contributions: 'Unlocks I contributed to'
@@ -99,7 +100,7 @@ en:
       love: 'Made with love and <a href="https://github.com/danielweinmann/unlock" target="_blank">Open Source</a> in 2014 ♥'
       by: 'By <a href="http://fb.com/danielweinmann" target="_blank">Daniel Weinmann</a>, co-creator of <a href="http://catarse.me" target="_blank">Catarse</a> and <a href="http://engage.is" target="_blank">Engage</a>, and <a href="http://larusso.com.br" target="_blank">Daniel Larusso</a>, co-creator of <a href="http://nos.vc" target="_blank">Nós.vc</a> and <a href="http://estaleiroliberdade.com.br" target="_blank">Estaleiro Liberdade</a>.'
   initiatives:
-    index:
+    home:
       title: 'Recurring crowdfunding, uncurated and with no fees'
       h2: 'Create your recurring crowdfunding'
       h3: 'Share value and receive every month'
@@ -114,6 +115,15 @@ en:
       text:
         h2: 'Unlock potential'
         h3: 'Finance and maintain what you want to exist'
+      most_funded: 'Most funded'
+      more_contributions: 'More contributions'
+      recently_updated: 'Recently updated'
+    index:
+      title: 'Explore unlocks'
+      scoped:
+        most_funded: 'Most funded unlocks'
+        more_contributions: 'Unlocks with more contributions'
+        recently_updated: 'Recently updated unlocks'
     edit:
       textile: 'You can use <a href="http://txstyle.org/" target="_blank">Textile</a>.'
       permalink: 'To enable contributions, you need to choose a permalink. It will define your address, as in http://unlock.fund/<strong>mypermalink</strong>.'

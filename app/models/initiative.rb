@@ -33,8 +33,15 @@ class Initiative < ActiveRecord::Base
 
   end
 
-  def self.home_page
-    with_state(:published).order("(SELECT coalesce(sum(value), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 'active' AND contributions.gateway_state = gateways.state) DESC, updated_at DESC")
+  scope :most_funded, -> { with_state(:published).order("(SELECT coalesce(sum(value), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 'active' AND contributions.gateway_state = gateways.state) DESC, updated_at DESC") }
+
+  scope :more_contributions, -> { with_state(:published).order("(SELECT coalesce(count(*), 0) FROM contributions INNER JOIN gateways ON contributions.gateway_id = gateways.id WHERE contributions.initiative_id = initiatives.id AND contributions.state = 'active' AND contributions.gateway_state = gateways.state) DESC, updated_at DESC") }
+
+  scope :recently_updated, -> { with_state(:published).order("updated_at DESC") }
+
+  def self.not_in(*args)
+    ids = args.flatten.map(&:id)
+    where("id NOT IN (?)", ids)
   end
 
   unlock_auto_html_for :first_text, :second_text

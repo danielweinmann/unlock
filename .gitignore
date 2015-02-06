@@ -12,6 +12,7 @@ tmp/
 config/database.yml
 public/system/
 db/schema.rb
+*.dump
 
 *.gem
 *.rbc
