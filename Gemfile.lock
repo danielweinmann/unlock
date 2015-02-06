@@ -265,7 +265,7 @@ GEM
       moip-assinaturas (= 0.4.2)
       rails (~> 4.1.6)
       unlock_gateway (= 0.2.1)
-    unlock_paypal (0.5.1)
+    unlock_paypal (0.5.2)
       paypal-recurring
       rails (~> 4.1.6)
       unlock_gateway (= 0.2.1)
@@ -327,5 +327,5 @@ DEPENDENCIES
   unicorn
   unlock_auto_html
   unlock_moip (= 0.2.1)
-  unlock_paypal (= 0.5.1)
+  unlock_paypal (= 0.5.2)
   world-flags
