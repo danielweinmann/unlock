@@ -5,7 +5,12 @@ module ContributionDecorator
   end
 
   def next_invoice_date
-    date = Date.strptime(self.created_at.strftime('%d') + Time.now.strftime('/%m/%Y'), '%d/%m/%Y')
+    date = nil
+    day = self.created_at.strftime('%d').to_i
+    until date do
+      date = Date.strptime(day.to_s + Time.now.strftime('/%m/%Y'), '%d/%m/%Y') rescue nil
+      day -= 1    
+    end
     date += 1.month if date < Time.now
     l date
   end
