@@ -92,6 +92,7 @@ en:
         alert: "%{resource_name} couldn't be created."
       update:
         notice: '%{resource_name} updated successfully.'
+        alert: "%{resource_name} couldn't be updated."
       destroy:
         notice: '%{resource_name} deleted successfully.'
         alert: "%{resource_name} couldn't be deleted."

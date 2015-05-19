@@ -104,6 +104,7 @@ pt:
         alert: '%{resource_name} não pôde ser criado.'
       update:
         notice: '%{resource_name} atualizado com sucesso.'
+        alert: '%{resource_name} não pôde ser atualizado.'
       destroy:
         notice: '%{resource_name} excluído com sucesso.'
         alert: '%{resource_name} não pôde ser excluído.'

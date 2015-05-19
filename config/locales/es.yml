@@ -91,6 +91,7 @@ es:
         alert: '%{resource_name} no pudo ser creado.'
       update:
         notice: '%{resource_name} actualizado con éxito.'
+        alert: '%{resource_name} no pudo ser actualizado.'
       destroy:
         notice: '%{resource_name} excluido con exito.'
         alert: '%{resource_name} no pudo ser excluido.'
