@@ -1,6 +1,6 @@
 class InitiativesController < StateController
   
-  before_action :set_initiative, except: %i[index new sitemap]
+  before_action :set_initiative, except: %i[index new sitemap home]
 
   respond_to :html, except: [:sitemap]
   respond_to :xml, only: [:sitemap]
