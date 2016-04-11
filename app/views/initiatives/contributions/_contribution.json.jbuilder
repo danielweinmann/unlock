@@ -2,7 +2,7 @@
 json.id contribution.id
 json.user do |json|
   if contribution.hide_name?
-    if policy(contribution.initiative).update? || policy(contribution).update?
+    if can_manage_contribution?(contribution)
       json.id contribution.user.id
     end
     json.name Contribution.human_attribute_name(:hide_name?)
@@ -10,7 +10,7 @@ json.user do |json|
     json.id contribution.user.id
     json.name contribution.user.display_name
   end
-  if policy(contribution.initiative).update? || policy(contribution).update?
+  if can_manage_contribution?(contribution)
     json.email contribution.user.email
     json.full_name contribution.user.full_name
     json.document contribution.user.document
@@ -28,7 +28,7 @@ json.user do |json|
     json.updated_at contribution.user.updated_at
   end
 end
-json.value (contribution.hide_value ? nil : contribution.value)
+json.value ( (contribution.hide_value && !can_manage_contribution?(contribution)) ? nil : contribution.value)
 json.created_at contribution.created_at
 json.updated_at contribution.updated_at
 json.hide_name contribution.hide_name?
