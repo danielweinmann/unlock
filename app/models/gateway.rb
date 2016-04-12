@@ -46,6 +46,10 @@ class Gateway < ActiveRecord::Base
     []
   end
 
+  # Overriden in gateway modules
+  def name
+  end
+
   private
 
   def include_gateway_module
